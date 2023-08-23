@@ -1,0 +1,18 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header img {
+  height: 62px;
+}
+
+.settings {
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+/*# sourceMappingURL=Header.module.css.map */

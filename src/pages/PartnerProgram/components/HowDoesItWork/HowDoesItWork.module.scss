@@ -1,0 +1,50 @@
+.how-does-it-work {
+    margin-bottom: 150px;
+}
+
+.steps-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+
+}
+
+.step {
+    padding: 25px;
+    backdrop-filter: blur(50px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.02);
+    box-shadow: 0px 108px 131px 0px rgba(0, 0, 0, 0.25);
+}
+
+.count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    margin-bottom: 25px;
+}
+
+.count span {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(rgba(121, 87, 255, 1), rgba(168, 36, 230, 1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.step h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.step p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}

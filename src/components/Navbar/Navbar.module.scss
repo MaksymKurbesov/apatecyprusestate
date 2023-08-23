@@ -1,0 +1,23 @@
+.nav-list {
+    display: flex;
+    font-size: 15px;
+}
+
+.nav-list li {
+    color: var(--semi-white);
+    transition: 0.5s all;
+}
+
+.nav-list-header li:not(:last-child) {
+    margin-right: 30px;
+}
+
+
+.nav-list-footer li:not(:last-child) {
+    margin-right: 60px;
+}
+
+.active {
+    color: white;
+    transition: 0.5s all;
+}

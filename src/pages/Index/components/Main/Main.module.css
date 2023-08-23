@@ -1,0 +1,64 @@
+.main {
+  width: 100%;
+  background-image: url("../../../../assets/SVG/Ellipse.svg"), url("../../../../assets/SVG/Ellipse.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-size: 100%, 70%, 100%;
+  background-position: center top, center top 200px, top;
+}
+
+.main-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  max-width: 750px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 52px;
+}
+
+.title span {
+  background: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: var(--semi-white);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.hero-image {
+  position: relative;
+  right: 50px;
+}
+
+.company-statistic {
+  width: 100%;
+  position: relative;
+  top: -130px;
+  display: grid;
+  padding: 30px 100px;
+  grid-template-columns: repeat(4, 1fr);
+  backdrop-filter: blur(100px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.statistic p {
+  font-weight: 700;
+  font-size: 44px;
+  margin-bottom: 5px;
+}
+
+.statistic span {
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/*# sourceMappingURL=Main.module.css.map */

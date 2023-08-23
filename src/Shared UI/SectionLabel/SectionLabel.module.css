@@ -1,0 +1,17 @@
+.section-label {
+  margin: 0 auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  padding: 12px 14px;
+  background: linear-gradient(rgba(105, 120, 255, 0.22), rgba(51, 67, 206, 0.0814));
+  border: 2px solid rgb(99, 106, 183);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(164, 178, 255);
+  box-shadow: 0 5px 11px 5px rgba(116, 67, 255, 0.23);
+}
+
+/*# sourceMappingURL=SectionLabel.module.css.map */

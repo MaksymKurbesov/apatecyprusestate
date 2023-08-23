@@ -1,13 +1,56 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "Golos";
+  font-weight: 400;
+  src: url("assets/fonts/GolosText-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Golos";
+  font-weight: 500;
+  src: url("assets/fonts/GolosText-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Golos";
+  font-weight: 600;
+  src: url("assets/fonts/GolosText-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Golos";
+  font-weight: 700;
+  src: url("assets/fonts/GolosText-Bold.woff2") format("woff2");
+}
+:root {
+  --background-color: #05071B;
+  --gradient-A: #7957FF;
+  --gradient-B: #A824E6;
+  --semi-white: rgba(255, 255, 255, 0.4);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: Golos, serif;
+  font-weight: 400;
+  color: white;
+  background-color: var(--background-color);
 }
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1470px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/*# sourceMappingURL=index.css.map */

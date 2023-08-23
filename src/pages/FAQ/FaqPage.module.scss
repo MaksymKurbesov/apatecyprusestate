@@ -1,0 +1,12 @@
+.faq-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 75px 0;
+    //text-align: center;
+}
+
+.subtitle {
+    color: var(--semi-white);
+    margin-bottom: 50px;
+}

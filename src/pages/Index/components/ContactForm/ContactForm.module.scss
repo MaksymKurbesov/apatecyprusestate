@@ -1,0 +1,17 @@
+.contact-form-wrapper {
+    text-align: center;
+}
+
+.contact-form-wrapper > p {
+    color: var(--semi-white);
+    margin-bottom: 50px;
+}
+
+.contact-form {
+    width: 450px;
+    margin: 0 auto 50px;
+}
+
+.contact-form div:not(:last-child) {
+    margin-bottom: 20px;
+}

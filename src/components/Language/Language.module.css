@@ -1,0 +1,15 @@
+.language {
+  margin-right: 30px;
+  display: flex;
+}
+
+.language img {
+  margin-right: 10px;
+}
+
+.test {
+  width: 100px;
+  background-color: white;
+}
+
+/*# sourceMappingURL=Language.module.css.map */

@@ -1,0 +1,20 @@
+.section-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.right {
+    flex-direction: row-reverse;
+}
+
+.information {
+    max-width: 40%;
+}
+
+.information p {
+    color: var(--semi-white);
+    line-height: 32px;
+    margin-bottom: 30px;
+}
