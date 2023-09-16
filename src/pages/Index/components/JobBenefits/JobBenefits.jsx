@@ -1,12 +1,13 @@
 import React from "react";
-import Icon1 from "../../../../assets/SVG/1 benefit icon.svg";
-import Icon2 from "../../../../assets/SVG/2 benefit icon.svg";
-import Icon3 from "../../../../assets/SVG/3 benefit icon.svg";
-import Icon4 from "../../../../assets/SVG/4 benefit icon.svg";
-import Icon5 from "../../../../assets/SVG/5 benefit icon.svg";
-import Icon6 from "../../../../assets/SVG/6 benefit icon.svg";
+import Icon1 from "../../../../../assets/SVG/1 benefit icon.svg";
+import Icon2 from "../../../../../assets/SVG/2 benefit icon.svg";
+import Icon3 from "../../../../../assets/SVG/3 benefit icon.svg";
+import Icon4 from "../../../../../assets/SVG/4 benefit icon.svg";
+import Icon5 from "../../../../../assets/SVG/5 benefit icon.svg";
+import Icon6 from "../../../../../assets/SVG/6 benefit icon.svg";
 import styles from "./JobBenefits.module.scss";
-import Title from "../../../../Shared UI/Title/Title";
+import Title from "../../../../../Shared UI/Title/Title";
+import SectionLabel from "../../../../../Shared UI/SectionLabel/SectionLabel";
 
 const BENEFITS = [
   {
@@ -43,22 +44,25 @@ const BENEFITS = [
 
 const JobBenefits = () => {
   return (
-    <section className={`${styles["job-benefits"]} container`}>
-      <Title text={"Job Benefits"} />
-      <ul className={styles["benefits-list"]}>
-        {BENEFITS.map(({ title, text, icon }) => {
-          return (
-            <li key={title} className={styles["benefit"]}>
-              <div className={styles["icon"]}>
-                <img src={icon} alt={"Icon"} />
-              </div>
+    <section className={styles["job-benefits"]}>
+      <div className={"container"}>
+        <SectionLabel text={"Why we?"} style={{ marginBottom: 30 }} />
+        <Title text={"Job Benefits"} />
+        <ul className={styles["benefits-list"]}>
+          {BENEFITS.map(({ title, text, icon }) => {
+            return (
+              <li key={title} className={styles["benefit"]}>
+                <div className={styles["icon"]}>
+                  <img src={icon} alt={"Icon"} />
+                </div>
 
-              <h4>{title}</h4>
-              <p>{text}</p>
-            </li>
-          );
-        })}
-      </ul>
+                <h4>{title}</h4>
+                <p>{text}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </section>
   );
 };

@@ -1,8 +1,15 @@
 .our-team {
+    width: 100%;
     margin-bottom: 200px;
+    background-image:
+            url('../../../../../assets/SVG/Ellipse.svg'),
+            url('../../../../../assets/SVG/Ellipse.svg');
+    background-repeat: no-repeat, no-repeat;
+    background-size: 105%, 70%;
+    background-position: center top, center top 200px;
 }
 
-.our-team > h2 {
+.our-team h2 {
     text-align: center;
 }
 
@@ -15,7 +22,7 @@
 
 .team-list {
     display: grid;
-    grid-template-columns: repeat(3, 400px);
+    grid-template-columns: repeat(3, 1fr);
     gap: 35px;
     justify-content: space-between;
 }
@@ -44,4 +51,10 @@
 
 .photo {
     margin-bottom: 25px;
+}
+
+@media screen and (max-width: 768px) {
+    .our-team {
+        margin-bottom: 80vw;
+    }
 }

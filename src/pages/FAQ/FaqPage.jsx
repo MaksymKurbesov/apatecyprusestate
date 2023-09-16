@@ -1,8 +1,9 @@
 import React from "react";
-import SectionLabel from "../../Shared UI/SectionLabel/SectionLabel";
-import Title from "../../Shared UI/Title/Title";
+import SectionLabel from "../../../Shared UI/SectionLabel/SectionLabel";
+import Title from "../../../Shared UI/Title/Title";
 import styles from "./FaqPage.module.scss";
-import Accordion from "../../components/Accordion/Accordion";
+import Accordion from "../../../components/Accordion/Accordion";
+import { ScrollRestoration } from "react-router-dom";
 
 const QUESTIONS = [
   {
@@ -58,7 +59,10 @@ const FaqPage = () => {
       <SectionLabel text={`FAQ'S`} style={{ marginBottom: 20 }} />
       <Title text={"Frequently asked questions"} style={{ marginBottom: 20 }} />
       <p className={styles["subtitle"]}>All you need to know to work with us</p>
-      <Accordion data={QUESTIONS} />
+      <div className={styles["accordion-wrapper"]}>
+        <Accordion data={QUESTIONS} className={"isFaq"} />
+      </div>
+      <ScrollRestoration />
     </div>
   );
 };

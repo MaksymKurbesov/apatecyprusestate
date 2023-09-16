@@ -1,0 +1,78 @@
+.wallet {
+    width: 385px;
+    height: 200px;
+    padding: 0 25px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0px 4px 13px 0px rgba(43, 159, 196, 0.03) inset;
+    background-image:
+            radial-gradient(circle at -100px -100px, rgba(23,46,164,0.3) 0%, rgba(22,119,255,0) 70%),
+            radial-gradient(circle at 500px 250px, rgba(23,46,164,0.3) 0%, rgba(22,119,255,0) 70%);
+}
+
+.wallet:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 1px;
+    width: 335px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    height: 50%;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(108, 167, 255, 0.1);
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.icon img {
+    width: 25px;
+    height: 25px;
+}
+
+.name span {
+    font-size: 24px;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 7px;
+    background: linear-gradient(206.37deg, #384A60 -19.82%, rgba(56, 74, 96, 0) 83.43%),
+    radial-gradient(83.82% 128.72% at 88.71% 16.18%, rgba(147, 255, 39, 0.3) 0%, rgba(39, 255, 113, 0) 100%),
+    linear-gradient(192.95deg, rgba(156, 231, 255, 0.1) 9.35%, rgba(156, 231, 255, 0) 144.17%);
+    border: 1px solid rgba(56, 74, 96, 0.5);
+    border-radius: 4px;
+    color: rgba(175, 255, 167, 0.75);
+}
+
+.information {
+    display: flex;
+    height: 50%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.information li p {
+    font-size: 13px;
+    color: var(--semi-white);
+    margin-bottom: 5px;
+}

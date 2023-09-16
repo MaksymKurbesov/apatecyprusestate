@@ -1,22 +1,33 @@
 .presentation {
     width: 100%;
     height: 400px;
-    display: flex;
-    background: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
+    padding: 0 50px;
+    position: relative;
+    background-image:
+            url("../../../../../assets/SVG/vertical ellipse.svg"),
+            url("../../../../../assets/SVG/vertical ellipse.svg"),
+            linear-gradient(-90deg, var(--gradient-A), var(--gradient-B));
+    background-position:  -50px 0px, 50px 0, center;
+    //background-size: 100%, 70%;
+    background-repeat: no-repeat;
     margin-bottom: 100px;
 }
+
 
 .presentation-wrapper {
     display: flex;
     align-items: center;
+    height: 100%;
 }
 
 .information {
     max-width: 350px;
+    margin-right: 120px;
 }
 
-.information h2{
+.information h2 {
     margin-bottom: 25px;
+    font-size: clamp(1.2rem, 3.5vw, 3rem);
 }
 
 .information p {
@@ -27,4 +38,46 @@
 .macbook {
     position: relative;
     top: -50px;
+}
+
+@media screen  and (max-width: 1200px) {
+    .information {
+        margin-right: 10px;
+    }
+
+    .macbook {
+        width: 70%;
+        top: 0;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+
+    .presentation h2 {
+        margin-bottom: 10px;
+    }
+
+    .presentation-wrapper {
+        flex-direction: column-reverse;
+        position: relative;
+        top: -50px;
+    }
+
+    .information {
+        max-width: none;
+        margin-right: 0;
+    }
+
+    .macbook {
+        width: 100%;
+        right: -10px;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .presentation {
+        padding: 0;
+        margin-bottom: 50px;
+    }
 }

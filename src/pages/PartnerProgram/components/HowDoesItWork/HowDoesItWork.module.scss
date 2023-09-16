@@ -1,6 +1,6 @@
-.how-does-it-work {
-    margin-bottom: 150px;
-}
+    .how-does-it-work {
+        margin-bottom: 150px;
+    }
 
 .steps-list {
     display: grid;
@@ -31,6 +31,7 @@
     margin-bottom: 25px;
 }
 
+
 .count span {
     font-size: 20px;
     font-weight: 700;
@@ -47,4 +48,43 @@
 .step p {
     color: rgba(255, 255, 255, 0.5);
     font-size: 14px;
+}
+
+@media screen and (max-width: 1024px) {
+    .steps-list {
+        grid-template-columns: 1fr;
+    }
+
+    .step {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .step h3 {
+        width: 100%;
+        display: block;
+    }
+
+    .count {
+        margin-bottom: 0;
+        margin-right: 20px;
+    }
+}
+
+@media  screen and (max-width: 768px) {
+    .how-does-it-work {
+        margin-bottom: 100px;
+    }
+
+    .information {
+        width: 75%;
+    }
+}
+
+@media  screen and (max-width: 480px) {
+    .how-does-it-work h2 {
+        font-size: 31px;
+        text-align: center;
+    }
 }

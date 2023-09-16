@@ -1,6 +1,6 @@
 import React from "react";
-import SectionLayout from "../../../../Shared UI/SectionLayout/SectionLayout";
-import Image from "../../../../assets/images/partner-program.png";
+import SectionLayout from "../../../../../Shared UI/SectionLayout/SectionLayout";
+import Image from "../../../../../assets/images/what-do-we-do2.png";
 
 const WhatDoWeDo = () => {
   return (

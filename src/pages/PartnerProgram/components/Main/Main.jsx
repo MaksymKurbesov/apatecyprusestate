@@ -1,13 +1,13 @@
 import React from "react";
-import SectionLabel from "../../../../Shared UI/SectionLabel/SectionLabel";
-import Title from "../../../../Shared UI/Title/Title";
+import SectionLabel from "../../../../../Shared UI/SectionLabel/SectionLabel";
+import Title from "../../../../../Shared UI/Title/Title";
 import styles from "./Main.module.scss";
-import Button from "../../../../Shared UI/Button/Button";
-import HeroImage from "../../../../assets/images/hero-image.png";
+import Button from "../../../../../Shared UI/Button/Button";
+import HeroImage from "../../../../../assets/images/partner-hero-image.png";
 
 const Main = () => {
   return (
-    <div className={styles["main"]}>
+    <section className={styles["main"]}>
       <SectionLabel text={"PARTNER PROGRAM"} style={{ marginBottom: 25 }} />
       <Title text={"Become an affiliate"} style={{ marginBottom: 25 }} />
       <p className={styles["subtitle"]}>
@@ -16,9 +16,9 @@ const Main = () => {
       </p>
       <Button text={"Register and start earning"} />
       <div className={styles["hero-image"]}>
-        <img src={HeroImage} alt={"main decor"} width={1024} />
+        <img src={HeroImage} alt={"main decor"} width={"60%"} />
       </div>
-    </div>
+    </section>
   );
 };
 

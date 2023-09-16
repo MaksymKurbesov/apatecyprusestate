@@ -1,5 +1,5 @@
 import React from "react";
-import Title from "../../../../Shared UI/Title/Title";
+import Title from "../../../../../Shared UI/Title/Title";
 import styles from "./HowDoesItWork.module.scss";
 
 const STEPS_LIST = [
@@ -32,21 +32,25 @@ const STEPS_LIST = [
 
 const HowDoesItWork = () => {
   return (
-    <section className={`${styles["how-does-it-work"]} container`}>
-      <Title text={"How does it work?"} style={{ marginBottom: 30 }} />
-      <ul className={styles["steps-list"]}>
-        {STEPS_LIST.map((step, index) => {
-          return (
-            <li className={styles["step"]} key={index}>
-              <div className={styles["count"]}>
-                <span>{index + 1}</span>
-              </div>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </li>
-          );
-        })}
-      </ul>
+    <section className={styles["how-does-it-work"]}>
+      <div className={"container"}>
+        <Title text={"How does it work?"} style={{ marginBottom: 30 }} />
+        <ul className={styles["steps-list"]}>
+          {STEPS_LIST.map((step, index) => {
+            return (
+              <li className={styles["step"]} key={index}>
+                <div className={styles["count"]}>
+                  <span>{index + 1}</span>
+                </div>
+                <div className={styles["information"]}>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </section>
   );
 };

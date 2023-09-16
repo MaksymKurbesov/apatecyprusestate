@@ -3,7 +3,16 @@
     flex-direction: column;
     align-items: center;
     background-image:
-            radial-gradient(circle at center 800px, rgba(23,46,164,0.35) 0%, rgba(22,119,255,0) 25%),
+            radial-gradient(circle at center 1100px, rgba(23,46,164,0.35) 0%, rgba(22,119,255,0) 25%),
             radial-gradient(circle at center 2800px, rgba(23,46,164,0.35) 0%, rgba(22,119,255,0) 25%),
             radial-gradient(circle at bottom, rgba(23,46,164,0.25) 0%, rgba(22,119,255,0) 25%);
+}
+
+@media screen and (max-width: 1024px) {
+    .index-page {
+        background-image:
+                radial-gradient(circle at center 1000px, rgba(23,46,164,0.45) 0%, rgba(22,119,255,0) 15%),
+                radial-gradient(circle at center 2800px, rgba(23,46,164,0.25) 0%, rgba(22,119,255,0) 25%),
+                radial-gradient(circle at bottom, rgba(23,46,164,0.25) 0%, rgba(22,119,255,0) 25%);
+    }
 }

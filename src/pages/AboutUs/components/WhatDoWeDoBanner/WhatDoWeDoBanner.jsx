@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "../../../../assets/images/what do we do.png";
+import Image from "../../../../../assets/images/what-do-we-do.png";
 import styles from "./WhatDoWeDoBanner.module.scss";
 
 const WhatDoWeDoBanner = () => {

@@ -1,0 +1,37 @@
+.partner-program {
+    padding: 50px 0;
+    background-image:
+            radial-gradient(circle at 400px center, rgba(23,46,164,0.25) 0%, rgba(22,119,255,0) 25%);
+}
+
+
+@media screen and (max-width: 1024px) {
+    .partner-program img {
+        width: 80%;
+        margin-bottom: 50px;
+    }
+
+    .partner-program section > div {
+        max-width: 80%;
+    }
+
+    .partner-program section {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .partner-program img {
+        width: 100%;
+    }
+
+    .partner-program section > div {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .partner-program section {
+        margin-bottom: 50px !important;
+    }
+}

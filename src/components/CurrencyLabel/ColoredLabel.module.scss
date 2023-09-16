@@ -1,0 +1,63 @@
+.label {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 9px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.green {
+    background: linear-gradient(90deg, #384A60 -100%, rgba(56, 74, 96, 0) 0%),
+    radial-gradient(100% 100% at 100% 50%, rgba(147, 255, 39, 0.5) 0%, rgba(39, 255, 113, 0) 100%);
+    color: rgba(175, 255, 167, 0.75);
+}
+
+.blue {
+    background: linear-gradient(90deg, #384A60 -100%, rgba(56, 74, 96, 0) 0%),
+    radial-gradient(100% 100% at 100% 50%, rgba(102, 30, 255, 0.5) 0%, rgba(39, 255, 113, 0) 100%);
+    color: rgba(99, 125, 234, 1)
+}
+
+.yellow {
+    background: linear-gradient(90deg, #384A60 -100%, rgba(56, 74, 96, 0) 0%),
+    radial-gradient(100% 100% at 100% 50%, rgba(247, 185, 26, 0.5) 0%, rgba(39, 255, 113, 0) 100%);
+    color: rgba(247, 185, 26, 1);
+}
+
+.violet {
+    background: linear-gradient(90deg, #384A60 -100%, rgba(56, 74, 96, 0) 0%),
+    radial-gradient(100% 100% at 100% 50%, rgba(161, 92, 230, 0.5) 0%, rgba(39, 255, 113, 0) 100%);
+    color: rgba(161, 92, 230, 1);
+}
+
+.red {
+    background: linear-gradient(90deg, #384A60 -100%, rgba(56, 74, 96, 0) 0%),
+    radial-gradient(100% 100% at 100% 50%, rgba(252, 47, 47, 0.4) 0%, rgba(39, 255, 113, 0) 100%);
+    color: rgb(252, 47, 47);
+}
+
+.pink {
+    background: linear-gradient(90deg, #384A60 -100%, rgba(56, 74, 96, 0) 0%),
+    radial-gradient(100% 100% at 100% 50%, rgba(230, 0, 122, 0.4) 0%, rgba(39, 255, 113, 0) 100%);
+    color: rgba(230, 0, 122, 1);
+}
+
+.label:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    padding: 2px;
+    border-radius: 6px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(181, 206, 255, 0) 100%);
+    -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0, 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}

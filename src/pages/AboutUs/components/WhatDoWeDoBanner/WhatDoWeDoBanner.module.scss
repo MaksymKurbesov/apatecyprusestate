@@ -1,14 +1,37 @@
 .what-do-we-do {
     width: 100%;
-    height: 420px;
+    height: 22vw;
     margin-bottom: 150px;
     position: relative;
-    background: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
+    background-image:
+            //url("../../../../assets/SVG/vertical ellipse.svg"),
+            //url("../../../../assets/SVG/vertical ellipse.svg"),
+            linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
+    background-repeat: no-repeat;
+    background-position: right 0, right 200px center;
+
+}
+
+.what-do-we-do::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 450px;
+    height: 100%;
+    transform: scaleX(-1);
+    background-repeat: no-repeat;
+    background-image:
+            url("../../../../../assets/SVG/vertical ellipse.svg"),
+            url("../../../../../assets/SVG/vertical ellipse.svg");
+    background-position: left 20% center, left 30% center;
+    background-size: 170px, 200px;
 }
 
 .what-do-we-do img {
     position: absolute;
     bottom: 0;
+    width: 40vw;
 }
 
 .text {
@@ -16,6 +39,7 @@
     right: 25%;
     top: 50%;
     transform: translateY(-50%);
+    max-width: 400px;
 }
 
 .text h3 {
@@ -25,8 +49,82 @@
 }
 
 .text p {
-    max-width: 400px;
     font-size: 18px;
     line-height: 34px;
     color: rgba(255, 255, 255, 0.7);
+}
+
+@media screen and (max-width: 1400px) {
+    .text {
+        right: 10%;
+    }
+
+    .text h3 {
+        font-size: 40px;
+    }
+
+    .text p {
+        font-size: 16px;
+        line-height: 28px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .what-do-we-do {
+        height: 225px;
+    }
+
+    .what-do-we-do img {
+        width: 400px;
+    }
+
+    .text {
+        right: 4%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .what-do-we-do {
+        margin-bottom: 100px;
+    }
+
+    .what-do-we-do img {
+        bottom: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 85%;
+        z-index: -1;
+    }
+
+    .text {
+        position: relative;
+        left: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .what-do-we-do {
+        height: 250px;
+    }
+
+    .what-do-we-do img {
+        width: 100%;
+    }
+
+    .text {
+        left: auto;
+        right: auto;
+        padding: 0 15px;
+    }
+
+    .text h3 {
+        font-size: 36px;
+        margin-bottom: 5px;
+    }
+
+    .text p {
+        font-size: 14px;
+    }
 }

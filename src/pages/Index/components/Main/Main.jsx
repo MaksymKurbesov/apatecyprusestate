@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Main.module.scss";
-import HeroImage from "../../../../assets/images/hero-image.png";
+import HeroImage from "../../../../../assets/images/hero-image.png";
 
 const STATISTIC = [
   {
@@ -37,8 +37,9 @@ const Main = () => {
           src={HeroImage}
           alt={"hero-banner"}
           width={1024}
+          height={558}
         />
-        <ul className={`${styles["company-statistic"]} container`}>
+        <ul className={styles["company-statistic"]}>
           {STATISTIC.map(({ count, title }) => {
             return (
               <li key={title} className={styles["statistic"]}>

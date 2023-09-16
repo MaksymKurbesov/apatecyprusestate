@@ -3,3 +3,11 @@
             radial-gradient(circle at center 800px, rgba(23,46,164,0.25) 0%, rgba(22,119,255,0) 25%),
             radial-gradient(circle at center 2200px, rgba(23,46,164,0.45) 0%, rgba(22,119,255,0) 25%);
 }
+
+@media screen and (max-width: 768px) {
+    .about-us {
+        background-image:
+                radial-gradient(circle at center 800px, rgba(23,46,164,0.25) 0%, rgba(22,119,255,0) 25%),
+                radial-gradient(circle at center 1800px, rgba(23,46,164,0.45) 0%, rgba(22,119,255,0) 25%);
+    }
+}

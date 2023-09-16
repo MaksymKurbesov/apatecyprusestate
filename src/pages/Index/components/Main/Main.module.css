@@ -1,6 +1,6 @@
 .main {
   width: 100%;
-  background-image: url("../../../../assets/SVG/Ellipse.svg"), url("../../../../assets/SVG/Ellipse.svg");
+  background-image: url("../../../../../assets/SVG/Ellipse.svg"), url("../../../../../assets/SVG/Ellipse.svg");
   background-repeat: no-repeat, no-repeat;
   background-size: 100%, 70%, 100%;
   background-position: center top, center top 200px, top;

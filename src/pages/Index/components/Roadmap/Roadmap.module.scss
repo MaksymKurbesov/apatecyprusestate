@@ -1,0 +1,273 @@
+.roadmap {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 50px;
+    padding: 300px 0;
+}
+
+.roadmap h2 {
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    color: var(--semi-white);
+    margin-bottom: 100px;
+}
+
+.roadmap-wrapper {
+    position: relative;
+}
+
+.roadmap-wrapper img {
+    display: block;
+}
+
+.vertical-roadmap {
+    margin: 0 auto;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 240px;
+}
+
+.step span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-bottom: 25px;
+    background-image: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.step h3 {
+    margin-bottom: 10px;
+}
+
+.step p {
+    color: var(--semi-white);
+    line-height: 26px;
+}
+
+.step:nth-child(2) {
+    position: absolute;
+    top: -12px;
+    left: 7%;
+}
+
+.step:nth-child(3) {
+    position: absolute;
+    top: -12px;
+    left: 30%;
+}
+
+.step:nth-child(4) {
+    position: absolute;
+    top: -12px;
+    left: 53%;
+}
+
+.step:nth-child(5) {
+    position: absolute;
+    top: -12px;
+    left: 76%;
+}
+
+.step:nth-child(6) {
+    position: absolute;
+    bottom: -9.2rem;
+    left: 65%;
+}
+
+.step:nth-child(7) {
+    position: absolute;
+    bottom: -9.2rem;
+    left: 42%;
+}
+
+.step:nth-child(8) {
+    position: absolute;
+    bottom: -9.2rem;
+    left: 19%;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .roadmap {
+        padding: 100px 0 200px 0;
+    }
+
+    .step {
+        width: 155px;
+    }
+
+    .step span {
+        margin-bottom: 15px;
+    }
+
+    .step h3 {
+        margin-bottom: 5px;
+    }
+
+    .step p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .step:nth-child(6), .step:nth-child(7), .step:nth-child(8) {
+        bottom: -8.8rem;
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+    .roadmap {
+        padding: 50px 0 200px 0;
+    }
+
+    .roadmap h2 {
+        font-size: 38px;
+    }
+
+    .step {
+        width: 220px;
+    }
+
+    .step span {
+        margin-bottom: 15px;
+    }
+
+    .step h3 {
+        margin-bottom: 15px;
+    }
+
+    .step p {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .step:nth-child(2), .step:nth-child(3), .step:nth-child(4), .step:nth-child(5),
+    .step:nth-child(6), .step:nth-child(7), .step:nth-child(8) {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .step:nth-child(2) {
+        top: -12px;
+    }
+
+    .step:nth-child(3) {
+        top: 207px;
+    }
+
+    .step:nth-child(4) {
+        top: 422px;
+    }
+
+    .step:nth-child(5) {
+        top: 637px;
+    }
+
+    .step:nth-child(6) {
+        bottom: 323px;
+    }
+
+    .step:nth-child(7) {
+        bottom: 87px;
+    }
+
+    .step:nth-child(8) {
+        bottom: -148px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .roadmap {
+        padding: 50px 0 120px 0;
+    }
+
+    .vertical-roadmap {
+        width: 420px;
+    }
+
+    .step p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .step:nth-child(2) {
+        top: -12px;
+    }
+
+    .step:nth-child(3) {
+        top: 153px;
+    }
+
+    .step:nth-child(4) {
+        top: 318px;
+    }
+
+    .step:nth-child(5) {
+        top: 481px;
+    }
+
+    .step:nth-child(6) {
+        bottom: 233px;
+    }
+
+    .step:nth-child(7) {
+        bottom: 52px;
+    }
+
+    .step:nth-child(8) {
+        bottom: -126px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .vertical-roadmap {
+        width: 335px;
+    }
+
+    .step span {
+        margin-bottom: 8px;
+    }
+
+    .step h3 {
+        margin-bottom: 8px;
+    }
+
+    .step:nth-child(2) {
+        top: -12px;
+    }
+
+    .step:nth-child(3) {
+        top: 119px;
+    }
+
+    .step:nth-child(4) {
+        top: 250px;
+    }
+
+    .step:nth-child(5) {
+        top: 381px;
+    }
+
+    .step:nth-child(6) {
+        bottom: 176px;
+    }
+
+    .step:nth-child(7) {
+        bottom: 32px;
+    }
+
+    .step:nth-child(8) {
+        bottom: -111px;
+    }
+}

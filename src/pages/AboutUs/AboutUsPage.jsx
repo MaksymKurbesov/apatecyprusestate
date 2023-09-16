@@ -5,6 +5,7 @@ import OurTeam from "./components/OurTeam/OurTeam";
 import WhatDoWeDoBanner from "./components/WhatDoWeDoBanner/WhatDoWeDoBanner";
 import WhatDoWeDo from "./components/WhatDoWeDo/WhatDoWeDo";
 import styles from "./AboutUsPage.module.scss";
+import { ScrollRestoration } from "react-router-dom";
 
 const AboutUsPage = () => {
   return (
@@ -14,6 +15,7 @@ const AboutUsPage = () => {
       <OurTeam />
       <WhatDoWeDoBanner />
       <WhatDoWeDo />
+      <ScrollRestoration />
     </div>
   );
 };
