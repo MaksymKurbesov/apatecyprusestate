@@ -1,0 +1,27 @@
+.what-we-do {
+    margin-bottom: 300px;
+}
+
+@media screen and (max-width: 1400px) {
+    .what-we-do {
+        margin-bottom: 200px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .what-we-do {
+        margin-bottom: 100px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .what-we-do {
+        margin-bottom: 450px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .what-we-do {
+        margin-bottom: 350px;
+    }
+}

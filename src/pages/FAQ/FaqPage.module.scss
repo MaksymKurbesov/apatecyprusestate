@@ -2,14 +2,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 75px 0;
+    padding: 75px 30px;
     background-image:
-            url('../../../assets/SVG/Ellipse.svg'),
-            url('../../../assets/SVG/Ellipse.svg'),
+            url('../../assets/SVG/Ellipse.svg'),
+            url('../../assets/SVG/Ellipse.svg'),
             radial-gradient(circle at center 800px, rgba(23,46,164,0.45) 0%, rgba(22,119,255,0) 65%);
     background-repeat: no-repeat, no-repeat;
     background-size: 105%, 70%;
     background-position: center top 300px, center top 500px, center;
+}
+
+.faq-page h2 {
+    text-align: center;
 }
 
 .subtitle {
@@ -23,4 +27,15 @@
 
 .accordion-wrapper .content {
     color: var(--semi-white);
+}
+
+@media screen and (max-width: 768px) {
+    .faq-page {
+        padding: 75px 15px;
+    }
+
+    .faq-page h2 {
+        font-size: 34px;
+        margin-bottom: 15px !important;
+    }
 }

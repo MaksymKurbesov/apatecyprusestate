@@ -1,0 +1,38 @@
+.sign-up {
+    padding: 100px 0 120px 0;
+    text-align: center;
+    background-image:
+            radial-gradient(circle at center 900px, rgba(23,46,164,0.35) 0%, rgba(22,119,255,0) 50%),
+            url("../../assets/images/sign-up1.png"),
+            url("../../assets/images/sign-up2.png"),
+            url('../../assets/SVG/Ellipse.svg'),
+            url('../../assets/SVG/Ellipse.svg');
+
+    background-repeat: no-repeat;
+    background-position: center, 150px 400px, right 100px, center 350px, center 550px;
+    background-size: auto, auto, auto, 100%, 70%;
+}
+
+.subtitle {
+    color: var(--semi-white);
+    margin-bottom: 100px;
+}
+
+@media screen and (max-width: 1024px) {
+    .sign-up {
+        background-position: center, -80px 550px, right -50px top -30px, center 50px, center 200px;
+        background-size: auto, 200px, 250px, 100%, 70%;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .sign-up {
+        padding: 50px 20px 100px 20px;
+    }
+
+    .sign-up h2 {
+        font-size: 34px;
+        margin-bottom: 15px !important;
+    }
+}

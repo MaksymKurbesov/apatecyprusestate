@@ -1,8 +1,8 @@
 import React from "react";
-import SectionLabel from "../../../Shared UI/SectionLabel/SectionLabel";
-import Title from "../../../Shared UI/Title/Title";
+import SectionLabel from "../../Shared UI/SectionLabel/SectionLabel";
+import Title from "../../Shared UI/Title/Title";
 import styles from "./FaqPage.module.scss";
-import Accordion from "../../../components/Accordion/Accordion";
+import Accordion from "../../components/Accordion/Accordion";
 import { ScrollRestoration } from "react-router-dom";
 
 const QUESTIONS = [

@@ -1,0 +1,51 @@
+.header {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 8px 24px;
+    grid-area: header;
+}
+
+.header:before {
+    content: '';
+    width: 1px;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 260px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.logotype {
+    position: relative;
+    margin-right: 160px;
+    cursor: pointer;
+    display: block;
+    z-index: 11;
+}
+
+.settings {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+@media screen and (max-width: 1024px) {
+    .header {
+        padding: 20px;
+    }
+
+    .header:before {
+        content: none;
+    }
+
+    .logotype {
+        margin-right: 0;
+    }
+
+    .settings {
+        //flex-direction: column;
+    }
+}

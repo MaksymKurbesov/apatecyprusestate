@@ -1,0 +1,279 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.table thead td {
+    font-size: 12px;
+    color: var(--semi-white);
+    text-align: center;
+    padding: 20px 1em;
+}
+
+.table tbody {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+}
+
+.table tbody tr {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.table tbody tr:not(:last-child):after {
+    content: '';
+    width: 95%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.table tbody td {
+    text-align: center;
+    padding: 28px 0.3em;
+    font-weight: 500;
+
+}
+
+/////////////////// TRANSACTIONS STYLES ///////////////////
+
+.transactions-label {
+    color: var(--semi-white);
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .transactions thead {
+        display: none;
+    }
+
+    .transactions tbody {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+        box-shadow: none;
+    }
+
+
+    .transactions tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        border-radius: 8px;
+        position: relative;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+    }
+
+    .transactions tbody tr:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.05);
+        width: 100%;
+        height: 1px;
+    }
+
+
+    .transactions-label {
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .transactions tbody td {
+        padding: 16px 0.3em;
+        font-size: 14px;
+    }
+
+    .transactions-label {
+        font-size: 12px;
+    }
+}
+
+/////////////////// PARTNERS LEVELS STYLES ///////////////////
+
+@media screen and (max-width: 768px) {
+    .levels tbody td {
+        padding: 15px 0.3em;
+    }
+
+    .levels thead td {
+        padding: 10px 1em;
+    }
+
+}
+
+@media screen and (max-width: 580px) {
+    .levels .referrals-thead, .levels .referrals-cell {
+        display: none;
+    }
+
+    .levels thead td {
+        line-height: 1.3;
+        padding: 8px 0.4em;
+    }
+
+    .levels tbody td {
+        font-size: 12px;
+        padding: 8px 0.3em;
+    }
+}
+
+
+
+/////////////////// DEPOSITS STYLES ///////////////////
+
+.label {
+    display: none;
+}
+
+.dateOpen-cell, .dateClose-cell {
+    color: #7957FF;
+}
+
+
+@media screen and (max-width: 768px) {
+    .deposits tbody {
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .deposits thead tr {
+        display: none;
+    }
+
+    .deposits tbody {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+    }
+
+    .deposits tbody tr {
+        position: relative;
+        padding: 12px 20px;
+        display: grid;
+        gap: 25px 15px;
+        grid-template-columns: 80px 1fr 92px;
+        grid-template-areas:
+            "plan progress nextAccrual"
+            "amount received willReceived"
+            "dateOpen dateOpen dateOpen"
+            "dateClose dateClose dateClose";
+        border-radius: 8px;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+    }
+
+    .deposits tbody td:nth-child(1):before, .deposits tbody td:nth-child(4):before, .deposits tbody td:nth-child(3):before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 66px;
+        background: rgba(255, 255, 255, 0.05);
+        width: 100%;
+        height: 1px;
+    }
+
+    .deposits tbody td:nth-child(4):before {
+        top: 134px;
+    }
+
+    .deposits tbody td:nth-child(3):before {
+        top: 179px;
+    }
+
+
+    .deposits tbody td {
+        text-align: left;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+    }
+
+    .deposits .plan-cell {
+        grid-area: plan;
+        width: auto !important;
+    }
+
+    .deposits .progress-cell {
+        grid-area: progress;
+        width: auto !important;
+    }
+
+    .deposits .nextAccrual-cell {
+        grid-area: nextAccrual;
+        width: auto !important;
+    }
+
+    .deposits .amount-cell {
+        grid-area: amount;
+        width: auto !important;
+    }
+
+    .deposits .received-cell {
+        grid-area: received;
+        justify-self: center;
+        width: auto !important;
+    }
+
+    .deposits .willReceived-cell {
+        grid-area: willReceived;
+        width: auto !important;
+    }
+
+    .deposits .dateOpen-cell {
+        grid-area: dateOpen;
+        display: grid !important;
+        grid-template-columns: 80px 1fr 92px;
+        column-gap: 15px;
+        color: rgba(121, 87, 255, 1);
+        width: auto !important;
+    }
+
+    .dateOpen-cell > div, .dateClose-cell > div {
+        gap: 15px;
+        flex-direction: row;
+    }
+
+    .dateOpen-cell > div p, .dateClose-cell > div p {
+        width: 100%;
+    }
+
+    .dateOpen-cell > p, .dateClose-cell > p {
+        min-width: 90px;
+        margin-bottom: 0;
+    }
+
+    .dataOpen-cell span {
+        text-align: center !important;
+    }
+
+    .deposits .dateClose-cell {
+        grid-area: dateClose;
+        display: grid !important;
+        grid-template-columns: 80px 1fr 92px;
+        column-gap: 15px;
+        color: rgba(121, 87, 255, 1);
+        width: auto !important;
+    }
+
+
+    .deposits-label {
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: var(--semi-white);
+        display: block;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .received-cell {
+        justify-self: flex-start;
+    }
+}

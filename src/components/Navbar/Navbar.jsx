@@ -1,33 +1,11 @@
 import React from "react";
 import styles from "./Navbar.module.scss";
 import CustomNavLink from "./CustomNavLink";
-
-const MENU_LIST = [
-  {
-    to: "/",
-    title: "Home",
-  },
-  {
-    to: "/partner-program",
-    title: "Partner Program",
-  },
-  {
-    to: "/about-us",
-    title: "About Us",
-  },
-  {
-    to: "/our-contacts",
-    title: "Our Contacts",
-  },
-  {
-    to: "/faq",
-    title: "FAQ",
-  },
-];
+import { MENU_LIST } from "../../utils/consts";
 
 const Navbar = ({ position }) => {
   return (
-    <nav>
+    <nav className={styles[`nav-${position}`]}>
       <ul className={`${styles[`nav-list`]} ${styles[`nav-list-${position}`]}`}>
         {MENU_LIST.map((item, index) => {
           return (

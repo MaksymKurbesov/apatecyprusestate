@@ -1,20 +1,20 @@
 import React from "react";
-import Main from "./components/Main/Main";
-import AboutCompany from "./components/AboutCompany/AboutCompany";
-import OurTeam from "./components/OurTeam/OurTeam";
-import WhatDoWeDoBanner from "./components/WhatDoWeDoBanner/WhatDoWeDoBanner";
-import WhatDoWeDo from "./components/WhatDoWeDo/WhatDoWeDo";
+import Statistic from "./Statistic/Statistic";
+import AboutCompany from "./AboutCompany/AboutCompany";
+import OurTeam from "./OurTeam/OurTeam";
+import WhatDoWeDoBanner from "./WhatDoWeDoBanner/WhatDoWeDoBanner";
+import OurValues from "./OurValues/OurValues";
 import styles from "./AboutUsPage.module.scss";
 import { ScrollRestoration } from "react-router-dom";
 
 const AboutUsPage = () => {
   return (
     <div className={styles["about-us"]}>
-      <Main />
       <AboutCompany />
-      <OurTeam />
+      <Statistic />
+      <OurValues />
       <WhatDoWeDoBanner />
-      <WhatDoWeDo />
+      <OurTeam />
       <ScrollRestoration />
     </div>
   );

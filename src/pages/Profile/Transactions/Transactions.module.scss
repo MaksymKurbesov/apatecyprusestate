@@ -1,0 +1,20 @@
+.transactions {
+    padding: 30px;
+}
+
+.transactions h3 {
+    display: none;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .transactions {
+        padding: 20px;
+    }
+
+    .transactions h3 {
+        display: block;
+    }
+}
+

@@ -1,0 +1,43 @@
+.levels {
+    grid-area: levels;
+}
+.level {
+    display: grid;
+    grid-template-columns: 65px 110px 88px 195px;
+    justify-content: space-between;
+    padding-right: 50px;
+    padding-left: 20px;
+}
+
+.level span {
+    color: var(--gradient-A);
+}
+
+@media screen and (max-width: 1200px) {
+    .level {
+        padding-right: 5px;
+        padding-left: 0;
+    }
+}
+
+
+@media screen and (max-width: 580px) {
+    .level {
+        grid-template-columns: 110px 85px 180px;
+    }
+
+    .level-number {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .active-referrals {
+        display: none;
+    }
+
+    .level {
+        display: grid;
+        grid-template-columns: 110px 180px;
+    }
+}

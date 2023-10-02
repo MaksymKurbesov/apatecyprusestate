@@ -1,3 +1,7 @@
+.nav-header {
+    margin: 0 auto;
+}
+
 .nav-list {
     display: flex;
     font-size: 15px;
@@ -20,4 +24,34 @@
 .active {
     color: white;
     transition: 0.5s all;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .nav-list-footer li:not(:last-child) {
+        margin-right: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-footer {
+        margin:0 auto;
+    }
+
+    .nav-list-footer li:not(:last-child) {
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .nav-list-footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 20px;
+    }
+
+    .nav-list-footer li:not(:last-child) {
+        margin-right: 0;
+    }
 }

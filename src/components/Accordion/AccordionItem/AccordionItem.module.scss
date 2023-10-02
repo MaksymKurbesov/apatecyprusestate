@@ -1,36 +1,40 @@
 .accordion-item {
-    max-width: 800px;
-    height: 65px;
     position: relative;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 40px 0px 30px;
     backdrop-filter: blur(50px);
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.02);
-    box-shadow: 0px 108px 131px 0px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
+    box-shadow: 0 108px 131px 0 rgba(0, 0, 0, 0.25);
     transition: height ease 0.4s;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .title {
-    margin-bottom: 25px;
+    height: auto;
+    padding: 25px 35px 25px 0;
     font-size: 18px;
     font-weight: 600;
 }
 
 .content {
+    height: max-content;
     font-size: 16px;
     line-height: 30px;
-    color: var(--semi-white);
 }
+
+.content > div {
+    padding-bottom: 25px;
+}
+
 
 .chevron {
     position: absolute;
-    top: 28px;
+    transform: translateY(-50%);
     right: 20px;
     transition: 0.4s all;
-    //transform: rotate(180deg);
 }
 
 .chevron.isOpen {
@@ -40,4 +44,39 @@
 .isOpen path {
     transition: 0.4s all;
     stroke: rgba(124, 85, 254, 1)
+}
+
+.isFaq {
+    color: var(--semi-white);
+}
+
+.level-label {
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .accordion-item {
+        padding: 0 15px 0 15px;
+    }
+
+    .title {
+        padding: 15px 30px 15px 0;
+        font-size: 16px;
+    }
+
+    .content {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .level-label {
+        display: block;
+    }
+
+
 }

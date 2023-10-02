@@ -1,0 +1,22 @@
+.deposits {
+    grid-area: deposits;
+}
+
+.deposits-empty {
+    padding: 10px;
+    font-weight: 600;
+}
+
+.deposits-empty p:first-child {
+    margin-bottom: 20px;
+}
+
+.deposits-empty p:last-child {
+    font-weight: 400;
+    color: var(--semi-white);
+}
+
+.deposits-empty a {
+    color: var(--gradient-B);
+    text-decoration: underline;
+}

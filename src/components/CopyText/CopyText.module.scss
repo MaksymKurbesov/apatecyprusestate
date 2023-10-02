@@ -1,0 +1,58 @@
+.copy-text-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.copy-text {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px 10px 10px 20px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.link {
+    font-size: 14px;
+    //text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 15px;
+    overflow-x: scroll;
+}
+
+.link {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.link::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
+.copy-link-button {
+    margin-left: auto;
+    padding: 4px 20px;
+    background:
+            linear-gradient(45deg, rgba(168, 36, 230, 0.1) 19.82%, rgba(121, 87, 255, 0.2) 83.43%);
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.copy-link-button svg {
+    width: 25px;
+    height: 25px;
+}
+
+@media screen and (max-width: 480px) {
+    .copy-text {
+        padding: 8px 10px 8px 20px;
+    }
+
+    .copy-link-button {
+        padding: 2px 13px;
+    }
+
+    .copy-link-button svg {
+        width: 22px;
+        height: 22px;
+    }
+}

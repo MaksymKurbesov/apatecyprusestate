@@ -1,0 +1,40 @@
+.tariff-plans {
+  width: 100%;
+  background-image: url("../../../assets/SVG/Ellipse.svg"), url("../../../assets/SVG/Ellipse.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-size: 102%, 73%;
+  background-position: center top, center top 150px;
+  margin-bottom: 300px;
+}
+
+.tariff-plans .container > h2 {
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  max-width: 400px;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--semi-white);
+  text-align: center;
+  margin: 0 auto 50px;
+}
+
+.tariff-plans-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.plan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.03);
+  box-shadow: 0px 3px 56px 0px rgba(42, 6, 184, 0.11);
+}
+
+/*# sourceMappingURL=TariffPlans.module.css.map */

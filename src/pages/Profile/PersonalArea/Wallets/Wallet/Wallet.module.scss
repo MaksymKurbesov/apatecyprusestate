@@ -1,0 +1,130 @@
+.wallet {
+    height: 200px;
+    padding: 0 20px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0px 29px 58px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+.wallet:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 1px;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    height: 50%;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(108, 167, 255, 0.1);
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+
+.name > span {
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+
+.information {
+    display: flex;
+    height: 50%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.information li {
+    text-align: left;
+}
+
+.information li p {
+    font-size: 12px;
+    color: var(--semi-white);
+    margin-bottom: 5px;
+}
+
+.information li span {
+    font-weight: 600;
+}
+
+@media screen and (max-width: 1300px) {
+    .wallet {
+        padding: 0 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wallet {
+        height: 230px;
+        padding: 0 15px;
+    }
+
+    .wallet:after {
+        top: 40%;
+    }
+
+    .name {
+        height: 40%;
+    }
+
+    .name span {
+        font-size: 16px;
+    }
+
+    .information {
+        height: 60%;
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .information li span {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .wallet {
+        height: 175px;
+    }
+
+    .wallet:after {
+        top: 50%;
+    }
+
+    .name {
+        height: 50%;
+    }
+
+    .name span {
+        font-size: 20px;
+    }
+
+    .information {
+        height: 50%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .information li span {
+        font-size: 16px;
+    }
+}

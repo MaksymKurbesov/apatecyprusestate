@@ -1,0 +1,11 @@
+.what-is {
+    margin-bottom: 150px;
+}
+
+@media screen and (max-width: 768px) {
+    .what-is {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 100px;
+    }
+}

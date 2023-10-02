@@ -30,7 +30,10 @@
   --background-color: #05071B;
   --gradient-A: #7957FF;
   --gradient-B: #A824E6;
+  --gradient-C: #0d122d;
+  --gradient-D: #05081f;
   --semi-white: rgba(255, 255, 255, 0.4);
+  --red: rgb(255, 84, 84);
 }
 
 
@@ -59,6 +62,94 @@ a {
 
 .container {
   max-width: 1470px;
+  height: 100%;
   margin: 0 auto;
   padding: 0 40px;
+}
+
+.button {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
+  border: none;
+  color: white;
+  padding: 14px 40px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.custom-bg {
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.03);
+  background-image:
+          radial-gradient(circle at -10% -10%, rgba(23,46,164,0.15) 20%, rgba(22,119,255,0) 50%),
+          radial-gradient(circle at 80% 120%, rgba(23,46,164,0.2) 0%, rgba(22,119,255,0) 50%);
+  box-shadow: 0 29px 58px 0 rgba(0, 0, 0, 0.25);
+}
+
+.custom-border:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  padding: 2px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(181, 206, 255, 0) 100%);
+  -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+  mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0, 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+
+.suspense {
+  padding: 30px;
+  height: 100vh;
+  background-color: var(--background-color);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  color: var(--red);
+}
+
+
+.error svg {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+
+}
+
+.error svg path {
+  fill: var(--red);
+}
+
+// CUSTOM-SLIDER
+
+.slick-slide {
+  padding: 3px 10px;
+}
+
+.slick-list {
+  padding: 5px 0;
+  //margin: 0 2em;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .slick-list {
+    padding: 0;
+  }
 }

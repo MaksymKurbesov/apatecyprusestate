@@ -1,9 +1,12 @@
 import React from "react";
 import styles from "./Hamburger.module.scss";
 
-const Hamburger = () => {
+const Hamburger = ({ menuStatus, openMenuHandler }) => {
   return (
-    <div className={styles["menu-btn"]}>
+    <div
+      onClick={() => openMenuHandler(!menuStatus)}
+      className={`${styles["menu-btn"]} ${menuStatus && styles["menu-open"]}`}
+    >
       <span></span>
       <span></span>
       <span></span>

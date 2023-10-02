@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text {
+  max-width: 480px;
+}
+
+.text h2 {
+  font-size: 52px;
+  margin-bottom: 20px;
+}
+
+.text p {
+  font-size: 16px;
+  color: var(--semi-white);
+  margin-bottom: 30px;
+}
+
+.statistic {
+  width: 450px;
+  height: 350px;
+  background: linear-gradient(90deg, rgb(79, 50, 199), rgb(134, 17, 189));
+  border-radius: 16px;
+}
+
+/*# sourceMappingURL=Statistic.module.css.map */

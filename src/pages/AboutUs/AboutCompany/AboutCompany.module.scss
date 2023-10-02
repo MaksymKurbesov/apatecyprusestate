@@ -1,0 +1,13 @@
+.about-company {
+    margin-bottom: 120px;
+    padding-top: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .about-company {
+        margin-bottom: 70px;
+    }
+}

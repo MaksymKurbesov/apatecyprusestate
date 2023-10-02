@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./Plan.module.scss";
-import Button from "../../Shared UI/Button/Button";
-import FireIcon from "../../assets/SVG/fire.svg";
+import FireIcon from "../../../assets/SVG/fire.svg";
+import CyprusRegions from "../../CyprusRegions/CyprusRegions";
 
-const Plan = ({ plan }) => {
-  const { name, planImage, inDay, days, minDeposit, maxDeposit } = plan;
+const Plan = ({ plan, isPayNow = true }) => {
+  const { planNumber, name, inDay, days, minDeposit, maxDeposit } = plan;
 
   return (
     <div className={styles["plan"]}>
-      <img src={planImage} alt={"Plan"} width={"100%"} />
+      <CyprusRegions activeRegion={name} />
       <div className={styles["information-wrapper"]}>
         <div className={styles["information"]}>
           <img
@@ -16,14 +16,16 @@ const Plan = ({ plan }) => {
             alt={"Fire Icon"}
             className={styles["fire-icon"]}
           />
-          <span>Plan</span>
+          <span>Region</span>
           <h3>{name}</h3>
         </div>
-        <Button text={"Pay Now"} />
+        {isPayNow && (
+          <button className={`${styles["pay-now"]} button`}>Pay Now</button>
+        )}
       </div>
       <ul className={styles["statistic"]}>
         <li>
-          <p>In a day</p>
+          <p>{planNumber > 3 ? "В конце срока" : "В день"}</p>
           <span>{inDay}%</span>
         </li>
         <li>
@@ -36,7 +38,7 @@ const Plan = ({ plan }) => {
         </li>
         <li>
           <p>Max. deposit</p>
-          <span>{maxDeposit}$</span>
+          <span>{name === "Canal Heights6" ? `∞` : `${maxDeposit}$`}</span>
         </li>
       </ul>
     </div>

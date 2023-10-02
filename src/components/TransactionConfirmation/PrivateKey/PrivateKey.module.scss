@@ -1,0 +1,52 @@
+.private-key {
+    position: relative;
+    border-radius: 8px;
+    padding: 35px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(181, 206, 255, 0) 100%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+    margin-bottom: 30px;
+}
+
+.private-key > p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.private-key p svg {
+    margin-left: 10px;
+}
+
+.private-key input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    padding: 13px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 4px;
+    color: white;
+    outline: 2px solid transparent;
+    transition: 0.35s ease all;
+
+}
+
+.private-key input:focus {
+    outline: 2px solid rgb(121, 87, 255);
+    box-shadow: 0px 3px 56px 0px rgba(42, 6, 184, 0.5) !important;
+}
+
+.info-icon {
+    cursor: pointer;
+}
+
+.info-icon path {
+    stroke: rgba(255, 255, 255, 0.5);
+}
+
+.private-key-error {
+    position: relative;
+    bottom: -17px;
+}
+

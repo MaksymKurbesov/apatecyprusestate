@@ -1,0 +1,54 @@
+.sign-up-form {
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.sign-up-form div:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+.agreement {
+    text-align: left;
+    margin-bottom: 45px !important;
+}
+
+.agreement input {
+    margin-right: 10px;
+}
+
+.agreement span {
+    background: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
+}
+
+.sign-up-error {
+    position: relative;
+    bottom: -15px;
+}
+
+.sign-up-error svg {
+    width: 25px;
+}
+
+
+//.error svg {
+//    margin-right: 8px;
+//    width: 25px;
+//    height: 25px;
+//}
+//
+//.error svg path {
+//    fill: var(--red);
+//}
+
+.sign-up-button {
+    width: 100%;
+}
+
+.sign-up-button:disabled {
+    background: #e9e9e9;
+    color: #858585;
+    cursor: not-allowed;
+}

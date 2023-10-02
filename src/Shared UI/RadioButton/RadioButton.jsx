@@ -1,27 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./RadioButton.module.scss";
 
-const RadioButton = ({ label, walletLabel, name, handler, checked }) => {
-  const [wallet, setWallet] = useState(null);
+const RadioButton = ({ value, register, radioName, children }) => {
+  let message = "";
+
+  if (radioName === "region") {
+    message = "Выберите регион";
+  }
+
+  if (radioName === "project") {
+    message = "Выберите проект";
+  }
+
+  if (radioName === "wallet") {
+    message = "Выберите кошелёк";
+  }
 
   return (
     <div className={styles["radio-button"]}>
-      <label htmlFor={label}>
-        {label}
-        {walletLabel ? (
-          <span className={styles["wallet-label"]}>{walletLabel}</span>
-        ) : (
-          ""
-        )}
-      </label>
       <input
-        id={label}
+        id={value}
         type={"radio"}
-        name={name}
-        value={label}
-        onChange={(e) => handler(e.target.value)}
-        checked={checked}
+        {...register(radioName, {
+          required: {
+            value: true,
+            message,
+          },
+        })}
+        value={value}
       />
+      <label htmlFor={value}>{children}</label>
     </div>
   );
 };

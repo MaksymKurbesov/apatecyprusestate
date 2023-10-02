@@ -1,0 +1,24 @@
+.withdrawal {
+    min-height: 100vh;
+    padding: 30px;
+}
+
+
+.text {
+    margin-bottom: 70px;
+}
+
+.text p:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+.text p span {
+    font-weight: 600;
+    color: white;
+}
+
+@media screen and (max-width: 1024px) {
+    .withdrawal {
+        padding: 20px;
+    }
+}

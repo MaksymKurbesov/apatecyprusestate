@@ -1,0 +1,263 @@
+.bg-cover {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: rgba(14, 14, 38, 0.7);
+    z-index: 10;
+    transition: 0.45s ease all 0.15s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.menu-wrapper {
+    background-color: #0e0e26 !important;
+    border-radius: 0 !important;
+    border-bottom-left-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+    //text-transform: uppercase;
+    font-weight: 400;
+    height: 0;
+    transition: 0.45s ease all;
+    overflow: hidden;
+    //height: 0;
+}
+
+.menu-open {
+    height: 430px;
+}
+
+.menu-open-cover {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu {
+    max-width: 85%;
+    padding: 100px 0 70px 0;
+    margin: 0 auto;
+    //height: 0;
+}
+
+.top-row {
+    max-width: 80%;
+    margin: 0 auto 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -62px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    margin-right: 30px;
+}
+
+.social-links li:not(:last-child) {
+    margin-right: 50px;
+    position: relative;
+}
+
+.social-links li:not(:last-child):before {
+    content: '/';
+    position: absolute;
+    top: 38%;
+    transform: translateY(-50%);
+    right: -30px;
+}
+
+.lang {
+    display: flex;
+}
+
+.lang p:first-child {
+    background: linear-gradient(45deg, var(--gradient-A), var(--gradient-B));
+    color: white;
+}
+
+.lang p {
+    padding: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+
+}
+
+.lang p:not(:last-child) {
+    margin-right: 20px;
+}
+
+.active {
+    color: var(--gradient-B);
+}
+
+.nav-links {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    grid-template-areas:
+            "home cash-in settings"
+            "make-deposit withdrawn ."
+            "referrals operations quit";
+    justify-content: space-between;
+    row-gap: 35px;
+    column-gap: 20px;
+    font-size: 24px;
+    margin-bottom: 120px;
+}
+
+.nav-links li {
+    position: relative;
+    transition: 0.35s ease all;
+}
+
+.nav-links li:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    //transform: translateY(-50%);
+    left: -23px;
+    width: 13px;
+    height: 2px;
+    background: linear-gradient(45deg, var(--gradient-A), var(--gradient-B));
+    //transition: 0.35s ease all;
+}
+
+.nav-links li:hover {
+    color: var(--gradient-B);
+}
+
+.nav-links li:nth-child(1) {
+    grid-area: home;
+}
+.nav-links li:nth-child(2) {
+    grid-area: cash-in;
+}
+.nav-links li:nth-child(3) {
+    grid-area: make-deposit;
+}
+.nav-links li:nth-child(4) {
+    grid-area: withdrawn;
+}
+.nav-links li:nth-child(5) {
+    grid-area: operations;
+}
+.nav-links li:nth-child(6) {
+    grid-area: referrals;
+}
+.nav-links li:nth-child(7) {
+    grid-area: settings;
+}
+.nav-links li:nth-child(8) {
+    grid-area: quit;
+}
+
+
+.quit {
+    font-size: 16px;
+    margin-top: auto;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+@media screen and (max-width: 1024px) {
+    .top-row {
+        flex-direction: column;
+        top: -52px;
+        margin: 0 auto 20px;
+    }
+
+    .social-links {
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .nav-links {
+        margin-bottom: 80px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .menu-open {
+        height: 470px;
+    }
+
+    .social-links {
+        margin-bottom: 20px;
+        font-size: 12px;
+    }
+
+    .social-links li:not(:last-child) {
+        margin-right: 30px;
+    }
+
+    .social-links li:not(:last-child):before {
+        right: -20px;
+    }
+
+    .nav-links {
+        grid-template-columns: max-content max-content;
+        grid-template-areas:
+            "home cash-in"
+            "make-deposit withdrawn"
+            "operations referrals"
+            "settings quit";
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-open {
+        height: 500px;
+    }
+
+    .top-row {
+        order: 3;
+        top: auto;
+    }
+
+    .nav-links {
+        padding-top: 20px;
+    }
+
+    .nav-links li:before {
+        left: -20px;
+        width: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .mobile-menu {
+        padding: 100px 20px 30px 20px;
+    }
+
+    .menu-open {
+        height: 630px;
+    }
+
+    .nav-links {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "home"
+            "cash-in"
+            "make-deposit"
+            "withdrawn"
+            "operations"
+            "referrals"
+            "settings"
+            "quit";
+        row-gap: 15px;
+    }
+
+    .nav-links li:nth-child(7) {
+        margin-bottom: 30px;
+    }
+}

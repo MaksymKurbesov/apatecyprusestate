@@ -1,0 +1,187 @@
+.stepper-error {
+    margin: 30px 0;
+}
+
+.buttons {
+    //position: absolute;
+    display: flex;
+    margin-top: 40px;
+
+}
+
+.buttons button {
+    width: calc(50% - 12px);
+    padding: 20px 35px;
+}
+
+.buttons button:disabled {
+    background: #e9e9e9;
+    color: #858585;
+    cursor: not-allowed;
+}
+
+.step-button-next {
+    box-shadow: 0 3px 56px 0 rgba(42, 6, 184, 0.46);
+}
+
+.step-button-back {
+    position: relative;
+    background: linear-gradient(90deg, rgba(121, 87, 255, 0.2) 0%, rgba(168, 36, 230, 0.2) 100%);
+}
+
+.buttons button:not(:last-child) {
+    margin-right: 20px;
+}
+
+.stepper-head {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 70px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.stepper-head li {
+    transition: 0.5s all;
+    color: var(--semi-white);
+}
+
+.stepper-head li:not(:last-child) {
+    margin-right: 20px;
+}
+
+.active {
+    color: white !important;
+}
+
+.stepper-head:after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 0;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, rgba(121, 87, 255, 1), rgba(168, 36, 230, 1));
+    transition: 0.5s all;
+}
+
+.step1of3:after {
+    width: 33%;
+}
+
+.step2of3:after {
+    width: 66%;
+}
+
+.step3of3:after {
+    width: 100%;
+}
+
+.step1of5:after {
+    width: 20%;
+}
+
+.step2of5:after {
+    width: 40%;
+}
+
+.step3of5:after {
+    width: 60%;
+}
+
+.step4of5:after {
+    width: 80%;
+}
+
+.step5of5:after {
+    width: 100%;
+}
+
+
+.stepper-head:before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+.step-region {
+    position: relative;
+}
+
+.step-wallet {
+    position: relative;
+}
+
+.step-amount, .step-makeDepositConfirm, .step-cashInConfirm {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+@media screen and (max-width: 768px) {
+    .stepper-head li {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .stepper-head {
+        flex-direction: column;
+        gap: 20px;
+        padding-left: 25px;
+        margin-bottom: 30px;
+    }
+
+    .stepper-head:before {
+        height: 100%;
+        width: 6px;
+        bottom: 0;
+    }
+
+    .stepper-head:after {
+        height: 0;
+        width: 6px;
+        bottom: 0;
+        top: 0;
+    }
+
+
+    .step1of3:after {
+        height: 33%;
+    }
+
+    .step2of3:after {
+        height: 66%;
+    }
+
+    .step3of3:after {
+        height: 100%;
+    }
+
+    .step1of5:after {
+        height: 20%;
+    }
+    .step2of5:after {
+        height: 40%;
+    }
+    .step3of5:after {
+        height: 60%;
+    }
+    .step4of5:after {
+        height: 80%;
+    }
+    .step5of5:after {
+        height: 100%;
+    }
+
+    //.stepper-head li {
+    //    font-size: 14px;
+    //}
+}

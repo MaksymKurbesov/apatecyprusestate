@@ -1,0 +1,26 @@
+.user-info {
+    display: inline-flex;
+    position: relative;
+    justify-content: space-between;
+    padding: 7px 12px;
+    min-width: 220px;
+    align-items: center;
+    background-image: linear-gradient(180deg, var(--gradient-C), var(--gradient-D));
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.avatar {
+    cursor: pointer;
+    margin-right: 12px;
+    border-radius: 50%;
+}
+
+.username {
+    font-weight: 500;
+    margin-right: 12px;
+}
+
+.exit-icon {
+    cursor: pointer;
+}

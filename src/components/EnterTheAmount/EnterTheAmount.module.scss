@@ -1,0 +1,125 @@
+.enter-the-amount {
+    margin: 0 auto;
+    position: relative;
+}
+
+.prefix {
+    font-weight: 500;
+    font-size: 34px;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.suffix {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.enter-the-amount input {
+    width: 100%;
+    position: relative;
+    padding: 25px 25px 25px 60px;
+    color: white;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 600;
+    outline: 2px solid transparent;
+    transition: 0.35s ease all;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+}
+
+.enter-the-amount input:-webkit-autofill,
+.enter-the-amount input:-webkit-autofill:hover,
+.enter-the-amount input:-webkit-autofill:focus,
+.enter-the-amount input:-webkit-autofill:active{
+    //transition: background-color 5000s ease-in-out 0s;
+    transition-delay: 5000s;
+    transition-property: background-color;
+    -webkit-text-fill-color: white !important;
+}
+
+
+.enter-the-amount input:focus {
+    outline: 2px solid rgb(121, 87, 255);
+    box-shadow: 0px 3px 56px 0px rgba(42, 6, 184, 0.5) !important;
+}
+
+.input-wrapper {
+    position: relative;
+    margin: 0 auto 70px;
+}
+
+
+.additional-info {
+    display: grid;
+    grid-template-columns: minmax(max-content, 100%) max-content ;
+    position: absolute;
+    bottom: -40px;
+}
+
+.additional-info p:first-child {
+    position: relative;
+    margin-right: 40px;
+}
+
+
+.additional-info p {
+    color: var(--semi-white);
+}
+
+.additional-info span {
+    color: rgba(164, 178, 255, 1);
+    font-weight: 600;
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .enter-the-amount input {
+        padding: 20px 20px 20px 55px;
+    }
+
+    .additional-info {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        bottom: -57px;
+    }
+
+    .additional-info p {
+        font-size: 14px;
+    }
+
+    .additional-info p:first-child {
+        margin-right: 0;
+    }
+
+    .additional-info p span {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .input-wrapper {
+        margin: 0 auto 80px;
+    }
+
+    .additional-info {
+        bottom: -58px;
+    }
+
+    .additional-info p {
+        font-size: 12px;
+    }
+
+    .additional-info p span {
+        font-size: 14px;
+        margin-left: 5px;
+    }
+}

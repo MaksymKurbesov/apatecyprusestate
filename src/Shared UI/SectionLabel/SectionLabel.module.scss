@@ -3,8 +3,8 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    height: 42px;
-    padding: 12px 14px;
+    //height: 42px;
+    padding: 12px 22px;
     background: linear-gradient(rgba(105, 120, 255, 0.22), rgba(51, 67, 206, 0.0814));
     border: 2px solid rgba(99, 106, 183, 1);
     border-radius: 8px;
@@ -13,4 +13,11 @@
     color: rgba(164, 178, 255, 1);
     box-shadow: 0 5px 11px 5px rgba(116, 67, 255, 0.23);
     text-transform: uppercase;
+}
+
+@media screen and (max-width: 1024px) {
+    .section-label {
+        padding: 9px 20px;
+        font-size: 13px;
+    }
 }

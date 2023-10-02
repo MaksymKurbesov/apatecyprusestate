@@ -1,18 +1,19 @@
 import React from "react";
-import SectionLabel from "../../../Shared UI/SectionLabel/SectionLabel";
+import SectionLabel from "../../Shared UI/SectionLabel/SectionLabel";
 import styles from "./OurContacts.module.scss";
-import Title from "../../../Shared UI/Title/Title";
-import Input from "../../../Shared UI/Input/Input";
-import Image from "../../../assets/images/feedback-form.png";
-import AddressIcon from "../../../assets/SVG/address icon.svg";
-import WeekendIcon from "../../../assets/SVG/weekend icon.svg";
-import OpeningIcon from "../../../assets/SVG/opening hours icon.svg";
-import ContactsIcon from "../../../assets/SVG/contacts icon.svg";
-import { ReactComponent as PhoneIcon } from "../../../assets/SVG/phone.svg";
-import { ReactComponent as EmailIcon } from "../../../assets/SVG/mail.svg";
-import { ReactComponent as YoutubeIcon } from "../../../assets/SVG/youtube.svg";
-import { ReactComponent as TelegramIcon } from "../../../assets/SVG/telegram.svg";
-import { useWindowSize } from "../../../hooks/useWindowSize";
+import Title from "../../Shared UI/Title/Title";
+import Input from "../../Shared UI/Input/Input";
+import Image from "../../assets/images/feedback-form.png";
+import AddressIcon from "../../assets/SVG/address icon.svg";
+import WeekendIcon from "../../assets/SVG/weekend icon.svg";
+import OpeningIcon from "../../assets/SVG/opening hours icon.svg";
+import ContactsIcon from "../../assets/SVG/contacts icon.svg";
+import { ReactComponent as PhoneIcon } from "../../assets/SVG/phone.svg";
+import { ReactComponent as EmailIcon } from "../../assets/SVG/mail.svg";
+import { ReactComponent as YoutubeIcon } from "../../assets/SVG/youtube.svg";
+import { ReactComponent as TelegramIcon } from "../../assets/SVG/telegram.svg";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { ScrollRestoration } from "react-router-dom";
 
 const OurContacts = () => {
   const windowSize = useWindowSize();
@@ -32,23 +33,33 @@ const OurContacts = () => {
                 width={"80%"}
                 className={styles["image-mobile"]}
               />
-            ) : (
-              ""
-            )}
+            ) : null}
             <p>
               We sincerely thank you for your questions, feedback and
               suggestions. Your message will be forwarded to Customer Service
               and we will respond as soon as possible.
             </p>
             <form>
-              <Input type={"text"} name={"name"} placeholder={"Your name"} />
-              <Input type={"text"} name={"email"} placeholder={"Your E-mail"} />
               <Input
+                register={() => null}
+                type={"text"}
+                name={"name"}
+                placeholder={"Your name"}
+              />
+              <Input
+                register={() => null}
+                type={"text"}
+                name={"email"}
+                placeholder={"Your E-mail"}
+              />
+              <Input
+                register={() => null}
                 type={"text"}
                 name={"phone-number"}
                 placeholder={"Phone number"}
               />
               <Input
+                register={() => null}
                 type={"textarea"}
                 name={"message"}
                 placeholder={"Your message"}
@@ -64,9 +75,7 @@ const OurContacts = () => {
               width={"50%"}
               className={styles["image"]}
             />
-          ) : (
-            ""
-          )}
+          ) : null}
         </div>
         <div className={styles["additional-information"]}>
           <div className={styles["info"]}>
@@ -108,6 +117,7 @@ const OurContacts = () => {
           </div>
         </div>
       </div>
+      <ScrollRestoration />
     </div>
   );
 };

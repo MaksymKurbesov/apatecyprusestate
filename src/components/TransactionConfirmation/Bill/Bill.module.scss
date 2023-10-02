@@ -1,0 +1,107 @@
+.bill {
+    position: relative;
+    padding: 35px;
+    margin-bottom: 40px;
+}
+
+.bill h3 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.info-icon {
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.info-icon path {
+    stroke: rgba(255, 255, 255, 0.5);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.row:not(:last-child) {
+    margin-bottom: 50px;
+}
+
+.row > p {
+    white-space: nowrap;
+    margin-right: 15px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.dotted-line {
+    width: 100%;
+    height: 29px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2) 40%, rgba(255, 255, 255, 0) 20%);
+    background-position: bottom 5px center;
+    background-size: 6px 2px;
+    background-repeat: repeat-x;
+}
+
+.value {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.value {
+    white-space: nowrap;
+}
+
+.wallet-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(108, 167, 255, 0.1);
+    border-radius: 8px;
+}
+
+@media screen and (max-width: 480px) {
+    .bill {
+        padding: 30px 25px;
+    }
+
+    .bill h3 {
+        font-size: 22px;
+        margin-bottom: 40px;
+    }
+
+    .info-icon {
+        margin-left: 10px;
+    }
+
+    .wallet-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .wallet-icon img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .row:not(:last-child) {
+        margin-bottom: 30px;
+    }
+
+    .row > p {
+        font-size: 14px;
+        margin-right: 5px;
+    }
+
+    .value {
+        font-size: 14px;
+    }
+}

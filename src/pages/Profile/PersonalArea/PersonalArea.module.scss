@@ -1,4 +1,37 @@
 .personal-area {
-    padding: 24px;
-    //background-image: radial-gradient(circle at center, rgba(23,46,164,0.2) 0%, rgba(22,119,255,0) 70%);
+    padding: 30px;
+    display: grid;
+    gap: 26px;
+    grid-template-areas:
+        "wallets wallets"
+        "nextAccrual userStatistic"
+        "deposits deposits";
+    grid-template-columns: 4fr 3fr;
+    grid-template-rows: repeat(3, max-content);
+    grid-area: content;
+}
+
+@media screen and (max-width: 1400px) {
+    .personal-area {
+        grid-template-areas:
+        "wallets wallets"
+        "userStatistic userStatistic"
+        "nextAccrual nextAccrual"
+        "deposits deposits";
+        grid-template-columns: 1fr;
+        gap: 0;
+        row-gap: 25px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .personal-area {
+        padding: 10px 30px 30px 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .personal-area {
+        padding: 10px 15px 15px 15px;
+    }
 }

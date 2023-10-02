@@ -5,7 +5,7 @@ import Styles from "./Select.module.scss";
 
 const OptionEl = (props) => {
   const {
-    option: { value, title },
+    option: { value, title, icon },
     onClick,
   } = props;
   const optionRef = useRef(null);
@@ -38,6 +38,7 @@ const OptionEl = (props) => {
       data-testid={`select-option-${value}`}
       ref={optionRef}
     >
+      <img src={icon} alt={"icon"} width={20} />
       {title}
     </li>
   );
@@ -115,6 +116,7 @@ const Select = (props) => {
         tabIndex={0}
         ref={placeholderRef}
       >
+        <img src={selected?.icon} alt={"language icon"} width={20} />
         {selected?.title || placeholder}
       </div>
       {isOpen && (

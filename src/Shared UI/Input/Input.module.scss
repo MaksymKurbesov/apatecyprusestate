@@ -1,20 +1,40 @@
 .input-wrapper {
+    position: relative;
     text-align: left;
 }
 
 .label {
     position: relative;
-    top: -30px;
+    top: 30px;
     font-size: 16px;
     color: rgba(255, 255, 255, 0.4);
     transition: 0.2s all;
     z-index: -1;
 }
 
+.sign-up-error {
+    position: relative;
+    top: -10px;
+}
+
+.sign-up-error svg {
+    position: absolute;
+    top: -40px;
+    right: 0;
+}
+
+.success-icon {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 18px;
+    height: 18px;
+}
+
 .custom-input {
     width: 100%;
     height: 40px;
-    background: none;
+    background: transparent;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
@@ -25,12 +45,34 @@
     z-index: 5;
 }
 
-.custom-input:focus + label, .custom-input:valid + label  {
-    top: -60px;
-    color: white;
-}
-
 
 .custom-input:focus {
     border-bottom: 1px solid rgba(255, 255, 255, 1);
 }
+
+.custom-input:-webkit-autofill,
+.custom-input:-webkit-autofill:hover,
+.custom-input:-webkit-autofill:focus,
+.custom-input:-webkit-autofill:active{
+    //transition: background-color 5000s ease-in-out 0s;
+    transition-delay: 5000s;
+    transition-property: background-color;
+    -webkit-text-fill-color: white !important;
+}
+
+
+.custom-input:focus + label, .custom-input:valid + label, .custom-input:not([value=""]):not(:focus):invalid + label {
+    top: -60px;
+    color: white;
+}
+
+.input-error {
+    border-bottom: 1px solid var(--red) !important;
+}
+
+.input-error + label {
+    color: var(--red) !important;
+}
+
+
+

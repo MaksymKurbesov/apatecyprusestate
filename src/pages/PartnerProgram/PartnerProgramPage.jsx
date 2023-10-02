@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./PartnerProgramPage.module.scss";
-import Main from "./components/Main/Main";
-import WhatIs from "./components/WhatIs/WhatIs";
-import HowDoesItWork from "./components/HowDoesItWork/HowDoesItWork";
-import HowToGetStarted from "./components/HowToGetStarted/HowToGetStarted";
+import Main from "./Main/Main";
+import WhatIs from "./WhatIs/WhatIs";
+import HowDoesItWork from "./HowDoesItWork/HowDoesItWork";
+import HowToGetStarted from "./HowToGetStarted/HowToGetStarted";
 import { ScrollRestoration } from "react-router-dom";
 
 const PartnerProgramPage = () => {
