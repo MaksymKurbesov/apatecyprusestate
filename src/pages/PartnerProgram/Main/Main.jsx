@@ -2,23 +2,23 @@ import React from "react";
 import SectionLabel from "../../../Shared UI/SectionLabel/SectionLabel";
 import Title from "../../../Shared UI/Title/Title";
 import styles from "./Main.module.scss";
-import HeroImage from "../../../assets/images/partner-hero-image.png";
+import HeroImage from "../../../assets/images/partner-hero-image.webp";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Main = () => {
+  const { t } = useTranslation("partners-program");
+
   return (
     <section className={styles["main"]}>
-      <SectionLabel text={"PARTNER PROGRAM"} style={{ marginBottom: 25 }} />
-      <Title text={"Become an affiliate"} style={{ marginBottom: 25 }} />
-      <p className={styles["subtitle"]}>
-        Join Apate Cyprus Estate's affiliate program and earn up to 5% for every
-        deposit made by someone you refer.
-      </p>
+      <SectionLabel text={t("label")} style={{ marginBottom: 25 }} />
+      <Title text={t("title")} style={{ marginBottom: 25 }} />
+      <p className={styles["subtitle"]}>{t("subtitle")}</p>
       <Link
         to={"/authorization/sign-up"}
         className={`${styles["register-button"]} button`}
       >
-        Register and start earning
+        {t("register_button")}
       </Link>
       <div className={styles["hero-image"]}>
         <img src={HeroImage} alt={"main decor"} width={"60%"} />

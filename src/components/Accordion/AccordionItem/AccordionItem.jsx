@@ -7,13 +7,16 @@ const AccordionItem = ({ title, content, className, index }) => {
   const [titleHeight, setTitleHeight] = useState(null);
   const [contentHeight, setContentHeight] = useState();
 
-  const titleHeightRef = useCallback((node) => {
-    if (node === null) return;
+  const titleHeightRef = useCallback(
+    (node) => {
+      if (node === null) return;
 
-    const height = node.getBoundingClientRect().height;
+      const height = node.getBoundingClientRect().height;
 
-    setTitleHeight(height);
-  }, []);
+      setTitleHeight(height);
+    },
+    [title]
+  );
 
   const contentHeightRef = useCallback(
     (node) => {

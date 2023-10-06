@@ -6,8 +6,10 @@ import { auth } from "../../../../index";
 import AvatarPlaceholder from "../../../../assets/images/avatar-placeholder.jpg";
 import { updateUserAvatar } from "../../../../Api/UserData";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
+import { useTranslation } from "react-i18next";
 
 const Avatar = ({ userID }) => {
+  const { t } = useTranslation();
   const { register } = useFormContext();
   const [userAvatar, setUserAvatar] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,7 +54,7 @@ const Avatar = ({ userID }) => {
         />
         <label htmlFor={"upload-avatar"} className={styles["upload-button"]}>
           <UploadIcon />
-          Upload photo
+          {t("settings.upload_photo")}
         </label>
       </div>
     </div>

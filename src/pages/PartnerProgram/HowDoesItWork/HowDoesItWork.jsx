@@ -2,6 +2,7 @@ import React from "react";
 import Title from "../../../Shared UI/Title/Title";
 import styles from "./HowDoesItWork.module.scss";
 import { ReactComponent as IconBorder } from "../../../assets/SVG/icon-border.svg";
+import { useTranslation } from "react-i18next";
 
 const STEPS_LIST = [
   {
@@ -32,10 +33,12 @@ const STEPS_LIST = [
 ];
 
 const HowDoesItWork = () => {
+  const { t } = useTranslation("partners-program");
+
   return (
     <section className={styles["how-does-it-work"]}>
       <div className={"container"}>
-        <Title text={"Как начать"} style={{ marginBottom: 30 }} />
+        <Title text={t("how_start.title")} style={{ marginBottom: 30 }} />
         <ul className={styles["steps-list"]}>
           {STEPS_LIST.map((step, index) => {
             return (
@@ -45,8 +48,8 @@ const HowDoesItWork = () => {
                   <span>{index + 1}</span>
                 </div>
                 <div className={styles["information"]}>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
+                  <h3>{t(`how_start.${index + 1}.title`)}</h3>
+                  <p>{t(`how_start.${index + 1}.description`)}</p>
                 </div>
               </li>
             );

@@ -9,6 +9,7 @@ import { getStorage } from "firebase/storage";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./index.scss";
+import "./i18n.js";
 
 const firebaseApp = initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -27,8 +28,11 @@ export const storage = getStorage(firebaseApp);
 const router = createBrowserRouter(ROUTES);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
-  <FirebaseContext.Provider value={{ db }}>
-    <RouterProvider router={router} />
-  </FirebaseContext.Provider>
+  <React.Suspense fallback={<div>Fallback...</div>}>
+    <FirebaseContext.Provider value={{ db }}>
+      <RouterProvider router={router} />
+    </FirebaseContext.Provider>
+  </React.Suspense>
 );

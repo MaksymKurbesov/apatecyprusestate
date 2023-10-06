@@ -1,24 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Projects.module.scss";
-import { PROJECTS } from "../../utils/consts";
-import { Link } from "react-router-dom";
 import FireIcon from "../../assets/SVG/fire.svg";
 import RadioButton from "../../Shared UI/RadioButton/RadioButton";
 import { useFormContext } from "react-hook-form";
+import { PROJECTS } from "../../utils/projects";
+import { closeModal, openModal } from "../../utils/helpers";
+import Project from "../Project/Project";
+import { useTranslation } from "react-i18next";
 
 const Projects = () => {
+  const { t } = useTranslation();
   const { watch, register } = useFormContext();
+  const [aboutProjectModalIsOpen, setAboutProjectModalIsOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   return (
     <div className={styles["projects"]}>
-      {PROJECTS["Limassol"].map((project, index) => {
+      {PROJECTS[watch("region")].map((project, index) => {
         const isChecked = watch("project") === project.name;
         const checkedClassName = isChecked && styles["isChecked"];
 
         return (
           <div
             className={`${styles["project"]} ${checkedClassName}`}
-            key={project.name}
+            key={index}
           >
             <RadioButton
               register={register}
@@ -27,10 +32,9 @@ const Projects = () => {
             >
               <img
                 className={styles["project-image"]}
-                src={project.images[index]}
+                src={project.images[0]}
                 alt={""}
                 width={"100%"}
-                // height={"50%"}
               />
               <div className={styles["project-label"]}>
                 <img
@@ -38,24 +42,37 @@ const Projects = () => {
                   alt={"Fire Icon"}
                   className={styles["fire-icon"]}
                 />{" "}
-                <span>Проект</span>
+                <span>{t("projects.project")}</span>
               </div>
               <h3>{project.name}</h3>
               <div className={styles["description-wrapper"]}>
                 <p>
-                  От {project.pricePerSquare}$ / м<sup>2</sup>
+                  {t("projects.from")} {project.price} €
                 </p>
                 <p>
-                  ID: 23862 | {project.floors} этажа | {project.type}
+                  ID: {project.id} | {project.floors} {t("projects.floors")} |{" "}
+                  {t(`projects.${project.type}`)}
                 </p>
               </div>
-              <Link className={`${styles["more-button"]} button`} to={"/"}>
-                Узнать больше
-              </Link>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  openModal(setAboutProjectModalIsOpen);
+                  setSelectedProject(project);
+                }}
+                className={`${styles["more-button"]} button`}
+              >
+                {t("projects.more")}
+              </button>
             </RadioButton>
           </div>
         );
       })}
+      <Project
+        project={selectedProject}
+        closeHandler={() => closeModal(setAboutProjectModalIsOpen)}
+        modalStatus={aboutProjectModalIsOpen}
+      />
     </div>
   );
 };

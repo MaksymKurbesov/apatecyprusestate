@@ -1,37 +1,19 @@
 import React from "react";
 import styles from "./Main.module.scss";
-import HeroImage from "../../../assets/images/hero-image.png";
-
-const STATISTIC = [
-  {
-    count: 50,
-    title: "Companies",
-  },
-  {
-    count: 200,
-    title: "Team Members",
-  },
-  {
-    count: 250,
-    title: "Capital",
-  },
-  {
-    count: 10,
-    title: "Year of experience",
-  },
-];
+import HeroImage from "../../../assets/images/hero-image.webp";
+import { Trans, useTranslation } from "react-i18next";
+import { STATISTIC } from "../../../utils/consts";
 
 const Main = () => {
+  const { t } = useTranslation();
+
   return (
     <section className={styles["main"]}>
       <div className={`${styles["main-wrapper"]} container`}>
         <h1 className={styles["title"]}>
-          International <span>real estate</span> holding company in the CYPRUS
+          <Trans i18nKey="main_text" components={[<span />]} />
         </h1>
-        <h2 className={styles["subtitle"]}>
-          At the crossroads of nature and progress: your future investment in
-          Cyprus.
-        </h2>
+        <h2 className={styles["subtitle"]}>{t("main_subtitle")}</h2>
         <img
           className={styles["hero-image"]}
           src={HeroImage}
@@ -41,13 +23,18 @@ const Main = () => {
         />
         <ul className={styles["company-statistic"]}>
           {STATISTIC.map(({ count, title }) => {
+            const isCapital = title === "Capital";
+            const isROI = title === "ROI";
+
+            let updatedCount;
+
+            if (isCapital) updatedCount = `${count}M+`;
+            if (isROI) updatedCount = `~${count}%`;
+
             return (
               <li key={title} className={styles["statistic"]}>
-                <p>
-                  {title === "Capital" ? "$" : ""}
-                  {count}+
-                </p>
-                <span>{title}</span>
+                <p>{updatedCount ? updatedCount : `${count}+`}</p>
+                <span>{t(`user_statistic.${title}`)}</span>
               </li>
             );
           })}

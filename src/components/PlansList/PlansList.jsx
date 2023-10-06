@@ -26,7 +26,7 @@ const setSlidesToShow = (windowSize) => {
   return slidesToShow;
 };
 
-const PlansList = ({ isPayNow }) => {
+const PlansList = () => {
   const windowDimension = useWindowSize();
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -74,7 +74,7 @@ const PlansList = ({ isPayNow }) => {
                 value={plan.name}
                 radioName={"region"}
               >
-                <Plan plan={plan} isPayNow={isPayNow} />
+                <Plan plan={plan} />
               </RadioButton>
             </div>
           );

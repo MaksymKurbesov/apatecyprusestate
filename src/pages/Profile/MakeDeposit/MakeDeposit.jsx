@@ -20,10 +20,12 @@ import {
   calculateTotalIncome,
 } from "../../../utils/helpers/calculates";
 import { getDateNow } from "../../../utils/helpers/date";
+import { useTranslation } from "react-i18next";
 
 const transactionId = uuidv4();
 
 const MakeDeposit = () => {
+  const { t } = useTranslation();
   const [isSuccessModalStatus, setIsSuccessModalStatus] = useState(false);
   const [loading, setLoading] = useState(false);
   const methods = useForm({
@@ -58,28 +60,32 @@ const MakeDeposit = () => {
         setLoading(false);
       });
 
-    await updateUserBalanceAfterDeposit(data.wallet, data.amount);
+    await updateUserBalanceAfterDeposit(
+      data.wallet,
+      data.amount,
+      auth.currentUser.displayName
+    );
   };
 
   const STEPS = [
     {
       stepName: "region",
-      title: "Choose a region",
-      content: <PlansList isPayNow={false} />,
+      title: t("stepper.region"),
+      content: <PlansList />,
     },
     {
       stepName: "project",
-      title: "Choose a project",
+      title: t("stepper.project"),
       content: <Projects />,
     },
     {
       stepName: "wallet",
-      title: "Choose a wallet",
+      title: t("stepper.choose_wallet"),
       content: <WalletsList />,
     },
     {
       stepName: "amount",
-      title: "Enter the amount",
+      title: t("stepper.enter_amount"),
       content: (
         <EnterTheAmount
           additionalInfo={
@@ -94,36 +100,36 @@ const MakeDeposit = () => {
     },
     {
       stepName: "makeDepositConfirm",
-      title: "Transaction confirmation",
+      title: t("stepper.transaction_confirmation"),
       content: (
         <TransactionConfirmation
           bill={[
             {
-              label: "Region",
+              label: t("bill.region"),
               value: <p>{selectedPlan}</p>,
             },
             {
-              label: "Project",
+              label: t("bill.project"),
               value: <p>{selectedProject}</p>,
             },
             {
-              label: "Payment system",
+              label: t("bill.payment_system"),
               value: <p>{selectedWallet}</p>,
             },
             {
-              label: "Amount",
+              label: t("bill.amount"),
               value: <p>{amount.toFixed(2)}</p>,
             },
             {
-              label: "Income in day",
+              label: t("bill.income_in_day"),
               value: <p>{calculateIncomeInDay(amount, selectedPlan)}</p>,
             },
             {
-              label: "Total income",
+              label: t("bill.total_income"),
               value: <p>{calculateTotalIncome(amount, selectedPlan)}</p>,
             },
             {
-              label: "Date",
+              label: t("bill.date"),
               value: getDateNow(),
             },
             {

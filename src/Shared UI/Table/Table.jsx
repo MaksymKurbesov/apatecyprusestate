@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./Table.module.scss";
+import { useTranslation } from "react-i18next";
 
 const Table = ({ columns = [], data = [], className }) => {
+  const { t } = useTranslation();
   const labelClassName = `${styles[`${className}-label`]} ${styles["label"]}`;
 
   return (
@@ -15,7 +17,7 @@ const Table = ({ columns = [], data = [], className }) => {
                 key={column.key}
                 style={{ width: `${column.width}` }}
               >
-                {column.title}
+                {t(`table_headers.${column.key}`)}
               </td>
             );
           })}
@@ -32,8 +34,11 @@ const Table = ({ columns = [], data = [], className }) => {
                     className={`${styles[`${column.key}-cell`]}`}
                     style={{ width: `${column.width}` }}
                   >
-                    <div className={labelClassName}>{column.title}</div>
-                    <>{item[column.key]}</>
+                    {/*<div className={labelClassName}>{column.title}</div>*/}
+                    <div className={labelClassName}>
+                      {t(`table_headers.${column.key}`)}
+                    </div>
+                    <div>{item[column.key]}</div>
                   </td>
                 );
               })}

@@ -17,6 +17,7 @@
     margin-bottom: 100px;
 }
 
+
 .sign-in-form {
     max-width: 450px;
     margin: 0 auto;
@@ -28,6 +29,27 @@
 
 .sign-in-form label {
     color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.password-input {
+    position: relative;
+}
+
+.eye-icon {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: 7px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.eye-icon path {
+    fill: rgba(255, 255, 255, 0.3);
+}
+
+.active-eye path {
+    fill: rgba(255, 255, 255, 1);
 }
 
 .sign-in-error {

@@ -1,6 +1,7 @@
 .language {
     margin-right: 15px;
     display: flex;
+    width: 120px;
 }
 
 .language img {
@@ -12,8 +13,15 @@
     background-color: white;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1024px) {
+    .language {
+        width: 90px;
+    }
+}
+
+@media screen and (max-width: 768px) {
     .language {
         margin-right: 0;
     }
 }
+

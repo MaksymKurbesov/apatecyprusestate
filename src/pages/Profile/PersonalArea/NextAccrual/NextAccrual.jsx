@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import styles from "./NextAccrual.module.scss";
 import { ReactComponent as StarIcon } from "../../../../assets/SVG/star.svg";
 import { useTimer } from "../../../../hooks/useTimer";
+import { useTranslation } from "react-i18next";
 
 const NextAccrual = ({ nearestAccrual = new Date(), days }) => {
+  const { t } = useTranslation();
   const planWithOneAccrual = days <= 12;
   let daysInSeconds;
 
@@ -39,17 +41,11 @@ const NextAccrual = ({ nearestAccrual = new Date(), days }) => {
   return (
     <div className={styles["next-accrual"]}>
       <div className={styles["text"]}>
-        <div className={styles["new-update"]}>
-          <StarIcon />
-          <span>New update</span>
-        </div>
-
         <p className={styles["next-accrual-text"]}>
-          Следующее начисление через:
+          <StarIcon />
+          <span>{t("personal_area.next_accrual_will_be")}</span>
         </p>
-        <p className={styles["subtext"]}>
-          Пусть каждая секунда приближает вас к большему!
-        </p>
+        <p className={styles["subtext"]}>{t("personal_area.timer_slogan")}</p>
       </div>
       <div className={styles["timer"]}>
         <div className={styles["hours"]}>
@@ -61,7 +57,7 @@ const NextAccrual = ({ nearestAccrual = new Date(), days }) => {
           ) : (
             threeDigitsHours()
           )}
-          <p>HOURS</p>
+          <p>{t("personal_area.hours")}</p>
         </div>
         <div className={styles["minutes"]}>
           {minutes < 10 ? (
@@ -76,7 +72,7 @@ const NextAccrual = ({ nearestAccrual = new Date(), days }) => {
             </>
           )}
 
-          <p>MINUTES</p>
+          <p>{t("personal_area.minutes")}</p>
         </div>
         <div className={styles["seconds"]}>
           {seconds < 10 ? (
@@ -90,7 +86,7 @@ const NextAccrual = ({ nearestAccrual = new Date(), days }) => {
               <span>{seconds[1]}</span>
             </>
           )}
-          <p>SECONDS</p>
+          <p>{t("personal_area.seconds")}</p>
         </div>
       </div>
     </div>

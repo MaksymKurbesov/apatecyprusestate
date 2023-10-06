@@ -3,8 +3,10 @@ import styles from "./Stepper.module.scss";
 import { ReactComponent as Exclamation } from "../../assets/SVG/exclamation.svg";
 import { useFormContext } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import { useTranslation } from "react-i18next";
 
 const Stepper = ({ steps = [], loading }) => {
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(1);
 
   const {
@@ -93,7 +95,7 @@ const Stepper = ({ steps = [], loading }) => {
               onClick={goPrevPage}
               className={`${styles["step-button-back"]} custom-border button`}
             >
-              Back
+              {t("back")}
             </button>
           ) : null}
 
@@ -104,7 +106,7 @@ const Stepper = ({ steps = [], loading }) => {
               className={`${styles["step-button-next"]} button`}
               disabled={loading}
             >
-              Done
+              {t("done")}
             </button>
           ) : (
             <button
@@ -113,7 +115,7 @@ const Stepper = ({ steps = [], loading }) => {
               }
               className={`${styles["step-button-next"]} button`}
             >
-              Next
+              {t("next")}
             </button>
           )}
         </div>

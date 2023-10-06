@@ -35,8 +35,6 @@ const registerWithEmailAndPassword = async (userData) => {
     if (err.code === "auth/email-already-in-use") {
       return `Извините, но этот email адрес уже занят. Пожалуйста, выберите другой email адрес для вашей учетной записи.`;
     }
-  } finally {
-    logout();
   }
 };
 

@@ -1,0 +1,278 @@
+{
+  "app_name": "Apate Cyprus Estate",
+  "main_text": "International <0>real estate</0> holding company in CYPRUS",
+  "main_subtitle": "At the crossroads of nature and progress: your future investment in Cyprus.",
+  "more": "More",
+  "back": "Back",
+  "next": "Next",
+  "done": "Done",
+  "copyright": "COPYRIGHT © 2013 – 2023. APATE CYPRUS ESTATE INC. ALL RIGHTS RESERVED",
+  "waiting_for_payment": "Waiting for payment",
+  "months": {
+    "Январь": "January",
+    "Февраль": "February",
+    "Март": "March",
+    "Апрель": "April",
+    "Май": "May",
+    "Июнь": "June",
+    "Июль": "July",
+    "Август": "August",
+    "Сентрябрь": "September",
+    "Октябрь": "October",
+    "Ноябрь": "November",
+    "Декабрь": "December"
+  },
+  "log_in": {
+    "log_in": "Log in",
+    "authorization": "AUTHORIZATION",
+    "title": "Login to your personal account",
+    "subtitle": "A new productive journey starts right here",
+    "your_email": "Your email",
+    "your_password": "Your password",
+    "remember_me": "Remember me",
+    "forgot_password": "Forgot password",
+    "you_dont_have_account": "You don't have an account?"
+  },
+  "sign_up": {
+    "sign_up": "Sign Up",
+    "authorization": "AUTHORIZATION",
+    "subtitle": "Create an account and join our community",
+    "E-mail": "E-mail",
+    "Nickname": "Nickname",
+    "Password": "Password",
+    "Confirm password": "Confirm password",
+    "Phone number": "Phone number",
+    "Your referral nickname": "Your referral nickname",
+    "agree": "I agree with these rules",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "old_password": "Old password",
+    "new_password": "New password"
+  },
+  "menu": {
+    "Home": "Home",
+    "Partner Program": "Partner Program",
+    "About Us": "About Us",
+    "Our Contacts": "Our Contacts",
+    "FAQ": "FAQ",
+    "sign_up": "Sign Up",
+    "log_in": "Log in",
+    "cabinet": "Cabinet",
+    "personal-area": "Personal Area",
+    "cash-in": "Cash In",
+    "make-deposit": "Make a deposit",
+    "withdrawal": "Withdrawn",
+    "transactions": "Transactions",
+    "referrals": "Referrals",
+    "settings": "Settings",
+    "admin": "Admin"
+  },
+  "user_statistic": {
+    "Partners": "Partners",
+    "Team members": "Team members",
+    "Capital": "Capital",
+    "ROI": "ROI"
+  },
+  "why_we": {
+    "why_we": "Why we?",
+    "job_benefits": "Job Benefits",
+    "1": {
+      "title": "Professional management",
+      "description": "Apate Cyprus Estate provides professional project management, which frees investors from the need to be personally involved in the management and monitoring of investments."
+    },
+    "2": {
+      "title": "Minimal risks",
+      "description": "The company conducts a thorough analysis and selection of projects, minimizing risks for investors. This allows investors to invest with confidence in a successful outcome."
+    },
+    "3": {
+      "title": "Liquidity and flexibility",
+      "description": "Although investing in real estate may be considered a long-term investment, Apate Cyprus Estate offers flexibility in terms of investment timing and returns."
+    },
+    "4": {
+      "title": "Sustainable development",
+      "description": "Apate Cyprus Estate is committed to sustainable development, a balanced approach to economic, environmental and social aspects. We build not only for today, but also for future generations."
+    },
+    "5": {
+      "title": "Transparency and trust",
+      "description": "We value the trust of our clients and investors. All our activities are based on the principles of transparency and openness. We provide detailed information about our projects, financial performance and company activities."
+    },
+    "6": {
+      "title": "Social responsibility",
+      "description": "Apate Cyprus Estate is actively involved in social and charitable initiatives, which demonstrates our responsibility to the community."
+    }
+  },
+  "partner_program": {
+    "partner_program": "Partner program",
+    "title": "Multi-level referral programme",
+    "description": "Apate Cyprus Estate has developed a multi-level referral programme especially for our clients. Every client of our company can take part in this programme by registering on our online platform and placing at least one own deposit."
+  },
+  "tariff_plans": {
+    "title": "Our Plans",
+    "subtitle": "At the crossroads of opportunity: investment plans for every goal. Unlock your growth potential with our team of experts",
+    "region": "Region",
+    "accruals": "Accruals",
+    "daily": "Daily",
+    "inDay": "In day",
+    "days": "Days",
+    "min_deposit": "Min. deposit",
+    "max_deposit": "Max. deposit",
+    "at_the_end_of_the_term": "At the end",
+    "individual": "Individual"
+  },
+  "presentation": {
+    "title": "Our exclusive presentation",
+    "subtitle": "We reveal the secrets of successful investments, including real estate investments!"
+  },
+  "roadmap": {
+    "subtitle": "The path to success: our roadmap lays out clear milestones and directions, providing transparency and strategy every step of the way.",
+    "1": "Establishing strategic partnerships and preparing for first big project with architects, engineers and material suppliers.",
+    "2": "Started construction of the first flagship project and implemented advertising campaigns to attract potential investors.",
+    "3": "Completion of construction of the first project and its successful commissioning. Attraction of the first investors.",
+    "4": "Starting to develop an idea for the next innovation project. Expanding the team to provide for larger scale tasks.",
+    "5": "Launching construction of a second project with a focus on sustainability and innovation. Expansion of the construction base and use of modern project management methods.",
+    "6": "Continuation of the second project and completion of diversification work. Audit to optimize internal processes.",
+    "7": "Introduction of improved project management methods to ensure efficiency and quality. Launch of an international partner program.",
+    "8": "Completion of construction of the second project and its successful commissioning. Introduction of new technologies and approaches for sustainable growth."
+  },
+  "contact_form": {
+    "title": "Start your journey with us",
+    "subtitle": "Want to get into the investor chat? Contact us.",
+    "your_name": "Your name",
+    "telegram_nickname": "Telegram nickname",
+    "phone_number": "Phone number",
+    "contact_us": "Contact us"
+  },
+  "personal_area": {
+    "title": "Personal Area",
+    "available": "Available",
+    "deposited": "Deposited",
+    "withdrawn": "Withdrawn",
+    "referrals": "Referrals",
+    "invested": "Invested",
+    "earned": "Earned",
+    "next_accrual_will_be": "The next accrual will be in",
+    "timer_slogan": "May every second bring you closer to more!",
+    "hours": "HOURS",
+    "minutes": "MINUTES",
+    "seconds": "SECONDS",
+    "active_deposits": "Active Deposits",
+    "completed_deposits": "Completed Deposits",
+    "no_active_deposits_title": "You don't seem to have any open deposits in your personal account yet.",
+    "no_active_deposits_subtitle": "If you would like to open a deposit, please go to the Open Deposit section",
+    "no_completed_deposits_title": "You do not have any completed deposits yet."
+  },
+  "table_headers": {
+    "region": "Region",
+    "progress": "Progress",
+    "nextAccrual": "Next Accrual",
+    "amount": "Amount",
+    "received": "Received",
+    "willReceived": "Will Received",
+    "dateOpen": "Date Open",
+    "dateClose": "Date Close",
+    "nickname": "Nickname",
+    "sponsor": "Sponsor",
+    "referrals": "Referrals",
+    "registrationDate": "Registration Date",
+    "deposited": "Deposited",
+    "id": "ID",
+    "status": "Status",
+    "type": "Type",
+    "date": "Date",
+    "executor": "Executor"
+  },
+  "stepper": {
+    "region": "Choose a region",
+    "project": "Choose a project",
+    "choose_wallet": "Choose a wallet",
+    "enter_amount": "Enter the amount",
+    "transaction_confirmation": "Transaction confirmation"
+  },
+  "bill": {
+    "transaction_confirmation": "Transaction confirmation",
+    "will_be_withdrawn": "Will be withdrawn subject to commission",
+    "region": "Region",
+    "project": "Project",
+    "income_in_day": "Income in day",
+    "total_income": "Total income",
+    "commission": "Commission",
+    "payment_system": "Payment system",
+    "amount": "Amount",
+    "date": "Date",
+    "status": "Status"
+  },
+  "instruction": {
+    "title": "Instructions for payment transfer",
+    "1": "Select a payment system",
+    "2": "Specify the refill amount",
+    "3": "Make the payment using these details",
+    "4": "Confirm the transaction by entering the transaction number/hash below",
+    "enter_transaction_hash": "Please enter the transaction number"
+  },
+  "private_key": {
+    "title": "Please enter your private financial key",
+    "placeholder": "Enter your private financial key"
+  },
+  "referrals": {
+    "your_referral_link": "Your referral link",
+    "your_sponsor": "Your sponsor",
+    "your_status": "Your status",
+    "partner": "Partner",
+    "referrals": "Referrals",
+    "total_income": "Total Income",
+    "total_referrals": "Total referrals",
+    "active_referrals": "Active",
+    "purchased_deposits": "Purchased deposits",
+    "level": "Level"
+  },
+  "settings": {
+    "title": "User Settings",
+    "update_info": "Update Info",
+    "wallets": "Wallets",
+    "save": "Save",
+    "upload_photo": "Upload photo"
+  },
+  "projects": {
+    "more": "Read more",
+    "project": "Project",
+    "from": "From",
+    "Апартаменты": "Apartments",
+    "description": "Description",
+    "features": "Features",
+    "distances": "Distances",
+    "type": "Type",
+    "district": "District",
+    "square": "Total area",
+    "terrace_square": "Veranda area",
+    "sleeping_rooms": "Sleeping rooms",
+    "bathrooms": "Bathrooms",
+    "floors": "Floors",
+    "floor": "Floor",
+    "Кондиционер": "Air conditioner",
+    "Отопление": "Heating",
+    "Парковка": "Parking",
+    "Кладовая": "Storeroom",
+    "energy_efficiency": "Energy efficiency",
+    "status": "Status",
+    "commissioning": "Commissioning",
+    "Пляж и море": "Beach and sea",
+    "Магазины": "Stores",
+    "Кафе, бары, рестораны": "Cafes, bars, restaurants",
+    "Медицина": "Medicine",
+    "Образование": "Education",
+    "Международный аэропорт Ларнаки": "Larnaca International Airport",
+    "Есть": "Available",
+    "Строительство": "Construction",
+    "Агиос Афанасиос": "Agios Athanasios",
+    "Закаки": "Zakaki",
+    "Пареклисия": "Pareklisia",
+    "Гермасойя": "Germasogeia",
+    "m": "m",
+    "meter": "meter",
+    "meter_few": "meters",
+    "meters": "meters",
+    "kilometer": "kilometer",
+    "kilometer_few": "kilometers",
+    "kilometers": "kilometers"
+  }
+}

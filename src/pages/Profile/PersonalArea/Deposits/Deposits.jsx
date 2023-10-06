@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Table from "../../../../Shared UI/Table/Table";
 import { Link } from "react-router-dom";
 import { normalizeDeposits } from "../../../../utils/helpers/transformersData";
+import { useTranslation } from "react-i18next";
 
 const columns = [
   {
@@ -17,11 +18,9 @@ const columns = [
     title: "Progress",
     key: "progress",
     responsive: [568],
-    // width: "36%",
   },
   {
     title: <p>Next Accrual</p>,
-    // title: "Next Accrual",
     key: "nextAccrual",
     responsive: [568],
     width: "10%",
@@ -40,21 +39,18 @@ const columns = [
   },
   {
     title: <p>Will Received</p>,
-    // title: "Will Received",
     key: "willReceived",
     responsive: [568],
     width: "8%",
   },
   {
     title: <p>Date Open</p>,
-    // title: "Date Open",
     key: "dateOpen",
     responsive: [568],
     width: "12%",
   },
   {
     title: <p>Date Close</p>,
-    // title: "Date Close",
     key: "dateClose",
     responsive: [568],
     width: "12%",
@@ -62,6 +58,7 @@ const columns = [
 ];
 
 const Deposits = ({ deposits }) => {
+  const { t } = useTranslation();
   const activeDeposits = normalizeDeposits(deposits).filter(
     (deposit) => deposit.isActive
   );
@@ -74,8 +71,8 @@ const Deposits = ({ deposits }) => {
     <div className={styles["deposits"]}>
       <Tabs>
         <TabList>
-          <Tab>Active Deposits</Tab>
-          <Tab>Completed Deposits</Tab>
+          <Tab>{t("personal_area.active_deposits")}</Tab>
+          <Tab>{t("personal_area.completed_deposits")}</Tab>
         </TabList>
         <TabPanel>
           {activeDeposits.length !== 0 ? (
@@ -86,12 +83,9 @@ const Deposits = ({ deposits }) => {
             />
           ) : (
             <div className={styles["deposits-empty"]}>
+              <p>{t("personal_area.no_active_deposits_title")}</p>
               <p>
-                Кажется, у вас пока нет открытых депозитов в вашем личном
-                кабинете.
-              </p>
-              <p>
-                Если вы хотите открыть депозит, пожалуйста, перейдите в раздел{" "}
+                {t("personal_area.no_active_deposits_subtitle")}{" "}
                 <Link to={"/profile/make-deposit"}>Открыть депозит</Link>
               </p>
             </div>
@@ -107,7 +101,7 @@ const Deposits = ({ deposits }) => {
             />
           ) : (
             <p className={styles["deposits-empty"]}>
-              У вас пока нет завершенных депозитов.
+              {t("personal_area.no_completed_deposits_title")}
             </p>
           )}
         </TabPanel>

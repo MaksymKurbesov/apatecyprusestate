@@ -3,23 +3,39 @@ import { auth, db, storage } from "../index";
 import { updateProfile } from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-const userDoc = doc(db, "users", auth.currentUser.displayName);
+export const updateUserBalanceAfterDeposit = async (
+  wallet,
+  amount,
+  nickname
+) => {
+  const userDoc = doc(db, "users", nickname);
 
-export const updateUserBalanceAfterDeposit = async (wallet, amount) => {
   await updateDoc(userDoc, {
     [`wallets.${wallet}.available`]: increment(-amount),
     invested: increment(amount),
   });
 };
 
-export const updateUserBalanceAfterCashIn = async (wallet, amount) => {
+export const updateUserBalanceAfterCashIn = async (
+  wallet,
+  amount,
+  nickname
+) => {
+  const userDoc = doc(db, "users", nickname);
+
   await updateDoc(userDoc, {
     [`wallets.${wallet}.available`]: increment(amount),
     [`wallets.${wallet}.deposited`]: increment(amount),
   });
 };
 
-export const updateUserBalanceAfterWithdrawn = async (wallet, amount) => {
+export const updateUserBalanceAfterWithdrawn = async (
+  wallet,
+  amount,
+  nickname
+) => {
+  const userDoc = doc(db, "users", nickname);
+
   await updateDoc(userDoc, {
     [`wallets.${wallet}.available`]: increment(-amount),
     [`wallets.${wallet}.withdrawn`]: increment(amount),
@@ -50,6 +66,8 @@ export const updateUserAvatar = async (avatar, setUserAvatar) => {
 };
 
 export const updateUserInfo = async (userInfo) => {
+  const userDoc = doc(db, "users", auth.currentUser.displayName);
+
   try {
     await updateDoc(userDoc, {
       "contacts.phoneNumber": userInfo.phoneNumber,
@@ -65,6 +83,8 @@ export const updateUserInfo = async (userInfo) => {
 };
 
 export const updateUserWallets = async (wallets) => {
+  const userDoc = doc(db, "users", auth.currentUser.displayName);
+
   try {
     const updatedWallets = {};
 

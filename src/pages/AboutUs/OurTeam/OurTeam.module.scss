@@ -1,6 +1,6 @@
 .our-team {
-    width: 100%;
-    margin-bottom: 200px;
+    margin: 0 auto 200px;
+    width: 90%;
     background-image:
             url('../../../assets/SVG/Ellipse.svg'),
             url('../../../assets/SVG/Ellipse.svg');
@@ -51,10 +51,59 @@
 
 .photo {
     margin-bottom: 25px;
+    object-fit: cover;
+    object-position: top;
 }
 
-//@media screen and (max-width: 768px) {
-//    .our-team {
-//        margin-bottom: 80vw;
-//    }
-//}
+@media screen and (max-width: 1200px) {
+    .our-team {
+        width: 100%;
+    }
+
+    .team-list {
+        gap: 15px;
+    }
+
+    .photo {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .team-list {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .photo {
+        height: 250px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .our-team {
+        margin: 0 auto 100px;
+    }
+
+    .subtitle {
+        margin: 0 auto 40px;
+    }
+
+    .member {
+        padding: 15px;
+    }
+
+    .member span {
+        font-size: 12px;
+    }
+
+    .member p {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .team-list {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Language from "../../Language/Language";
-import Logo from "../../../assets/images/logo.png";
+import { ReactComponent as Logo } from "../../../assets/SVG/logo2.svg";
 import UserInfo from "../../UserInfo/UserInfo";
 import styles from "./Header.module.scss";
 import ProfileMenuItem from "../../ProfileMenu/ProfileMenuItem/ProfileMenuItem";
@@ -9,6 +9,7 @@ import { getActiveMenuItem } from "../../../utils/helpers";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import Hamburger from "../../Hamburger/Hamburger";
 import MobileMenu from "../MobileMenu/MobileMenu";
+import { useTranslation } from "react-i18next";
 
 const isDesktopMenu = () => {
   return (
@@ -39,6 +40,7 @@ const isMobileMenu = (menuStatus, setIsMenuOpenHandler) => {
 };
 
 const Header = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const [activeMenuItem, setActiveMenuItem] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,14 +60,14 @@ const Header = () => {
 
   return (
     <header className={styles["header"]}>
-      <Link to={"/"}>
-        <img className={styles["logotype"]} src={Logo} alt={"Logotype"} />
+      <Link to={"/"} className={styles["logotype"]}>
+        <Logo />
       </Link>
 
       {isDesktop ? (
         <div className={styles["current-page"]}>
           <ProfileMenuItem
-            title={activeMenuItem?.title}
+            title={t(`menu.${activeMenuItem?.path}`)}
             icon={activeMenuItem?.icon}
             isHeader
           />

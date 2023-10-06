@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Logo from "../../../assets/images/logo.png";
 import Navbar from "../../Navbar/Navbar";
 import styles from "./Header.module.scss";
 import Language from "../../Language/Language";
@@ -9,8 +8,11 @@ import { useAuthState } from "../../../hooks/useAuthState";
 import { auth } from "../../../index";
 import Hamburger from "../../Hamburger/Hamburger";
 import MobileMenu from "../MobileMenu/MobileMenu";
+import { ReactComponent as Logo } from "../../../assets/SVG/logo2.svg";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t } = useTranslation();
   const windowSize = useWindowSize();
   const [user, loading] = useAuthState(auth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +32,7 @@ const Header = () => {
       <div className={"container"}>
         <header className={`${styles["header"]}`}>
           <Link to={"/"} className={styles["logotype"]}>
-            <img src={Logo} alt={"Logotype"} />
+            <Logo />
           </Link>
           <div className={styles["settings"]}>
             {windowSize > 1200 ? (
@@ -56,7 +58,7 @@ const Header = () => {
               <div className={styles["buttons"]}>
                 {user ? (
                   <NavLink className={`button`} to={"profile/personal-area"}>
-                    Cabinet
+                    {t("menu.cabinet")}
                   </NavLink>
                 ) : (
                   <>
@@ -64,10 +66,10 @@ const Header = () => {
                       className={`button ${styles["sign-in-button"]}`}
                       to={"/authorization/sign-in"}
                     >
-                      Log In
+                      {t("menu.log_in")}
                     </NavLink>
                     <NavLink className={"button"} to={"/authorization/sign-up"}>
-                      Sign Up
+                      {t("menu.sign_up")}
                     </NavLink>
                   </>
                 )}

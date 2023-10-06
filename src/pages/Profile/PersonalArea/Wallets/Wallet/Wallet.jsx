@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./Wallet.module.scss";
 import ColoredLabel from "../../../../../components/ColoredLabel/ColoredLabel";
+import { useTranslation } from "react-i18next";
 
 const Wallet = ({ wallet }) => {
+  const { t } = useTranslation();
   const { name, label, available, deposited, withdrawn, referrals } = wallet;
 
   return (
@@ -16,19 +18,19 @@ const Wallet = ({ wallet }) => {
       </div>
       <ul className={styles["information"]}>
         <li>
-          <p>Available</p>
+          <p>{t("personal_area.available")}</p>
           <span>${available.toFixed(2)}</span>
         </li>
         <li>
-          <p>Deposited</p>
+          <p>{t("personal_area.deposited")}</p>
           <span>${deposited.toFixed(2)}</span>
         </li>
         <li>
-          <p>Withdraw</p>
+          <p>{t("personal_area.withdrawn")}</p>
           <span>${withdrawn.toFixed(2)}</span>
         </li>
         <li>
-          <p>Referrals</p>
+          <p>{t("personal_area.referrals")}</p>
           <span>${referrals.toFixed(2)}</span>
         </li>
       </ul>

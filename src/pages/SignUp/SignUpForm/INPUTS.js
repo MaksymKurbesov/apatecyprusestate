@@ -1,7 +1,7 @@
 export const INPUTS = [
   {
     name: "email",
-    placeholder: "E-email",
+    placeholder: "E-mail",
     validations: {
       required: true,
       validate: {

@@ -21,7 +21,7 @@
     margin-bottom: 0;
 }
 
-.information button {
+.information a {
     margin-top: 50px;
 }
 
@@ -69,6 +69,10 @@
     .information p {
         font-size: 16px;
         line-height: 32px;
+    }
+
+    .information a {
+        margin-top: 25px;
     }
 
     .right > img {

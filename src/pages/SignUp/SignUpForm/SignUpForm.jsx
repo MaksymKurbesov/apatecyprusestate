@@ -6,11 +6,15 @@ import { ReactComponent as Exclamation } from "../../../assets/SVG/exclamation.s
 import { FirebaseContext } from "../../../index";
 import { useForm } from "react-hook-form";
 import { doc, getDoc } from "firebase/firestore";
-import { registerWithEmailAndPassword } from "../../../Api/Auth";
+import { logout, registerWithEmailAndPassword } from "../../../Api/Auth";
+import { useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SignUpForm = ({ handleOpenConfirmModal, handleOpenErrorModal }) => {
+  const { t } = useTranslation();
   const { db } = useContext(FirebaseContext);
   const [loading, setLoading] = useState(false);
+  const [searchParams] = useSearchParams();
 
   const {
     register,
@@ -20,6 +24,9 @@ const SignUpForm = ({ handleOpenConfirmModal, handleOpenErrorModal }) => {
     reset,
   } = useForm({
     mode: "onBlur",
+    defaultValues: {
+      referredBy: searchParams.get("ref"),
+    },
   });
 
   const onSubmit = async (data) => {
@@ -30,11 +37,12 @@ const SignUpForm = ({ handleOpenConfirmModal, handleOpenErrorModal }) => {
     if (!candidateSnap.exists()) {
       await registerWithEmailAndPassword(data)
         .then((error) => {
-          if (error) {
-            handleOpenErrorModal(error);
-          } else {
+          if (!error) {
+            logout();
             handleOpenConfirmModal();
             reset();
+          } else {
+            handleOpenErrorModal(error);
           }
         })
         .finally(() => {
@@ -61,7 +69,7 @@ const SignUpForm = ({ handleOpenConfirmModal, handleOpenErrorModal }) => {
             register={register}
             name={name}
             type={type}
-            placeholder={placeholder}
+            placeholder={t(`sign_up.${placeholder}`)}
             validations={validations}
             error={errors[name]}
             errorMessages={errorMessages}
@@ -75,7 +83,7 @@ const SignUpForm = ({ handleOpenConfirmModal, handleOpenErrorModal }) => {
           type={"checkbox"}
           {...register("agreement", { required: true })}
         />
-        <span>I agree with these rules</span>
+        <span>{t("sign_up.agree")}</span>
         {errors?.agreement ? (
           <div className={`${styles["sign-up-error"]} error`}>
             <Exclamation />
@@ -91,7 +99,7 @@ const SignUpForm = ({ handleOpenConfirmModal, handleOpenErrorModal }) => {
         form="sign-up-form"
         disabled={loading}
       >
-        Sign Up
+        {t("sign_up.sign_up")}
       </button>
     </form>
   );

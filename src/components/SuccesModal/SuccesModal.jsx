@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./SuccesModal.module.scss";
 import Modal from "../../Shared UI/Modal/Modal";
-import SuccessIcon from "../../assets/images/success-modal.png";
+import SuccessIcon from "../../assets/images/success-modal.webp";
 import { NavLink } from "react-router-dom";
 
 const SuccesModal = ({

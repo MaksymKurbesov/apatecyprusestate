@@ -20,10 +20,19 @@
 
 .logotype {
     position: relative;
-    margin-right: 160px;
-    cursor: pointer;
-    display: block;
+    margin-right: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //margin: 0 auto 160px
     z-index: 11;
+    width: 170px;
+    height: 66px;
+}
+
+.logotype svg {
+    width: 100%;
+    height: 100%;
 }
 
 .settings {
@@ -44,8 +53,10 @@
     .logotype {
         margin-right: 0;
     }
+}
 
-    .settings {
-        //flex-direction: column;
+@media screen and (max-width: 480px) {
+    .logotype {
+        width: 140px;
     }
 }

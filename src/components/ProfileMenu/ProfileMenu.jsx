@@ -13,6 +13,7 @@ import { ReactComponent as Telegram } from "../../assets/SVG/telegram.svg";
 import styles from "./ProfileMenu.module.scss";
 import { NavLink, useOutletContext } from "react-router-dom";
 import ProfileMenuItem from "./ProfileMenuItem/ProfileMenuItem";
+import { useTranslation } from "react-i18next";
 
 export const MENU_ITEMS = [
   {
@@ -41,9 +42,9 @@ export const MENU_ITEMS = [
     path: "transactions",
   },
   {
-    title: "Partners",
+    title: "Referrals",
     icon: <Partners />,
-    path: "partners",
+    path: "referrals",
   },
   {
     title: "Settings",
@@ -54,6 +55,7 @@ export const MENU_ITEMS = [
 
 const ProfileMenu = ({ userData }) => {
   const [menu, setMenu] = useState(MENU_ITEMS);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (userData.isAdmin) {
@@ -78,7 +80,7 @@ const ProfileMenu = ({ userData }) => {
                 to={path}
                 className={({ isActive }) => (isActive ? styles["active"] : "")}
               >
-                <ProfileMenuItem icon={icon} title={title} />
+                <ProfileMenuItem icon={icon} title={t(`menu.${path}`)} />
               </NavLink>
             </li>
           );

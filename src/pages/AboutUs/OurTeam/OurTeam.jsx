@@ -1,37 +1,49 @@
 import React from "react";
 import styles from "./OurTeam.module.scss";
 import Title from "../../../Shared UI/Title/Title";
-import CEOPhoto from "../../../assets/images/team members/CEO.png";
-import CTOPhoto from "../../../assets/images/team members/CTO.png";
-import ProjectFinancingPhoto from "../../../assets/images/team members/Project Financing.png";
+import Angelos from "../../../assets/images/team members/Angelos Georgiou.jfif";
+import Alexandra from "../../../assets/images/team members/Alexandra Cleovoulou.jfif";
+import Niki from "../../../assets/images/team members/Niki Chatzimina.jfif";
+import Stefanos from "../../../assets/images/team members/stefanos-kyriakou.jpg";
+import Trifonos from "../../../assets/images/team members/Trifonas Mamas.jfif";
+import { useTranslation } from "react-i18next";
 
 const TEAM = [
   {
-    position: "CEO",
-    name: "Arif  Mohd Al Alawi",
-    photo: CEOPhoto,
+    position: "Registered Estate Agent",
+    name: "Trifonas Mamas",
+    photo: Trifonos,
   },
-  // {
-  //   position: "CTO",
-  //   name: "Vadym Shkarupeta",
-  //   photo: CTOPhoto,
-  // },
-  // {
-  //   position: "Project Financing",
-  //   name: "Yousaf Abbasi",
-  //   photo: ProjectFinancingPhoto,
-  // },
+  {
+    position: "Managing Director",
+    name: "Angelos Georgiou",
+    photo: Angelos,
+  },
+  {
+    position: "Property Consultant",
+    name: "Alexandra Cleovoulou",
+    photo: Alexandra,
+  },
+  {
+    position: "Property Consultant",
+    name: "Stefanos Kyriakou",
+    photo: Stefanos,
+  },
+  {
+    position: "Analyst and Academic Advisor",
+    name: "Niki Chatzimina",
+    photo: Niki,
+  },
 ];
 
 const OurTeam = () => {
+  const { t } = useTranslation("about-us");
+
   return (
     <section className={styles["our-team"]}>
       <div className={"container"}>
-        <Title text={"Our Team"} style={{ marginBottom: 20 }} />
-        <p className={styles["subtitle"]}>
-          Market that combines several global areas such as: investment online
-          platform
-        </p>
+        <Title text={t("our_team.title")} style={{ marginBottom: 20 }} />
+        <p className={styles["subtitle"]}>{t("our_team.description")}</p>
         <ul className={styles["team-list"]}>
           {TEAM.map(({ position, name, photo }, index) => {
             return (
@@ -41,6 +53,7 @@ const OurTeam = () => {
                   src={photo}
                   alt={"Team member"}
                   width={"100%"}
+                  height={350}
                 />
                 <span>{position}</span>
                 <p>{name}</p>

@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../../../Shared UI/Modal/Modal";
 import styles from "./ErrorRegistrationModal.module.scss";
-import ErrorIcon from "../../../assets/images/error-modal.png";
+import ErrorIcon from "../../../assets/images/error-modal.webp";
 
 const ErrorRegistrationModal = ({ closeHandler, modalStatus, error }) => {
   return (

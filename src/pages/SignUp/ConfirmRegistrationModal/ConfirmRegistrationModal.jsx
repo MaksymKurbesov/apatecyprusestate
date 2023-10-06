@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../../../Shared UI/Modal/Modal";
 import styles from "./ConfirmRegistrationModal.module.scss";
-import SuccessIcon from "../../../assets/images/success-modal.png";
+import SuccessIcon from "../../../assets/images/success-modal.webp";
 import { NavLink } from "react-router-dom";
 
 const ConfirmRegistrationModal = ({ closeHandler, modalStatus }) => {

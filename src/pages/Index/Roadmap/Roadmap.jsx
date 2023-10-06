@@ -5,6 +5,7 @@ import VerticalRoadmapBackground from "../../../assets/images/vertical-roadmap2.
 
 import styles from "./Roadmap.module.scss";
 import { useWindowSize } from "../../../hooks/useWindowSize";
+import { useTranslation } from "react-i18next";
 
 const STEPS = [
   {
@@ -50,16 +51,13 @@ const STEPS = [
 ];
 
 const Roadmap = () => {
+  const { t } = useTranslation();
   const windowSize = useWindowSize();
 
   return (
     <div className={styles["roadmap"]}>
-      {/*<div className={"container"}>*/}
-      <Title text={"APATE CYPRUS ESTATE ROADMAP"} />
-      <p className={styles["subtitle"]}>
-        Market that combines several global areas such as: investment online
-        platform
-      </p>
+      <Title text={"Apate Cyprus Estate Roadmap"} />
+      <p className={styles["subtitle"]}>{t("roadmap.subtitle")}</p>
       <div className={styles["roadmap-wrapper"]}>
         {windowSize > 1024 ? (
           <img src={RoadmapBackground} alt={"Roadmap scheme"} width={"100%"} />
@@ -77,12 +75,11 @@ const Roadmap = () => {
             <div key={index} className={styles["step"]}>
               <span>{index + 1}</span>
               <h3>{date}</h3>
-              <p>{description}</p>
+              <p>{t(`roadmap.${index + 1}`)}</p>
             </div>
           );
         })}
       </div>
-      {/*</div>*/}
     </div>
   );
 };

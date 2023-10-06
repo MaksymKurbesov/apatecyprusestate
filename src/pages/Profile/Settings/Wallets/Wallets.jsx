@@ -3,8 +3,10 @@ import styles from "./Wallets.module.scss";
 import { useForm } from "react-hook-form";
 import { updateUserWallets } from "../../../../Api/UserData";
 import { normalizeUserWallets } from "../../../../utils/helpers/transformersData";
+import { useTranslation } from "react-i18next";
 
 const Wallets = ({ userWallets }) => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit } = useForm({
@@ -20,7 +22,7 @@ const Wallets = ({ userWallets }) => {
 
   return (
     <div className={styles["wallets"]}>
-      <h3>Wallets</h3>
+      <h3>{t("settings.wallets")}</h3>
 
       <form
         className={styles["wallets-form"]}
@@ -58,7 +60,7 @@ const Wallets = ({ userWallets }) => {
         className={`${styles["save-button"]} button`}
         disabled={loading}
       >
-        Save
+        {t("settings.save")}
       </button>
     </div>
   );

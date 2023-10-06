@@ -1,0 +1,23 @@
+.table-wrapper {
+    padding: 0 30px;
+}
+
+.table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table th {
+    font-weight: 600;
+}
+
+.table td {
+    padding: 10px;
+    border: 1px solid white;
+}
+
+.table tbody tr td {
+    height: 50px;
+}
+

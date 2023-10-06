@@ -50,3 +50,13 @@
     bottom: -17px;
 }
 
+@media screen and (max-width: 480px) {
+    .private-key {
+        padding: 30px 25px;
+    }
+
+    .private-key > p {
+        font-size: 14px;
+        font-weight: 600;
+    }
+}

@@ -1,0 +1,39 @@
+{
+  "label": "PARTNER PROGRAM",
+  "title": "Become an affiliate",
+  "subtitle": "Join Apate Cyprus Estate's affiliate program and earn up to 5% for every deposit made by someone you refer.",
+  "register_button": "Register and start earning",
+  "what_is": {
+    "label": "WHAT IS IT?",
+    "title": "Multi-level referral program from Apate Cyprus Estate",
+    "description": "Apate Cyprus Estate actively integrates innovative approaches that benefit all of our investors. We have created a tiered referral program exclusively for our clients. Anyone who registers on our platform can join the program. Once registered, just a few clicks separate you from the opportunity to share your referral link with your friends and receive bonuses for deposits made by your invitees."
+  },
+  "how_start": {
+    "title": "How to get started",
+    "1": {
+      "title": "Registration on the platform",
+      "description": "Fill in the required fields and create an account on the Apate Cyprus Estate platform to access the referral program."
+    },
+    "2": {
+      "title": "Getting a referral link",
+      "description": "Go to your personal account, find the 'Referral Program' section and get your unique referral link."
+    },
+    "3": {
+      "title": "Spreading the link",
+      "description": "Post your referral link on social media, blogs, email your friends, or even share it in person."
+    },
+    "4": {
+      "title": "Support and counseling",
+      "description": "Help your referrals understand the features of the platform and answer questions that arise to make it easier for them to get started."
+    },
+    "5": {
+      "title": "Analyzing and monitoring results",
+      "description": "Visit your personal account regularly to track the activity of people you invite, the number of new registrations and the commissions you receive."
+    }
+  },
+  "how_it_works": {
+    "label": "HOW DOES IT WORK?",
+    "title": "Increase your income with our referral program",
+    "description": "By joining the referral program of our investment company, you get a unique opportunity to increase your income by simply recommending our services. After registration in the program, each participant receives a personal referral link. By sharing this link on social networks, blogs or personally with friends, you attract new investors.\n\nFor each person who registers through your link and invests funds, you receive a percentage commission. All necessary statistics, including the number of your referrals, their investments and your earnings, you can see in your personal cabinet. Earned funds can be withdrawn to your account or reinvested, increasing your profit."
+  }
+}

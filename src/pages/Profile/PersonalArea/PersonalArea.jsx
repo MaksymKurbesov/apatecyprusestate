@@ -24,8 +24,8 @@ const PersonalArea = () => {
     <div className={styles["personal-area"]}>
       <Wallets wallets={userData.wallets} />
       <NextAccrual
-        nearestAccrual={getNearestAccrual(userDeposits).lastAccrual}
-        days={getNearestAccrual(userDeposits).days}
+        nearestAccrual={getNearestAccrual(userDeposits)?.lastAccrual}
+        days={getNearestAccrual(userDeposits)?.days}
       />
       <UserStatistic statistic={{ invested, earned, withdrawn, referrals }} />
       <Deposits deposits={userDeposits} />

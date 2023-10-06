@@ -4,61 +4,28 @@ import Title from "../../Shared UI/Title/Title";
 import styles from "./FaqPage.module.scss";
 import Accordion from "../../components/Accordion/Accordion";
 import { ScrollRestoration } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-const QUESTIONS = [
-  {
-    title: "How do I get started as an investor with Trust Investment?",
-    content:
-      "Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough to indicate the details or number of wallets for depositing and withdrawing funds in your personal account on the Trust Investment online platform.",
-  },
-  {
-    title: "How do I get started as an investor with Trust Investment?",
-    content:
-      "Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough to indicate the details or number of wallets for depositing and withdrawing funds in your personal account on the Trust Investment online platform.",
-  },
-  {
-    title: "How do I get started as an investor with Trust Investment?",
-    content:
-      "Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough  Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enoughto indicate the details or number of wallets for depositing and withdrawing funds in your personal account on the Trust Investment online platform.",
-  },
-  {
-    title: "How do I get started as an investor with Trust Investment?",
-    content:
-      "Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough to indicate the details or number of wallets for depositing and withdrawing funds in your personal account on the Trust Investment online platform.",
-  },
-  {
-    title: "How do I get started as an investor with Trust Investment?",
-    content:
-      "Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough to indicate the details or number of wallets for depositing and withdrawing funds in your personal account on the Trust Investment online platform.",
-  },
-  {
-    title: "How do I get started as an investor with Trust Investment?",
-    content:
-      "Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough  Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enoughto indicate the details or number of wallets for depositing and withdrawing funds in your personal account on the Trust Investment online platform.",
-  },
-  {
-    title: "How do I get started as an investor with Trust Investment?",
-    content:
-      "Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough to indicate the details or number of wallets for depositing and withdrawing funds in your personal account on the Trust Investment online platform.",
-  },
-  {
-    title: "How do I get started as an investor with Trust Investment?",
-    content:
-      "Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough to indicate the details or number of wallets for depositing and withdrawing funds in your personal account on the Trust Investment online platform.",
-  },
-  {
-    title: "How do I get started as an investor with Trust Investment?",
-    content:
-      "Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough  Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enough Please note that our company, when registering, does not require any personal data from you, it also does not require a bank card number, CVV, expiration date. It is enoughto indicate the details or number of wallets for depositing and withdrawing funds in your personal account on the Trust Investment online platform.",
-  },
-];
+const QUESTIONS_COUNT = 18;
 
 const FaqPage = () => {
+  const { t } = useTranslation("faq");
+  const QUESTIONS = [];
+
+  console.log("faq");
+
+  for (let i = 1; i <= QUESTIONS_COUNT; i++) {
+    QUESTIONS.push({
+      title: t(`${i}.question`),
+      content: t(`${i}.answer`),
+    });
+  }
+
   return (
     <div className={styles["faq-page"]}>
       <SectionLabel text={`FAQ'S`} style={{ marginBottom: 20 }} />
-      <Title text={"Frequently asked questions"} style={{ marginBottom: 20 }} />
-      <p className={styles["subtitle"]}>All you need to know to work with us</p>
+      <Title text={t("title")} style={{ marginBottom: 20 }} />
+      <p className={styles["subtitle"]}>{t("description")}</p>
       <div className={styles["accordion-wrapper"]}>
         <Accordion data={QUESTIONS} className={"isFaq"} />
       </div>

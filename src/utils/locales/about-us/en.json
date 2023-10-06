@@ -1,0 +1,29 @@
+{
+  "about_us": {
+    "label": "About Us",
+    "title":"Beginning of Apate Cyprus Estate",
+    "description": "<0>Imagine the inspiration and passion to create beauty in every corner of Cyprus. This is the story of Apate Cyprus Estate, a company born in the heart of this amazing island. Eight years ago, far from the bustling cities, inspired by Cypriot nature and tradition, a group of ambitious architects and builders joined forces to realize a dream.</0><0>From the very beginning, Apate Cyprus Estate has had an unwavering goal to create homes that not only blend in with the surrounding beauty of Cyprus, but also provide the perfect place for family happiness. We believe that each home should reflect the uniqueness of its occupants and at the same time be the epitome of reliability and quality.</0>"
+  },
+  "company_in_digits": {
+    "label": "COMPANY IN FIGURES",
+    "title": "Our key performance indicators",
+    "description": "Get to know our key accomplishments and metrics. Here we have compiled statistics that reflect the experience, size and stability of our company so you can get to know us and our direction in the industry.",
+    "Partners": "Partners",
+    "Team Members": "Team Members",
+    "Capital": "Capital",
+    "ROI": "ROI"
+  },
+  "ethic": {
+    "label": "ETHICS",
+    "title": "Our values and principles",
+    "description": "<0>Four years ago, we picked up our first shovel to start creating little pieces of the Cypriot idyll. Our craftsmen are not just builders, they are skilled artisans who put their soul into every stone, every brick. We are proud that our houses are not just buildings, but true works of art.</0><0>We are nature lovers and try to preserve the environment as much as possible during the construction process. All our projects are designed to fit into the landscape without disturbing its harmony. We set ourselves the task of leaving a trace only positive, like a trace from a light touch.</0>"
+  },
+  "banner": {
+    "title": "Invest in the future of Cyprus with Apate Cyprus Estate",
+    "description": "Investing in Apate Cyprus Estate is not just a financial opportunity, it is a chance to invest in projects that benefit society and nature. Together we are creating not only homes, but also the future of Cyprus. We invite you to join our team to move together towards new horizons, Cypriot idyll and success."
+  },
+  "our_team": {
+    "title": "Our team",
+    "description": "Meet our team of professionals ready to help you with your real estate investment in Cyprus"
+  }
+}

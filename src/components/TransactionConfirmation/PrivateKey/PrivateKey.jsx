@@ -3,12 +3,15 @@ import styles from "./PrivateKey.module.scss";
 import { ReactComponent as InfoIcon } from "../../../assets/SVG/info-circle.svg";
 import { ReactComponent as Exclamation } from "../../../assets/SVG/exclamation.svg";
 import { ErrorMessage } from "@hookform/error-message";
+import { useTranslation } from "react-i18next";
 
 const PrivateKey = ({ register, errors }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={`${styles["private-key"]} custom-border`}>
       <p>
-        Please enter your private financial key
+        {t("private_key.title")}
         <InfoIcon className={styles["info-icon"]} />
       </p>
       <input
@@ -16,7 +19,7 @@ const PrivateKey = ({ register, errors }) => {
           required: "Введите пожалуйста приватный финансовый ключ",
         })}
         type={"text"}
-        placeholder={"Enter your private financial key "}
+        placeholder={t("private_key.placeholder")}
       />
       <ErrorMessage
         name={"private-key"}
@@ -28,12 +31,6 @@ const PrivateKey = ({ register, errors }) => {
           </div>
         )}
       />
-      {/*{errors["private-key"] ? (*/}
-      {/*  <div className={`${styles["private-key-error"]} error`}>*/}
-      {/*    <ErrorIcon />*/}
-      {/*    <p>Введите пожалуйста приватный финансовый ключ</p>*/}
-      {/*  </div>*/}
-      {/*) : null}*/}
     </div>
   );
 };

@@ -133,7 +133,7 @@ export const ROUTES = [
         ),
       },
       {
-        path: "/profile/partners",
+        path: "/profile/referrals",
         element: (
           <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
             <Partners />

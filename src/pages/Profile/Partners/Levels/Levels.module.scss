@@ -3,7 +3,7 @@
 }
 .level {
     display: grid;
-    grid-template-columns: 65px 110px 88px 195px;
+    grid-template-columns: 95px 130px 120px 195px;
     justify-content: space-between;
     padding-right: 50px;
     padding-left: 20px;
@@ -23,7 +23,7 @@
 
 @media screen and (max-width: 580px) {
     .level {
-        grid-template-columns: 110px 85px 180px;
+        grid-template-columns: 117px 108px 180px;
     }
 
     .level-number {
@@ -38,6 +38,7 @@
 
     .level {
         display: grid;
-        grid-template-columns: 110px 180px;
+        grid-template-columns: 117px 180px;
+        gap: 5px;
     }
 }

@@ -10,19 +10,17 @@ import {
   where,
 } from "firebase/firestore";
 import { auth, db } from "../index";
-import { v4 as uuidv4 } from "uuid";
 import ColoredLabel from "../components/ColoredLabel/ColoredLabel";
 import { secondsToString } from "../utils/helpers/date";
 
 export const addTransaction = async (transaction) => {
-  const { amount, type, nickname, ...rest } = transaction;
-  const transactionsDoc = doc(db, "transactions", `${type}-${uuidv4()}`);
+  const { amount, type, ...rest } = transaction;
+  const transactionsDoc = doc(db, "transactions", `${rest.id}`);
 
   try {
     await setDoc(transactionsDoc, {
       type,
       amount: +amount,
-      nickname: auth.currentUser.displayName,
       status: "Ожидание",
       date: serverTimestamp(),
       ...rest,

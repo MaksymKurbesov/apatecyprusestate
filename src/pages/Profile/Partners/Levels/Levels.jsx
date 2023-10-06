@@ -7,6 +7,7 @@ import {
   getTotalIncomeFromReferrals,
 } from "../../../../utils/helpers/calculates";
 import { normalizeReferralLevel } from "../../../../utils/helpers/transformersData";
+import { useTranslation } from "react-i18next";
 
 const columns = [
   {
@@ -32,19 +33,24 @@ const columns = [
 ];
 
 const Levels = ({ referrals }) => {
+  const { t } = useTranslation();
+
   const accordionData = Object.values(referrals).map((level, index) => {
     return {
       title: (
         <div className={styles["level"]}>
-          <p className={styles["level-number"]}>Level {index + 1}</p>
+          <p className={styles["level-number"]}>
+            {t("referrals.level")} {index + 1}
+          </p>
           <p>
-            Referrals: <span>{level.length}</span>
+            {t("referrals.referrals")}: <span>{level.length}</span>
           </p>
           <p className={styles["active-referrals"]}>
-            Active: <span>{getTotalActiveReferralsByLevel(level)}</span>
+            {t("referrals.active_referrals")}:{" "}
+            <span>{getTotalActiveReferralsByLevel(level)}</span>
           </p>
           <p>
-            Total Income:{" "}
+            {t("referrals.total_income")}:{" "}
             <span>${getTotalIncomeFromReferrals(level, index + 1)}</span>
           </p>
         </div>

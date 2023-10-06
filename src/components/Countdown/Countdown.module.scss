@@ -2,3 +2,9 @@
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 768px) {
+    .timer {
+        justify-content: flex-end;
+    }
+}

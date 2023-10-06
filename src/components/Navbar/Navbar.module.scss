@@ -18,7 +18,7 @@
 
 
 .nav-list-footer li:not(:last-child) {
-    margin-right: 60px;
+    margin-right: 50px;
 }
 
 .active {
@@ -35,7 +35,7 @@
 
 @media screen and (max-width: 768px) {
     .nav-footer {
-        margin:0 auto;
+        margin: 20px auto 0;
     }
 
     .nav-list-footer li:not(:last-child) {

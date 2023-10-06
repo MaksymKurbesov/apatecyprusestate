@@ -3,8 +3,10 @@ import styles from "./TariffPlans.module.scss";
 import Title from "../../../Shared UI/Title/Title";
 import PlansList from "../../../components/PlansList/PlansList";
 import { FormProvider, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 const TariffPlans = () => {
+  const { t } = useTranslation();
   const methods = useForm({
     defaultValues: {
       amount: 0,
@@ -16,14 +18,11 @@ const TariffPlans = () => {
     <section className={`${styles["tariff-plans"]}`}>
       <div className={"container"}>
         <Title
-          text={"Tariff Plans"}
+          text={t("tariff_plans.title")}
           align={"center"}
           style={{ marginBottom: 30 }}
         />
-        <h3 className={styles["subtitle"]}>
-          Market that combines several global areas such as: investment online
-          platform
-        </h3>
+        <h3 className={styles["subtitle"]}>{t("tariff_plans.subtitle")}</h3>
         <div className={styles["plans-wrapper"]}>
           <FormProvider {...methods}>
             <PlansList isPayNow />

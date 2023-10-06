@@ -7,13 +7,19 @@ import { useForm, FormProvider } from "react-hook-form";
 import TransactionConfirmation from "../../../components/TransactionConfirmation/TransactionConfirmation";
 import ColoredLabel from "../../../components/ColoredLabel/ColoredLabel";
 import { addTransaction } from "../../../Api/Transactions";
-import { closeModal, openModal } from "../../../utils/helpers";
+import {
+  closeModal,
+  openModal,
+  telegramNotification,
+} from "../../../utils/helpers";
 import { v4 as uuidv4 } from "uuid";
 import SuccesModal from "../../../components/SuccesModal/SuccesModal";
 import { auth } from "../../../index";
 import { getDateNow } from "../../../utils/helpers/date";
+import { useTranslation } from "react-i18next";
 
 const CashIn = () => {
+  const { t } = useTranslation();
   const [isSuccessModalStatus, setIsSuccessModalStatus] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -38,6 +44,7 @@ const CashIn = () => {
     })
       .then(() => {
         openModal(setIsSuccessModalStatus);
+        telegramNotification({ ...data, type: "Пополнение" });
         methods.reset();
       })
       .finally(() => {
@@ -48,17 +55,17 @@ const CashIn = () => {
   const STEPS = [
     {
       stepName: "wallet",
-      title: "Choose a wallet",
+      title: t("stepper.choose_wallet"),
       content: <WalletsList />,
     },
     {
       stepName: "amount",
-      title: "Enter the amount",
+      title: t("stepper.enter_amount"),
       content: (
         <EnterTheAmount
           additionalInfo={
             <p>
-              Commission:<span> 0.00 USD</span>
+              {t("bill.commission")}:<span> 0.00 USD</span>
             </p>
           }
         />
@@ -66,31 +73,31 @@ const CashIn = () => {
     },
     {
       stepName: "cashInConfirm",
-      title: "Transaction confirmation",
+      title: t("stepper.transaction_confirmation"),
       content: (
         <TransactionConfirmation
           info
           isInstruction={true}
           bill={[
             {
-              label: "Payment system",
+              label: t("bill.payment_system"),
               value: <p>{selectedWallet}</p>,
             },
             {
-              label: "Amount",
+              label: t("bill.amount"),
               value: <p>{amount.toFixed(2)}</p>,
             },
             {
-              label: "Commission",
+              label: t("bill.commission"),
               value: <p>0.00</p>,
             },
             {
-              label: "Date",
+              label: t("bill.date"),
               value: getDateNow(),
             },
             {
-              label: "Status",
-              value: <ColoredLabel text={"Waiting for payment"} />,
+              label: t("bill.status"),
+              value: <ColoredLabel text={t("waiting_for_payment")} />,
             },
           ]}
         />

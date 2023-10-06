@@ -61,24 +61,14 @@
     margin: 0 auto;
     width: 55px;
     flex-basis: 55px;
-    //position: absolute;
-    //left: 45%;
-    //top: -16px;
-    //transform: translateX(-50%);
-    //margin-left: 30px;
     font-size: 16px;
 }
 
 
-@media screen and (max-width: 1200px) {
-    //.charges {
-    //    font-size: 12px;
-    //}
-}
-
 @media screen and (max-width: 768px) {
     .charges {
         font-size: 14px;
+        margin: 0;
     }
 
     .react-tabs__tab-list {
@@ -87,6 +77,11 @@
 }
 
 @media screen and (max-width: 568px) {
+    .react-tabs__tab {
+        font-size: 14px;
+        padding: 6px;
+    }
+
     .react-tabs__tab-list {
         margin: 0 0 30px;
         padding: 0;

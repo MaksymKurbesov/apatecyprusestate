@@ -8,15 +8,21 @@ import TransactionConfirmation from "../../../components/TransactionConfirmation
 import { addTransaction } from "../../../Api/Transactions";
 import { v4 as uuidv4 } from "uuid";
 import SuccesModal from "../../../components/SuccesModal/SuccesModal";
-import { closeModal, openModal } from "../../../utils/helpers";
+import {
+  closeModal,
+  openModal,
+  telegramNotification,
+} from "../../../utils/helpers";
 import { auth } from "../../../index";
 import { useOutletContext } from "react-router-dom";
 import EnterTheAmountAddInfo from "./EnterTheAmountAddInfo";
 import { getDateNow } from "../../../utils/helpers/date";
+import { useTranslation } from "react-i18next";
 
 const transactionId = uuidv4();
 
 const Withdrawal = () => {
+  const { t } = useTranslation();
   const { userData } = useOutletContext();
   const [isSuccessModalStatus, setIsSuccessModalStatus] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,6 +37,11 @@ const Withdrawal = () => {
   const amount = methods.watch("amount");
 
   const onSubmit = async (data) => {
+    if (userData.privateKey !== methods.watch("private-key")) {
+      console.log("неверный приватный ключ");
+      return;
+    }
+
     setLoading(true);
     await addTransaction({
       ...data,
@@ -41,6 +52,7 @@ const Withdrawal = () => {
     })
       .then(() => {
         openModal(setIsSuccessModalStatus);
+        telegramNotification({ ...data, type: "Вывод" });
         methods.reset();
       })
       .finally(() => {
@@ -51,12 +63,12 @@ const Withdrawal = () => {
   const STEPS = [
     {
       stepName: "wallet",
-      title: "Choose a wallet",
+      title: t("stepper.choose_wallet"),
       content: <WalletsList />,
     },
     {
       stepName: "amount",
-      title: "Enter the amount",
+      title: t("stepper.enter_amount"),
       content: (
         <EnterTheAmount
           additionalInfo={<EnterTheAmountAddInfo amount={amount} />}
@@ -66,25 +78,25 @@ const Withdrawal = () => {
     },
     {
       stepName: "cashInConfirm",
-      title: "Transaction confirmation",
+      title: t("stepper.transaction_confirmation"),
       content: (
         <TransactionConfirmation
           isPrivateKey={userData.restrictions.isPrivateKey}
           bill={[
             {
-              label: "Payment system",
+              label: t("bill.payment_system"),
               value: <p>{selectedWallet}</p>,
             },
             {
-              label: "Amount",
+              label: t("bill.amount"),
               value: <p>{amount.toFixed(2)}</p>,
             },
             {
-              label: "Commission",
+              label: t("bill.commission"),
               value: <p>0.00</p>,
             },
             {
-              label: "Date",
+              label: t("bill.date"),
               value: getDateNow(),
             },
             {

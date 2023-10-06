@@ -1,35 +1,19 @@
 import React from "react";
-import Image from "../../../assets/images/how-to-get-started.png";
+import Image from "../../../assets/images/how-to-get-started.webp";
 import SectionLayout from "../../../Shared UI/SectionLayout/SectionLayout";
 import styles from "./HowToGetStarted.module.scss";
+import { useTranslation } from "react-i18next";
 
 const HowToGetStarted = () => {
+  const { t } = useTranslation("partners-program");
+
   return (
     <div className={styles["how-to-get-started"]}>
       <SectionLayout
         image={Image}
-        labelText={"Как это работает?"}
-        titleText={"Увеличьте свои доходы с нашей реферальной программой"}
-        description={
-          <>
-            <p>
-              Присоединившись к реферальной программе нашей инвестиционной
-              компании, вы получаете уникальную возможность увеличить свои
-              доходы, просто рекомендуя наши услуги. После регистрации в
-              программе каждый участник получает персональную реферальную
-              ссылку. Делясь этой ссылкой в социальных сетях, блогах или лично с
-              друзьями, вы привлекаете новых инвесторов.
-            </p>
-            <p>
-              За каждого, кто регистрируется по вашей ссылке и инвестирует
-              средства, вы получаете процентную комиссию. Всю необходимую
-              статистику, включая количество ваших рефералов, их инвестиции и
-              ваш заработок, вы можете увидеть в своем личном кабинете.
-              Заработанные средства можно выводить на свой счет или
-              реинвестировать, увеличивая свою прибыль.
-            </p>
-          </>
-        }
+        labelText={t("how_it_works.label")}
+        titleText={t("how_it_works.title")}
+        description={<p>{t("how_it_works.description")}</p>}
       />
     </div>
   );

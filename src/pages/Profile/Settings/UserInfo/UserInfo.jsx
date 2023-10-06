@@ -1,28 +1,30 @@
 import React from "react";
 import styles from "./UserInfo.module.scss";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 const UserInfo = ({ userData, loading }) => {
   const { register } = useFormContext();
+  const { t } = useTranslation();
 
   return (
     <div className={styles["user-info"]}>
-      <h3>User Settings</h3>
+      <h3>{t("settings.title")}</h3>
       <div className={styles["inputs-wrapper"]}>
         <label className={styles["nickname"]}>
-          <p>Nickname</p>
+          <p>{t("sign_up.Nickname")}</p>
           <div className={`${styles["input-wrapper"]} custom-border`}>
             <input type={"text"} value={userData.nickname} disabled />
           </div>
         </label>
         <label className={styles["email"]}>
-          <p>E-mail</p>
+          <p>{t("sign_up.E-mail")}</p>
           <div className={`${styles["input-wrapper"]} custom-border`}>
             <input type={"text"} value={userData.email} disabled />
           </div>
         </label>
         <label className={styles["first-name"]}>
-          <p>First name</p>
+          <p>{t("sign_up.first_name")}</p>
           <div className={`${styles["input-wrapper"]} custom-border`}>
             <input
               {...register("firstName", {
@@ -33,7 +35,7 @@ const UserInfo = ({ userData, loading }) => {
           </div>
         </label>
         <label className={styles["last-name"]}>
-          <p>Last name</p>
+          <p>{t("sign_up.last_name")}</p>
           <div className={`${styles["input-wrapper"]} custom-border`}>
             <input
               {...register("lastName", {
@@ -44,7 +46,7 @@ const UserInfo = ({ userData, loading }) => {
           </div>
         </label>
         <label className={styles["phone-number"]}>
-          <p>Phone number</p>
+          <p>{t("sign_up.Phone number")}</p>
           <div className={`${styles["input-wrapper"]} custom-border`}>
             <input
               {...register("phoneNumber", {
@@ -77,19 +79,19 @@ const UserInfo = ({ userData, loading }) => {
           </div>
         </label>
         <label className={styles["old-password"]}>
-          <p>Old password</p>
+          <p>{t("sign_up.old_password")}</p>
           <div className={`${styles["input-wrapper"]} custom-border`}>
             <input {...register("oldPassword")} type={"password"} />
           </div>
         </label>
         <label className={styles["new-password"]}>
-          <p>New password</p>
+          <p>{t("sign_up.new_password")}</p>
           <div className={`${styles["input-wrapper"]} custom-border`}>
             <input {...register("newPassword")} type={"password"} />
           </div>
         </label>
         <label className={styles["confirm-password"]}>
-          <p>Confirm password</p>
+          <p>{t("sign_up.Confirm password")}</p>
           <div className={`${styles["input-wrapper"]} custom-border`}>
             <input {...register("confirmPassword")} type={"password"} />
           </div>
@@ -101,7 +103,7 @@ const UserInfo = ({ userData, loading }) => {
         className={`${styles["update-info-button"]} button`}
         disabled={loading}
       >
-        Update info
+        {t("settings.update_info")}
       </button>
     </div>
   );

@@ -6,8 +6,17 @@
 }
 
 .logotype {
-    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 66px;
     z-index: 11;
+}
+
+.logotype svg {
+    width: 100%;
+    height: 100%;
 }
 
 .buttons {
@@ -48,6 +57,10 @@ a.sign-in-button {
 }
 
 @media screen and (max-width: 768px) {
+    .logotype {
+        width: 150px;
+    }
+
     .buttons {
         display: none;
     }

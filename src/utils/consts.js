@@ -5,19 +5,31 @@ import SolanaIcon from "../assets/SVG/wallets/solana.svg";
 import PolkaIcon from "../assets/SVG/wallets/polkadot.svg";
 import EthereumIcon from "../assets/SVG/wallets/ethereum.svg";
 import BNBIcon from "../assets/SVG/wallets/BNB.svg";
-import Plan1Image from "../assets/images/plans images/1.png";
-import Plan2Image from "../assets/images/plans images/2.png";
-import Plan3Image from "../assets/images/plans images/3.png";
-import ProjectImage1 from "../assets/images/projects/limassol/vassiliou/1.webp";
-import ProjectImage2 from "../assets/images/projects/limassol/vassiliou/2.webp";
-import ProjectImage3 from "../assets/images/projects/limassol/vassiliou/3.webp";
-import ProjectImage4 from "../assets/images/projects/limassol/vassiliou/4.webp";
-import ProjectImage5 from "../assets/images/projects/limassol/vassiliou/5.webp";
 
 export const ONE_DAY_IN_SECONDS = 86400;
 
 export const REFERRALS_LEVEL = 5;
 
+export const STATISTIC = [
+  {
+    count: 60,
+    title: "Partners",
+  },
+  {
+    count: 130,
+    title: "Team members",
+  },
+  {
+    count: 45,
+    title: "ROI",
+  },
+  {
+    count: 2.3,
+    title: "Capital",
+  },
+];
+
+export const TELEGRAM_URL = `https://api.telegram.org/bot${process.env.REACT_APP_BOT_TOKEN}/sendMessage`;
 export const REFERRALS_PERCENTAGE_BY_LEVEL = {
   1: 5,
   2: 4,
@@ -61,7 +73,11 @@ export const LABEL_COLORS = {
   Выполнено: "green",
   Ожидание: "yellow",
   Отмена: "red",
+  Success: "green",
+  Waiting: "yellow",
+  Cancel: "red",
   "Waiting for payment": "yellow",
+  "Ожидание оплаты": "yellow",
 };
 
 export const WALLETS = [
@@ -113,7 +129,6 @@ export const PLANS = [
   {
     planNumber: 1,
     name: "Limassol",
-    planImage: Plan1Image,
     inDay: 1.2,
     days: 33,
     minDeposit: 100,
@@ -123,7 +138,6 @@ export const PLANS = [
   {
     planNumber: 2,
     name: "Nicosia",
-    planImage: Plan2Image,
     inDay: 2.1,
     days: 26,
     minDeposit: 1000,
@@ -133,7 +147,6 @@ export const PLANS = [
   {
     planNumber: 3,
     name: "Larnaca",
-    planImage: Plan3Image,
     inDay: 3,
     days: 19,
     minDeposit: 7000,
@@ -143,7 +156,6 @@ export const PLANS = [
   {
     planNumber: 4,
     name: "Paphos",
-    planImage: Plan1Image,
     inDay: 55,
     days: 12,
     minDeposit: 15000,
@@ -153,7 +165,6 @@ export const PLANS = [
   {
     planNumber: 5,
     name: "Famagusta",
-    planImage: Plan2Image,
     inDay: 41,
     days: 7,
     minDeposit: 30000,
@@ -163,136 +174,10 @@ export const PLANS = [
   {
     planNumber: 6,
     name: "Individual",
-    planImage: Plan3Image,
     inDay: 2.3,
     days: 24,
     minDeposit: 50000,
-    maxDeposit: "∞ ",
+    maxDeposit: "∞",
     accrualsEveryday: false,
   },
 ];
-
-export const PROJECTS = {
-  Limassol: [
-    {
-      name: "VASSILIOU MAKEDONOS RESIDENCE",
-      images: [
-        ProjectImage1,
-        ProjectImage2,
-        ProjectImage3,
-        ProjectImage4,
-        ProjectImage5,
-      ],
-      pricePerSquare: 14770,
-      type: "Жилой дом",
-      area: 48,
-      floors: 4,
-      apartments: 20,
-      constructionType: "Монолит",
-      features: [
-        "Парковка",
-        "Детская площадка",
-        "Возле школы",
-        "Возле детсада",
-        "Возле супермаркета",
-        "Возле больницы",
-      ],
-    },
-    {
-      name: "RESIDENCE BIANCO",
-      images: [
-        ProjectImage1,
-        ProjectImage2,
-        ProjectImage3,
-        ProjectImage4,
-        ProjectImage5,
-      ],
-      pricePerSquare: 14770,
-      type: "Жилой дом",
-      area: 48,
-      floors: 4,
-      apartments: 20,
-      constructionType: "Монолит",
-      features: [
-        "Парковка",
-        "Детская площадка",
-        "Возле школы",
-        "Возле детсада",
-        "Возле супермаркета",
-        "Возле больницы",
-      ],
-    },
-    {
-      name: "KINNIS GRAND VALLEY RESIDENCE",
-      images: [
-        ProjectImage1,
-        ProjectImage2,
-        ProjectImage3,
-        ProjectImage4,
-        ProjectImage5,
-      ],
-      pricePerSquare: 14770,
-      type: "Жилой дом",
-      area: 48,
-      floors: 4,
-      apartments: 20,
-      constructionType: "Монолит",
-      features: [
-        "Парковка",
-        "Детская площадка",
-        "Возле школы",
-        "Возле детсада",
-        "Возле супермаркета",
-        "Возле больницы",
-      ],
-    },
-    {
-      name: "KING PHILIP RESIDENCE",
-      images: [
-        ProjectImage1,
-        ProjectImage2,
-        ProjectImage3,
-        ProjectImage4,
-        ProjectImage5,
-      ],
-      pricePerSquare: 14770,
-      type: "Жилой дом",
-      area: 48,
-      floors: 4,
-      apartments: 20,
-      constructionType: "Монолит",
-      features: [
-        "Парковка",
-        "Детская площадка",
-        "Возле школы",
-        "Возле детсада",
-        "Возле супермаркета",
-        "Возле больницы",
-      ],
-    },
-    {
-      name: "CITY TERRACE",
-      images: [
-        ProjectImage1,
-        ProjectImage2,
-        ProjectImage3,
-        ProjectImage4,
-        ProjectImage5,
-      ],
-      pricePerSquare: 14770,
-      type: "Жилой дом",
-      area: 48,
-      floors: 4,
-      apartments: 20,
-      constructionType: "Монолит",
-      features: [
-        "Парковка",
-        "Детская площадка",
-        "Возле школы",
-        "Возле детсада",
-        "Возле супермаркета",
-        "Возле больницы",
-      ],
-    },
-  ],
-};

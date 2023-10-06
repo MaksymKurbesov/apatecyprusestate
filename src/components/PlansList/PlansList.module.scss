@@ -39,3 +39,15 @@
     transform: translateY(-50%) rotate(-90deg);
     right: -10px;
 }
+
+@media screen and (max-width: 768px) {
+    .plan-wrapper {
+        padding: 15px 12px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .plan-wrapper {
+        padding: 20px;
+    }
+}

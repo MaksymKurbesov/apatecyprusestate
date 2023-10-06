@@ -1,14 +1,17 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const EnterTheAmountAddInfo = ({ amount }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <p>
-        Will be withdrawn subject to commission:
+        {t("bill.will_be_withdrawn")}:
         <span>{!isNaN(amount) ? amount.toFixed(2) : 0} USD</span>
       </p>
       <p>
-        Commission:<span> 0.00 USD</span>
+        {t("bill.commission")}:<span> 0.00 USD</span>
       </p>
     </>
   );

@@ -6,15 +6,14 @@ import { useWindowSize } from "../../hooks/useWindowSize";
 
 const SectionLayout = (props) => {
   const windowSize = useWindowSize();
-  const isDesktop = windowSize > 768;
 
   const {
     image,
     labelText,
     titleText,
     description,
-    isSignInButton = true,
     direction,
+    moreInfoButton,
   } = props;
 
   return (
@@ -44,17 +43,7 @@ const SectionLayout = (props) => {
             )}
             {description}
           </div>
-
-          {isSignInButton && (
-            <button
-              className={"button"}
-              style={{ width: "100%" }}
-              type="submit"
-              form="sign-in-form"
-            >
-              Sign in
-            </button>
-          )}
+          {moreInfoButton}
         </div>
       </div>
     </>

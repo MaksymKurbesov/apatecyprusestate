@@ -3,7 +3,7 @@ import SectionLabel from "../../Shared UI/SectionLabel/SectionLabel";
 import styles from "./OurContacts.module.scss";
 import Title from "../../Shared UI/Title/Title";
 import Input from "../../Shared UI/Input/Input";
-import Image from "../../assets/images/feedback-form.png";
+import Image from "../../assets/images/feedback-form.webp";
 import AddressIcon from "../../assets/SVG/address icon.svg";
 import WeekendIcon from "../../assets/SVG/weekend icon.svg";
 import OpeningIcon from "../../assets/SVG/opening hours icon.svg";
@@ -14,17 +14,19 @@ import { ReactComponent as YoutubeIcon } from "../../assets/SVG/youtube.svg";
 import { ReactComponent as TelegramIcon } from "../../assets/SVG/telegram.svg";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { ScrollRestoration } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const OurContacts = () => {
   const windowSize = useWindowSize();
+  const { t } = useTranslation("our-contacts");
 
   return (
     <div className={styles["our-contacts"]}>
       <div className={"container"}>
         <div className={styles["form-wrapper"]}>
           <div className={styles["form"]}>
-            <SectionLabel text={"Get in touch"} style={{ marginBottom: 30 }} />
-            <Title text={"Feedback form"} />
+            <SectionLabel text={t("label")} style={{ marginBottom: 30 }} />
+            <Title text={t("title")} />
 
             {windowSize < 1024 ? (
               <img
@@ -34,37 +36,33 @@ const OurContacts = () => {
                 className={styles["image-mobile"]}
               />
             ) : null}
-            <p>
-              We sincerely thank you for your questions, feedback and
-              suggestions. Your message will be forwarded to Customer Service
-              and we will respond as soon as possible.
-            </p>
+            <p>{t("description")}</p>
             <form>
               <Input
                 register={() => null}
                 type={"text"}
                 name={"name"}
-                placeholder={"Your name"}
+                placeholder={t("your_name")}
               />
               <Input
                 register={() => null}
                 type={"text"}
                 name={"email"}
-                placeholder={"Your E-mail"}
+                placeholder={t("your_email")}
               />
               <Input
                 register={() => null}
                 type={"text"}
                 name={"phone-number"}
-                placeholder={"Phone number"}
+                placeholder={t("phone_number")}
               />
               <Input
                 register={() => null}
                 type={"textarea"}
                 name={"message"}
-                placeholder={"Your message"}
+                placeholder={t("your_message")}
               />
-              <button className={"button"}>Send</button>
+              <button className={"button"}>{t("send")}</button>
             </form>
           </div>
 
@@ -80,26 +78,26 @@ const OurContacts = () => {
         <div className={styles["additional-information"]}>
           <div className={styles["info"]}>
             <img src={AddressIcon} alt={"icon"} />
-            <h3>Our address</h3>
-            <p>Tameem house Office 701 Al Barsha Heights Dubai</p>
+            <h3>{t("our_address")}</h3>
+            <p>Tower 25, Stasinou, Nicosia 1060, Cyprus</p>
           </div>
           <div className={styles["info"]}>
             <img src={OpeningIcon} alt={"icon"} />
-            <h3>Opening hours</h3>
+            <h3>{t("opening_hours")}</h3>
             <p>
-              Monday - Friday <br /> 10:00 - 18:00
+              {t("monday")} - {t("friday")} <br /> 10:00 - 18:00
             </p>
           </div>
           <div className={styles["info"]}>
             <img src={WeekendIcon} alt={"icon"} />
-            <h3>Weekend</h3>
+            <h3>{t("weekend")}</h3>
             <p>
-              Saturday <br /> Sunday
+              {t("saturday")} <br /> {t("sunday")}
             </p>
           </div>
           <div className={styles["info"]}>
             <img src={ContactsIcon} alt={"icon"} />
-            <h3>Contacts</h3>
+            <h3>{t("contacts")}</h3>
             <ul className={styles["social-links"]}>
               <li>
                 <PhoneIcon />
