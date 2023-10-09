@@ -3,8 +3,11 @@ import styles from "./MobileMenu.module.scss";
 import { Link } from "react-router-dom";
 import { useAuthState } from "../../../hooks/useAuthState";
 import { auth } from "../../../index";
+import { useTranslation } from "react-i18next";
+import { ReactComponent as Logo } from "../../../assets/SVG/logo2.svg";
 
 const MobileMenu = ({ menuStatus }) => {
+  const { t, i18n } = useTranslation(["main", "our-contacts"]);
   const [user, loading] = useAuthState(auth);
 
   return (
@@ -20,6 +23,9 @@ const MobileMenu = ({ menuStatus }) => {
       >
         <div className={`${styles["mobile-menu"]}`}>
           <div className={styles["top-row"]}>
+            <Link to={"/"} className={styles["logotype"]}>
+              <Logo />
+            </Link>
             <ul className={styles["social-links"]}>
               <li>
                 <a>Youtube</a>
@@ -32,42 +38,58 @@ const MobileMenu = ({ menuStatus }) => {
               </li>
             </ul>
             <div className={styles["lang"]}>
-              <p>GR</p>
-              <p>EN</p>
-              <p>RU</p>
+              <button
+                className={i18n.language === "gr" ? styles["langIsActive"] : ""}
+              >
+                GR
+              </button>
+              <button
+                className={i18n.language === "en" ? styles["langIsActive"] : ""}
+                onClick={() => i18n.changeLanguage("en")}
+              >
+                EN
+              </button>
+              <button
+                className={i18n.language === "ru" ? styles["langIsActive"] : ""}
+                onClick={() => i18n.changeLanguage("ru")}
+              >
+                RU
+              </button>
             </div>
           </div>
 
           <ul className={styles["nav-links"]}>
             <li>
-              <Link to={"/"}>Home</Link>
+              <Link to={"/"}>{t("menu.Home")}</Link>
             </li>
             <li>
-              <Link to={"/partner-program"}>Partner Program</Link>
+              <Link to={"/partner-program"}>{t("menu.Partner Program")}</Link>
             </li>
             <li>
-              <Link to={"/about-us"}>About Us</Link>
+              <Link to={"/about-us"}>{t("menu.About Us")}</Link>
             </li>
             <li>
-              <Link to={"/our-contacts"}>Contacts</Link>
+              <Link to={"/our-contacts"}>{t("menu.Our Contacts")}</Link>
             </li>
             <li>
               <Link to={"/faq"}>FAQ</Link>
             </li>
             <li>
-              <Link to={"/token"}>Token</Link>
+              <Link to={"/token"}>{t("menu.Token")}</Link>
             </li>
             {user ? (
               <li className={styles["cabinet"]}>
-                <Link to={"/profile/personal-area"}>Войти в кабинет</Link>
+                <Link to={"/profile/personal-area"}>{t("menu.cabinet")}</Link>
               </li>
             ) : (
               <>
                 <li className={styles["sign-in"]}>
-                  <Link to={"/authorization/sign-in"}>Войти в кабинет</Link>
+                  <Link to={"/authorization/sign-in"}>
+                    {t("menu.log_in_cabinet")}
+                  </Link>
                 </li>
                 <li className={styles["registration"]}>
-                  <Link to={"/authorization/sign-up"}>Регистрация</Link>
+                  <Link to={"/authorization/sign-up"}>{t("menu.sign_up")}</Link>
                 </li>
               </>
             )}
@@ -78,10 +100,12 @@ const MobileMenu = ({ menuStatus }) => {
               <span>Email:</span> support@apatecyprusestate.com
             </p>
             <p>
-              <span>Phone:</span> +7458359454
+              <span>{t("phone_number", { ns: "our-contacts" })}:</span> +357 22
+              761795
             </p>
             <p>
-              <span>Address:</span> Nicosia, 9 Megalou Alexandrou 1026
+              <span>{t("our_address", { ns: "our-contacts" })}:</span> Tower 25,
+              Stasinou, Nicosia 1060, Cyprus
             </p>
           </div>
         </div>

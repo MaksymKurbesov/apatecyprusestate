@@ -19,7 +19,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [signInError, setSignInError] = useState(null);
   const [passwordShown, setPasswordShown] = useState(false);
-  const { register, getValues } = useForm({
+  const { register, getValues, handleSubmit } = useForm({
     mode: "onBlur",
   });
 
@@ -31,11 +31,10 @@ const SignIn = () => {
     setPasswordShown(!passwordShown);
   };
 
-  const signInHandler = async () => {
+  const signInHandler = async (data) => {
     setLoading(true);
-    const email = getValues("email");
-    const password = getValues("password");
-    logInWithEmailAndPassword(email, password)
+
+    await logInWithEmailAndPassword(data.email, data.password)
       .then((error) => {
         setSignInError(error);
       })
@@ -56,7 +55,11 @@ const SignIn = () => {
       />
       <Title text={t("log_in.title")} style={{ marginBottom: 30 }} />
       <p className={styles["subtitle"]}>{t("log_in.subtitle")}</p>
-      <form className={styles["sign-in-form"]}>
+      <form
+        id={"sign-in-form"}
+        onSubmit={handleSubmit(signInHandler)}
+        className={styles["sign-in-form"]}
+      >
         <Input
           register={register}
           name={"email"}
@@ -96,8 +99,9 @@ const SignIn = () => {
           {t("log_in.you_dont_have_account")}
         </NavLink>
         <button
+          type={"submit"}
           className={`${styles["log-in-button"]} button`}
-          onClick={signInHandler}
+          form="sign-in-form"
           disabled={loading}
         >
           {t("log_in.log_in")}

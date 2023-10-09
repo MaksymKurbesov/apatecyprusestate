@@ -11,7 +11,11 @@ import { addCustomUserFields, addReferralToAllLevels } from "../utils/helpers";
 const registerWithEmailAndPassword = async (userData) => {
   const { nickname, email, password, referredBy, phoneNumber } = userData;
   const nicknameWithoutSpace = nickname.trim();
-  const referredByWithoutSpace = referredBy.trim();
+  let referredByWithoutSpaces = "";
+
+  if (referredBy) {
+    referredByWithoutSpaces = referredBy;
+  }
 
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -20,13 +24,13 @@ const registerWithEmailAndPassword = async (userData) => {
       displayName: nicknameWithoutSpace,
     }).catch((err) => console.log(err));
 
-    await addReferralToAllLevels(referredByWithoutSpace, nicknameWithoutSpace);
+    await addReferralToAllLevels(referredByWithoutSpaces, nicknameWithoutSpace);
 
     const user = res.user;
     await setDoc(doc(db, "users", nicknameWithoutSpace), {
       nickname: nicknameWithoutSpace,
       email,
-      referredBy: referredByWithoutSpace,
+      referredBy: referredByWithoutSpaces,
       ...addCustomUserFields(user, phoneNumber),
     });
   } catch (err) {

@@ -1,32 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SectionLabel from "../../Shared UI/SectionLabel/SectionLabel";
 import Title from "../../Shared UI/Title/Title";
 import styles from "./SignUp.module.scss";
-import { ScrollRestoration, useNavigate } from "react-router-dom";
+import {
+  ScrollRestoration,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import SignUpForm from "./SignUpForm/SignUpForm";
 import ConfirmRegistrationModal from "./ConfirmRegistrationModal/ConfirmRegistrationModal";
 import ErrorRegistrationModal from "./ErrorRegistrationModal/ErrorRegistrationModal";
-import { useAuthState } from "../../hooks/useAuthState";
-import { auth } from "../../index";
 import { closeModal, openModal } from "../../utils/helpers";
 import { useTranslation } from "react-i18next";
+import Agreement from "../../components/Agreement/Agreement";
+import { useForm, FormProvider } from "react-hook-form";
 
 const SignUp = () => {
   const { t } = useTranslation();
-  const [user, userLoading] = useAuthState(auth);
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [isAgreementOpen, setIsAgreementOpen] = useState(false);
+
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // useEffect(() => {
-  //   if (isConfirmModalOpen) return;
-  //   if (user) navigate("/profile/personal-area");
-  // }, [user, isConfirmModalOpen]);
+  const methods = useForm({
+    mode: "onBlur",
+    defaultValues: {
+      referredBy: searchParams.get("ref"),
+    },
+  });
 
-  if (userLoading) {
-    return <div>...Loading</div>;
-  }
+  const agreementHandler = (value) => {
+    methods.setValue("agreement", value);
+    methods.trigger("agreement");
+  };
 
   return (
     <div className={styles["sign-up"]}>
@@ -36,22 +44,30 @@ const SignUp = () => {
       />
       <Title text={t("sign_up.sign_up")} style={{ marginBottom: 30 }} />
       <p className={styles["subtitle"]}>{t("sign_up.subtitle")}</p>
-      <SignUpForm
-        handleOpenConfirmModal={() => openModal(setIsConfirmModalOpen)}
-        handleOpenErrorModal={(error) => {
-          setErrorMessage(error);
-          openModal(setIsErrorModalOpen);
-        }}
-      />
-      <ConfirmRegistrationModal
-        closeHandler={() => closeModal(setIsConfirmModalOpen)}
-        modalStatus={isConfirmModalOpen}
-      />
-      <ErrorRegistrationModal
-        closeHandler={() => closeModal(setIsErrorModalOpen)}
-        modalStatus={isErrorModalOpen}
-        error={errorMessage}
-      />
+      <FormProvider {...methods}>
+        <SignUpForm
+          handleOpenAgreement={() => openModal(setIsAgreementOpen)}
+          handleOpenConfirmModal={() => openModal(setIsConfirmModalOpen)}
+          handleOpenErrorModal={(error) => {
+            setErrorMessage(error);
+            openModal(setIsErrorModalOpen);
+          }}
+        />
+        <Agreement
+          agreementHandler={agreementHandler}
+          closeHandler={() => closeModal(setIsAgreementOpen)}
+          modalStatus={isAgreementOpen}
+        />
+        <ConfirmRegistrationModal
+          closeHandler={() => closeModal(setIsConfirmModalOpen)}
+          modalStatus={isConfirmModalOpen}
+        />
+        <ErrorRegistrationModal
+          closeHandler={() => closeModal(setIsErrorModalOpen)}
+          modalStatus={isErrorModalOpen}
+          error={errorMessage}
+        />
+      </FormProvider>
       <ScrollRestoration />
     </div>
   );

@@ -62,10 +62,7 @@ const Header = () => {
                   </NavLink>
                 ) : (
                   <>
-                    <NavLink
-                      className={`button ${styles["sign-in-button"]}`}
-                      to={"/authorization/sign-in"}
-                    >
+                    <NavLink className={`button`} to={"/authorization/sign-in"}>
                       {t("menu.log_in")}
                     </NavLink>
                     <NavLink className={"button"} to={"/authorization/sign-up"}>

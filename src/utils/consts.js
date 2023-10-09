@@ -137,7 +137,7 @@ export const PLANS = [
   },
   {
     planNumber: 2,
-    name: "Nicosia",
+    name: "Famagusta",
     inDay: 2.1,
     days: 26,
     minDeposit: 1000,
@@ -164,7 +164,7 @@ export const PLANS = [
   },
   {
     planNumber: 5,
-    name: "Famagusta",
+    name: "Nicosia",
     inDay: 41,
     days: 7,
     minDeposit: 30000,

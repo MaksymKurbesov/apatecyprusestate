@@ -4,30 +4,26 @@ import { INPUTS } from "./INPUTS";
 import Input from "../../../Shared UI/Input/Input";
 import { ReactComponent as Exclamation } from "../../../assets/SVG/exclamation.svg";
 import { FirebaseContext } from "../../../index";
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { doc, getDoc } from "firebase/firestore";
 import { logout, registerWithEmailAndPassword } from "../../../Api/Auth";
-import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const SignUpForm = ({ handleOpenConfirmModal, handleOpenErrorModal }) => {
+const SignUpForm = ({
+  handleOpenAgreement,
+  handleOpenConfirmModal,
+  handleOpenErrorModal,
+}) => {
   const { t } = useTranslation();
   const { db } = useContext(FirebaseContext);
   const [loading, setLoading] = useState(false);
-  const [searchParams] = useSearchParams();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
     reset,
-  } = useForm({
-    mode: "onBlur",
-    defaultValues: {
-      referredBy: searchParams.get("ref"),
-    },
-  });
+  } = useFormContext();
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -81,17 +77,19 @@ const SignUpForm = ({ handleOpenConfirmModal, handleOpenErrorModal }) => {
         <input
           name="agreement"
           type={"checkbox"}
-          {...register("agreement", { required: true })}
+          {...register("agreement", {
+            required: true,
+          })}
         />
-        <span>{t("sign_up.agree")}</span>
-        {errors?.agreement ? (
+        <span onClick={handleOpenAgreement}>{t("sign_up.agree")}</span>
+        {errors?.agreement && (
           <div className={`${styles["sign-up-error"]} error`}>
             <Exclamation />
             <p className={"error-message"}>
               Подтвердите, что вы согласны с пользовательским соглашением
             </p>
           </div>
-        ) : null}
+        )}
       </div>
       <button
         className={`${styles["sign-up-button"]} button`}

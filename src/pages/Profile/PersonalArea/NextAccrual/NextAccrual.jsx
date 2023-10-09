@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./NextAccrual.module.scss";
 import { ReactComponent as StarIcon } from "../../../../assets/SVG/star.svg";
 import { useTimer } from "../../../../hooks/useTimer";
@@ -7,17 +7,21 @@ import { useTranslation } from "react-i18next";
 const NextAccrual = ({ nearestAccrual = new Date(), days }) => {
   const { t } = useTranslation();
   const planWithOneAccrual = days <= 12;
-  let daysInSeconds;
+  const [nearestAccrualByPlan, setNearestAccrualByPlan] = useState(null);
+  const { hours, minutes, seconds } = useTimer(new Date(nearestAccrualByPlan));
 
-  if (planWithOneAccrual) {
-    daysInSeconds = days * 24 * 60 * 60;
-  } else {
-    daysInSeconds = 24 * 60 * 60;
-  }
+  useEffect(() => {
+    const endOfTermPlanDays = days * 24 * 60 * 60;
+    const dailyPlanDays = 24 * 60 * 60;
 
-  const { hours, minutes, seconds } = useTimer(
-    new Date((nearestAccrual.seconds + daysInSeconds) * 1000)
-  );
+    if (planWithOneAccrual) {
+      setNearestAccrualByPlan(
+        (nearestAccrual.seconds + endOfTermPlanDays) * 1000
+      );
+    } else {
+      setNearestAccrualByPlan((nearestAccrual.seconds + dailyPlanDays) * 1000);
+    }
+  }, []);
 
   const threeDigitsHours = () => {
     if (hours > 24) {

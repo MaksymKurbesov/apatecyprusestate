@@ -1,59 +1,59 @@
-import Project1Image1 from "../../assets/images/projects/limassol/project1/1.jpg";
-import Project1Image2 from "../../assets/images/projects/limassol/project1/2.jpg";
-import Project1Image3 from "../../assets/images/projects/limassol/project1/3.jpg";
-import Project1Image4 from "../../assets/images/projects/limassol/project1/4.jpg";
-import Project1Image5 from "../../assets/images/projects/limassol/project1/5.jpg";
-import Project1Image6 from "../../assets/images/projects/limassol/project1/6.jpg";
-import Project1Image7 from "../../assets/images/projects/limassol/project1/7.jpg";
-import Project1Image8 from "../../assets/images/projects/limassol/project1/8.jpg";
+import Project1Image1 from "../../assets/images/projects/limassol/project1/1.webp";
+import Project1Image2 from "../../assets/images/projects/limassol/project1/2.webp";
+import Project1Image3 from "../../assets/images/projects/limassol/project1/3.webp";
+import Project1Image4 from "../../assets/images/projects/limassol/project1/4.webp";
+import Project1Image5 from "../../assets/images/projects/limassol/project1/5.webp";
+import Project1Image6 from "../../assets/images/projects/limassol/project1/6.webp";
+import Project1Image7 from "../../assets/images/projects/limassol/project1/7.webp";
+import Project1Image8 from "../../assets/images/projects/limassol/project1/8.webp";
 
-import Project2Image1 from "../../assets/images/projects/limassol/project2/1.jpg";
-import Project2Image2 from "../../assets/images/projects/limassol/project2/2.jpg";
-import Project2Image3 from "../../assets/images/projects/limassol/project2/3.jpg";
-import Project2Image4 from "../../assets/images/projects/limassol/project2/4.jpg";
-import Project2Image5 from "../../assets/images/projects/limassol/project2/5.jpg";
-import Project2Image6 from "../../assets/images/projects/limassol/project2/6.jpg";
-import Project2Image7 from "../../assets/images/projects/limassol/project2/7.jpg";
-import Project2Image8 from "../../assets/images/projects/limassol/project2/8.jpg";
-import Project2Image9 from "../../assets/images/projects/limassol/project2/9.jpg";
-import Project2Image10 from "../../assets/images/projects/limassol/project2/10.jpg";
-import Project2Image11 from "../../assets/images/projects/limassol/project2/11.jpg";
+import Project2Image1 from "../../assets/images/projects/limassol/project2/1.webp";
+import Project2Image2 from "../../assets/images/projects/limassol/project2/2.webp";
+import Project2Image3 from "../../assets/images/projects/limassol/project2/3.webp";
+import Project2Image4 from "../../assets/images/projects/limassol/project2/4.webp";
+import Project2Image5 from "../../assets/images/projects/limassol/project2/5.webp";
+import Project2Image6 from "../../assets/images/projects/limassol/project2/6.webp";
+import Project2Image7 from "../../assets/images/projects/limassol/project2/7.webp";
+import Project2Image8 from "../../assets/images/projects/limassol/project2/8.webp";
+import Project2Image9 from "../../assets/images/projects/limassol/project2/9.webp";
+import Project2Image10 from "../../assets/images/projects/limassol/project2/10.webp";
+import Project2Image11 from "../../assets/images/projects/limassol/project2/11.webp";
 
-import Project3Image1 from "../../assets/images/projects/limassol/project3/1.jpg";
-import Project3Image2 from "../../assets/images/projects/limassol/project3/2.jpg";
-import Project3Image3 from "../../assets/images/projects/limassol/project3/3.jpg";
-import Project3Image4 from "../../assets/images/projects/limassol/project3/4.jpg";
-import Project3Image5 from "../../assets/images/projects/limassol/project3/5.jpg";
-import Project3Image6 from "../../assets/images/projects/limassol/project3/6.jpg";
-import Project3Image7 from "../../assets/images/projects/limassol/project3/7.jpg";
-import Project3Image8 from "../../assets/images/projects/limassol/project3/8.jpg";
-import Project3Image9 from "../../assets/images/projects/limassol/project3/9.jpg";
-import Project3Image10 from "../../assets/images/projects/limassol/project3/10.jpg";
+import Project3Image1 from "../../assets/images/projects/limassol/project3/1.webp";
+import Project3Image2 from "../../assets/images/projects/limassol/project3/2.webp";
+import Project3Image3 from "../../assets/images/projects/limassol/project3/3.webp";
+import Project3Image4 from "../../assets/images/projects/limassol/project3/4.webp";
+import Project3Image5 from "../../assets/images/projects/limassol/project3/5.webp";
+import Project3Image6 from "../../assets/images/projects/limassol/project3/6.webp";
+import Project3Image7 from "../../assets/images/projects/limassol/project3/7.webp";
+import Project3Image8 from "../../assets/images/projects/limassol/project3/8.webp";
+import Project3Image9 from "../../assets/images/projects/limassol/project3/9.webp";
+import Project3Image10 from "../../assets/images/projects/limassol/project3/10.webp";
 
-import Project4Image1 from "../../assets/images/projects/limassol/project4/1.jpg";
-import Project4Image2 from "../../assets/images/projects/limassol/project4/2.jpg";
-import Project4Image3 from "../../assets/images/projects/limassol/project4/3.jpg";
-import Project4Image4 from "../../assets/images/projects/limassol/project4/4.jpg";
-import Project4Image5 from "../../assets/images/projects/limassol/project4/5.jpg";
-import Project4Image6 from "../../assets/images/projects/limassol/project4/6.jpg";
-import Project4Image7 from "../../assets/images/projects/limassol/project4/7.jpg";
-import Project4Image8 from "../../assets/images/projects/limassol/project4/8.jpg";
-import Project4Image9 from "../../assets/images/projects/limassol/project4/9.jpg";
-import Project4Image10 from "../../assets/images/projects/limassol/project4/10.jpg";
-import Project4Image11 from "../../assets/images/projects/limassol/project4/11.jpg";
-import Project4Image12 from "../../assets/images/projects/limassol/project4/12.jpg";
+import Project4Image1 from "../../assets/images/projects/limassol/project4/1.webp";
+import Project4Image2 from "../../assets/images/projects/limassol/project4/2.webp";
+import Project4Image3 from "../../assets/images/projects/limassol/project4/3.webp";
+import Project4Image4 from "../../assets/images/projects/limassol/project4/4.webp";
+import Project4Image5 from "../../assets/images/projects/limassol/project4/5.webp";
+import Project4Image6 from "../../assets/images/projects/limassol/project4/6.webp";
+import Project4Image7 from "../../assets/images/projects/limassol/project4/7.webp";
+import Project4Image8 from "../../assets/images/projects/limassol/project4/8.webp";
+import Project4Image9 from "../../assets/images/projects/limassol/project4/9.webp";
+import Project4Image10 from "../../assets/images/projects/limassol/project4/10.webp";
+import Project4Image11 from "../../assets/images/projects/limassol/project4/11.webp";
+import Project4Image12 from "../../assets/images/projects/limassol/project4/12.webp";
 
-import Project5Image1 from "../../assets/images/projects/limassol/project5/1.jpg";
-import Project5Image2 from "../../assets/images/projects/limassol/project5/2.jpg";
-import Project5Image3 from "../../assets/images/projects/limassol/project5/3.jpg";
-import Project5Image4 from "../../assets/images/projects/limassol/project5/4.jpg";
-import Project5Image5 from "../../assets/images/projects/limassol/project5/5.jpg";
-import Project5Image6 from "../../assets/images/projects/limassol/project5/6.jpg";
-import Project5Image7 from "../../assets/images/projects/limassol/project5/7.jpg";
+import Project5Image1 from "../../assets/images/projects/limassol/project5/1.webp";
+import Project5Image2 from "../../assets/images/projects/limassol/project5/2.webp";
+import Project5Image3 from "../../assets/images/projects/limassol/project5/3.webp";
+import Project5Image4 from "../../assets/images/projects/limassol/project5/4.webp";
+import Project5Image5 from "../../assets/images/projects/limassol/project5/5.webp";
+import Project5Image6 from "../../assets/images/projects/limassol/project5/6.webp";
+import Project5Image7 from "../../assets/images/projects/limassol/project5/7.webp";
 
 export const LIMASSOL = [
   {
-    id: 38643,
+    id: 18643,
     name: "2 Bedroom Apartment #38643",
     description: (
       <>
@@ -213,7 +213,7 @@ export const LIMASSOL = [
     ],
   },
   {
-    id: 53454,
+    id: 13454,
     name: "2 Bedroom Apartment #53454",
     description: (
       <>
@@ -370,7 +370,7 @@ export const LIMASSOL = [
     ],
   },
   {
-    id: 73967,
+    id: 13967,
     name: "1 Bedroom Apartment #73967",
     description: (
       <>

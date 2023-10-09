@@ -12,8 +12,6 @@ const FaqPage = () => {
   const { t } = useTranslation("faq");
   const QUESTIONS = [];
 
-  console.log("faq");
-
   for (let i = 1; i <= QUESTIONS_COUNT; i++) {
     QUESTIONS.push({
       title: t(`${i}.question`),

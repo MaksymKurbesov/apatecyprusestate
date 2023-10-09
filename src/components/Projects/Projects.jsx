@@ -50,7 +50,8 @@ const Projects = () => {
                   {t("projects.from")} {project.price} €
                 </p>
                 <p>
-                  ID: {project.id} | {project.floors} {t("projects.floors")} |{" "}
+                  ID: {project.id} | {project.floors}{" "}
+                  {t("projects.floors", { count: project.floors })} |{" "}
                   {t(`projects.${project.type}`)}
                 </p>
               </div>

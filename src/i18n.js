@@ -1,7 +1,5 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
-import HttpApi from "i18next-http-backend";
 import enLocales from "./utils/locales/main/en.json";
 import ruLocales from "./utils/locales/main/ru.json";
 import partnersProgramEN from "./utils/locales/partners-program/en.json";
@@ -12,6 +10,8 @@ import ourContactsEN from "./utils/locales/our-contacts/en.json";
 import ourContactsRU from "./utils/locales/our-contacts/ru.json";
 import faqEN from "./utils/locales/faq/en.json";
 import faqRU from "./utils/locales/faq/ru.json";
+import agreementEN from "./utils/locales/agreement/en.json";
+import agreementRU from "./utils/locales/agreement/ru.json";
 
 const resources = {
   en: {
@@ -20,6 +20,7 @@ const resources = {
     "about-us": aboutUsEN,
     "our-contacts": ourContactsEN,
     faq: faqEN,
+    agreement: agreementEN,
   },
   ru: {
     main: ruLocales,
@@ -27,11 +28,25 @@ const resources = {
     "about-us": aboutUsRU,
     "our-contacts": ourContactsRU,
     faq: faqRU,
+    agreement: agreementRU,
+  },
+};
+
+const languageDetector = {
+  init: Function.prototype,
+  type: "languageDetector",
+  async: true, // flags below detection to be async
+  detect: async (callback) => {
+    const selectedLanguage = localStorage.getItem("Language");
+    callback(selectedLanguage);
+  },
+  cacheUserLanguage: (lng) => {
+    localStorage.setItem("Language", lng);
   },
 };
 
 i18n
-  .use(LanguageDetector)
+  .use(languageDetector)
   .use(initReactI18next)
   .init({
     fallbackLng: "en",
@@ -41,7 +56,6 @@ i18n
       cache: ["cookie"],
     },
     resources,
-    lng: "en",
     ns: ["main", "partners-program"],
     backend: {
       loadPath: "./utils/locales/{{ns}}/{{lng}}.json",

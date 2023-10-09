@@ -14,7 +14,11 @@ const AboutCompany = () => {
         titleText={t("about_us.title")}
         labelText={t("about_us.label")}
         description={
-          <Trans i18nKey={t("about_us.description")} components={[<p />]} />
+          <Trans
+            i18nKey={t("about_us.description")}
+            t={t}
+            components={[<p />]}
+          />
         }
       />
     </div>

@@ -17,10 +17,10 @@
 }
 
 .agreement span {
-    background: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--gradient-B);
     font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .sign-up-error {
@@ -32,16 +32,6 @@
     width: 25px;
 }
 
-
-//.error svg {
-//    margin-right: 8px;
-//    width: 25px;
-//    height: 25px;
-//}
-//
-//.error svg path {
-//    fill: var(--red);
-//}
 
 .sign-up-button {
     width: 100%;

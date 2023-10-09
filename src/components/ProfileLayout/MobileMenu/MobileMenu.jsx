@@ -1,8 +1,11 @@
 import React from "react";
 import styles from "./MobileMenu.module.scss";
 import { NavLink, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const MobileMenu = ({ menuStatus }) => {
+  const { t } = useTranslation(["main"]);
+
   return (
     <div
       className={`${styles["bg-cover"]} ${
@@ -40,7 +43,7 @@ const MobileMenu = ({ menuStatus }) => {
                 className={({ isActive }) => (isActive ? styles["active"] : "")}
                 to={"/profile/personal-area"}
               >
-                Главная
+                {t(`menu.personal-area`)}
               </NavLink>
             </li>
             <li>
@@ -48,7 +51,7 @@ const MobileMenu = ({ menuStatus }) => {
                 className={({ isActive }) => (isActive ? styles["active"] : "")}
                 to={"/profile/cash-in"}
               >
-                Пополнить счёт
+                {t(`menu.cash-in`)}
               </NavLink>
             </li>
             <li>
@@ -56,7 +59,7 @@ const MobileMenu = ({ menuStatus }) => {
                 className={({ isActive }) => (isActive ? styles["active"] : "")}
                 to={"/profile/make-deposit"}
               >
-                Открыть депозит
+                {t(`menu.make-deposit`)}
               </NavLink>
             </li>
             <li>
@@ -64,7 +67,7 @@ const MobileMenu = ({ menuStatus }) => {
                 className={({ isActive }) => (isActive ? styles["active"] : "")}
                 to={"/profile/withdrawal"}
               >
-                Вывод средств
+                {t(`menu.withdrawal`)}
               </NavLink>
             </li>
             <li>
@@ -72,15 +75,15 @@ const MobileMenu = ({ menuStatus }) => {
                 className={({ isActive }) => (isActive ? styles["active"] : "")}
                 to={"/profile/transactions"}
               >
-                Операции
+                {t(`menu.transactions`)}
               </NavLink>
             </li>
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? styles["active"] : "")}
-                to={"/profile/partners"}
+                to={"/profile/referrals"}
               >
-                Рефералы
+                {t(`menu.referrals`)}
               </NavLink>
             </li>
             <li>
@@ -88,11 +91,11 @@ const MobileMenu = ({ menuStatus }) => {
                 className={({ isActive }) => (isActive ? styles["active"] : "")}
                 to={"/profile/settings"}
               >
-                Настройки
+                {t(`menu.settings`)}
               </NavLink>
             </li>
             <li className={styles["quit"]}>
-              <Link to={"/"}>Выйти с кабинета</Link>
+              <Link to={"/"}>{t(`menu.log_out`)}</Link>
             </li>
           </ul>
         </div>

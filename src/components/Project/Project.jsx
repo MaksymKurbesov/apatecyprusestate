@@ -46,7 +46,7 @@ const Project = ({ project, closeHandler, modalStatus }) => {
   return (
     <Modal handleClose={closeHandler} isOpen={modalStatus} closeOnEsc>
       <div className={styles["wrapper"]}>
-        <p className={styles["name"]}>{project.name}</p>
+        <h3 className={styles["name"]}>{project.name}</h3>
         <div className={styles["images"]}>
           <Slider {...settings}>
             {project.images.map((image, index) => {
@@ -125,12 +125,8 @@ const Project = ({ project, closeHandler, modalStatus }) => {
                   <td>{project.bathrooms}</td>
                 </tr>
                 <tr>
-                  <td>{t("projects.floors")}</td>
+                  <td>{t("projects.floors", { count: project.floors })}</td>
                   <td>{project.floors}</td>
-                </tr>
-                <tr>
-                  <td>{t("projects.floor")}</td>
-                  <td>{project.floor}</td>
                 </tr>
                 {project.features.map((feature, index) => (
                   <tr key={index}>
@@ -149,7 +145,9 @@ const Project = ({ project, closeHandler, modalStatus }) => {
                 <tr>
                   <td>{t("projects.commissioning")}</td>
                   <td>
-                    {t(`months.${project.endDateMonth}`)} {project.endDateYear}
+                    {project.endDateMonth !== "" &&
+                      t(`months.${project.endDateMonth}`)}{" "}
+                    {project.endDateYear}
                   </td>
                 </tr>
               </tbody>

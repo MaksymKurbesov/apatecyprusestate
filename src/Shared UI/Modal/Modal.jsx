@@ -17,8 +17,12 @@ const Modal = ({ children, isOpen, handleClose, closeOnEsc = false }) => {
 
   return (
     <ReactPortal wrapperId="react-portal-modal-container">
-      <div className={styles["modal"]}>
-        <div className={`${styles["modal-content"]}`}>{children}</div>
+      <div className={`${styles["modal"]}`}>
+        <div className={`${styles["modal-content-wrapper"]}`}>
+          <div className={`${styles["modal-content"]} custom-bg custom-border`}>
+            {children}
+          </div>
+        </div>
       </div>
     </ReactPortal>
   );

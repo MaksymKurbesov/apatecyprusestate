@@ -48,12 +48,14 @@
     }
 }
 
+@media screen and (max-width: 768px) {
+    .wallets:before {
+        content: none;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .wallets {
         width: 104.3%;
-    }
-
-    .wallets:before {
-        content: none;
     }
 }

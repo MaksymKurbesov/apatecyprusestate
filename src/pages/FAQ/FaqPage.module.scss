@@ -9,7 +9,7 @@
             radial-gradient(circle at center 800px, rgba(23,46,164,0.45) 0%, rgba(22,119,255,0) 65%);
     background-repeat: no-repeat, no-repeat;
     background-size: 105%, 70%;
-    background-position: center top 300px, center top 500px, center;
+    background-position: center top 300px, center top 500px, center top 400px;
 }
 
 .faq-page h2 {
@@ -19,6 +19,7 @@
 .subtitle {
     color: var(--semi-white);
     margin-bottom: 50px;
+    text-align: center;
 }
 
 .accordion-wrapper {

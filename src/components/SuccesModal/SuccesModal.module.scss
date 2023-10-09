@@ -4,24 +4,6 @@
     padding: 40px;
 }
 
-.success:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    padding: 2px;
-    border-radius: 8px;
-    background: linear-gradient(180deg, rgba(124, 124, 124, 0.25) 0%, rgba(87, 87, 87, 0) 100%);
-    -webkit-mask:
-            linear-gradient(#ffffff 0 0) content-box,
-            linear-gradient(#b9b9b9 0 0);
-    mask:
-            linear-gradient(#000000 0 0) content-box,
-            linear-gradient(#000000 0, 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-}
-
 .success h3 {
     font-size: 34px !important;
 }

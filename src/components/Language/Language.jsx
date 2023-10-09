@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Language.module.scss";
 import USFlag from "../../assets/SVG/US.svg";
 import Select from "../../Shared UI/Select/Select";
@@ -17,33 +17,31 @@ const MOBILE_LANGUAGES = [
 ];
 
 const Language = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const windowSize = useWindowSize();
   const isDesktop = windowSize > 1024;
   const languages = isDesktop ? LANGUAGES : MOBILE_LANGUAGES;
-  const [language, setLanguage] = useState(languages[0].value);
+  const [language, setLanguage] = useState(null);
+
+  useEffect(() => {
+    const userLng = localStorage.getItem("Language");
+    const selectedUserLng = languages.find((item) => item.local === userLng);
+
+    setLanguage(selectedUserLng);
+  }, [languages]);
 
   const handleLanguageSelect = (value) => {
-    let translationLocal;
-    setLanguage(value);
+    const lng = languages.find((item) => item.value === value);
+    setLanguage(lng);
 
-    if (value === "Русский") {
-      translationLocal = "ru";
-    }
-    if (value === "English") {
-      translationLocal = "en";
-    }
-
-    i18n.changeLanguage(translationLocal);
+    i18n.changeLanguage(lng.local);
   };
-
-  const selectedLanguage = languages.find((item) => item.value === language);
 
   return (
     <div className={styles["language"]}>
       <Select
         options={languages}
-        selected={selectedLanguage}
+        selected={language}
         onChange={handleLanguageSelect}
       />
     </div>

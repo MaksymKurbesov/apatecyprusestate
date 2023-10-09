@@ -3,6 +3,25 @@
   <component name="JsonSchemaMappingsProjectConfiguration">
     <state>
       <map>
+        <entry key="ESLint">
+          <value>
+            <SchemaInfo>
+              <option name="name" value="ESLint" />
+              <option name="relativePathToSchema" value="http://json.schemastore.org/eslintrc" />
+              <option name="applicationDefined" value="true" />
+              <option name="patterns">
+                <list>
+                  <Item>
+                    <option name="path" value="src/utils/locales/main/ru.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="src/utils/locales/main/en.json" />
+                  </Item>
+                </list>
+              </option>
+            </SchemaInfo>
+          </value>
+        </entry>
         <entry key="Prettier">
           <value>
             <SchemaInfo>

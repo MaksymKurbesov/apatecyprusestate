@@ -61,14 +61,14 @@
 }
 
 .update-info-button {
-    width: calc(33% - 25px);
+    width: calc(40%);
     position: absolute;
     bottom: -75px;
     box-shadow: 0 3px 56px 0 rgba(42, 6, 184, 0.6);
 }
 
 .update-info-button:disabled {
-    width: calc(33% - 25px);
+    width: calc(40%);
     background: #e9e9e9;
     color: #858585;
     cursor: not-allowed;
@@ -86,7 +86,7 @@
     }
 
     .update-info-button {
-        padding: 14px 25px;
+        padding: 14px 10px;
     }
 }
 

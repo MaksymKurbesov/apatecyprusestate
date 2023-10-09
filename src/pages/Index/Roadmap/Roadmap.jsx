@@ -1,8 +1,7 @@
 import React from "react";
 import Title from "../../../Shared UI/Title/Title";
-import RoadmapBackground from "../../../assets/images/roadmap2.svg";
-import VerticalRoadmapBackground from "../../../assets/images/vertical-roadmap2.svg";
-
+import { ReactComponent as VerticalRoadmap } from "../../../assets/images/vertical-roadmap-last.svg";
+import { ReactComponent as RoadmapBackground } from "../../../assets/images/roadmap.svg";
 import styles from "./Roadmap.module.scss";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import { useTranslation } from "react-i18next";
@@ -60,22 +59,19 @@ const Roadmap = () => {
       <p className={styles["subtitle"]}>{t("roadmap.subtitle")}</p>
       <div className={styles["roadmap-wrapper"]}>
         {windowSize > 1024 ? (
-          <img src={RoadmapBackground} alt={"Roadmap scheme"} width={"100%"} />
+          <RoadmapBackground width={"100%"} />
         ) : (
-          <img
-            src={VerticalRoadmapBackground}
-            alt={"Roadmap scheme"}
-            width={550}
-            className={styles["vertical-roadmap"]}
-          />
+          <VerticalRoadmap className={styles["vertical-roadmap"]} />
         )}
 
         {STEPS.map(({ date, description }, index) => {
           return (
             <div key={index} className={styles["step"]}>
-              <span>{index + 1}</span>
-              <h3>{date}</h3>
-              <p>{t(`roadmap.${index + 1}`)}</p>
+              <span>{windowSize <= 480 ? date : index + 1}</span>
+              <div className={styles["step-info"]}>
+                {windowSize > 480 && <h3>{date}</h3>}
+                <p>{t(`roadmap.${index + 1}`)}</p>
+              </div>
             </div>
           );
         })}
