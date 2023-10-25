@@ -8,12 +8,12 @@ import { useTranslation } from "react-i18next";
 
 const STEPS = [
   {
-    date: "2020 Q1-Q2",
+    date: "2019 Q1-Q4",
     description:
       "Заключение стратегических партнерств и подготовка к первому большому проекту с архитекторами, инженерами и поставщиками материалов.",
   },
   {
-    date: "2020 Q3-Q4",
+    date: "2020 Q1-Q4",
     description:
       "Начало строительства первого флагманского проекта и осуществление рекламных кампаний для привлечения потенциальных инвесторов.",
   },
@@ -56,7 +56,9 @@ const Roadmap = () => {
   return (
     <div className={styles["roadmap"]}>
       <Title text={"Apate Cyprus Estate Roadmap"} />
-      <p className={styles["subtitle"]}>{t("roadmap.subtitle")}</p>
+      <p data-aos={"fade-down"} className={styles["subtitle"]}>
+        {t("roadmap.subtitle")}
+      </p>
       <div className={styles["roadmap-wrapper"]}>
         {windowSize > 1024 ? (
           <RoadmapBackground width={"100%"} />
@@ -66,7 +68,12 @@ const Roadmap = () => {
 
         {STEPS.map(({ date, description }, index) => {
           return (
-            <div key={index} className={styles["step"]}>
+            <div
+              data-aos={windowSize > 1024 && "fade-in"}
+              data-aos-delay={200 * index}
+              key={index}
+              className={styles["step"]}
+            >
               <span>{windowSize <= 480 ? date : index + 1}</span>
               <div className={styles["step-info"]}>
                 {windowSize > 480 && <h3>{date}</h3>}

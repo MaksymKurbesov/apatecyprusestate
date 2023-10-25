@@ -19,7 +19,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [signInError, setSignInError] = useState(null);
   const [passwordShown, setPasswordShown] = useState(false);
-  const { register, getValues, handleSubmit } = useForm({
+  const { register, handleSubmit } = useForm({
     mode: "onBlur",
   });
 

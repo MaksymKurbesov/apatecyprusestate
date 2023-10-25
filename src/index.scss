@@ -89,7 +89,7 @@ a {
 
 .button {
   display: block;
-  background: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
+  background-image: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
   border: none;
   color: white;
   padding: 14px 40px;
@@ -98,6 +98,7 @@ a {
   font-size: 14px;
   cursor: pointer;
   text-align: center;
+  transition: 1s ease all;
 }
 
 .close-button {
@@ -185,5 +186,10 @@ a {
 @media screen and (max-width: 480px) {
   .slick-list {
     padding: 0;
+  }
+
+  .button {
+    padding: 10px 26px;
+    font-size: 12px;
   }
 }

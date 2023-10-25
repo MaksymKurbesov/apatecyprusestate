@@ -7,8 +7,11 @@
 
 @media screen and (max-width: 1024px) {
     .partner-program img {
-        width: 80%;
-        margin-bottom: 50px;
+        width: 45%;
+        margin-right: 25px;
+        padding-right: 0;
+        padding-bottom: 0;
+        float: initial;
     }
 
     .partner-program section > div {
@@ -18,22 +21,13 @@
     .partner-program section {
         flex-direction: column;
     }
-}
-
-@media screen and (max-width: 1024px) {
-    .partner-program img {
-        width: 45%;
-        margin-right: 25px;
-        padding-right: 0;
-        padding-bottom: 0;
-        float: initial;
-    }
 
     .partner-program  > div {
         display: flex !important;
         gap: 0;
     }
 }
+
 
 @media screen and (max-width: 768px) {
     .partner-program {
@@ -45,7 +39,9 @@
     }
 
     .partner-program img {
-        width: 60%;
+        width: 80%;
+        margin-bottom: 60px;
+        margin-right: 0;
     }
 }
 

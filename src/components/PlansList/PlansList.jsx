@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styles from "./PlansList.module.scss";
 import Plan from "./Plan/Plan";
 import Slider from "react-slick";
@@ -29,8 +29,6 @@ const setSlidesToShow = (windowSize) => {
 const PlansList = () => {
   const windowDimension = useWindowSize();
   const sliderRef = useRef(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [arrowsIsAvailable, setArrowsIsAvailable] = useState(true);
   const { watch, register } = useFormContext();
 
   const settings = {
@@ -39,22 +37,6 @@ const PlansList = () => {
     slidesToShow: setSlidesToShow(windowDimension),
     slidesToScroll: 1,
     arrows: false,
-    afterChange: (index) => {
-      setArrowsIsAvailable(true);
-      setCurrentSlide(index);
-    },
-  };
-
-  const changeSlide = (e, direction) => {
-    e.preventDefault();
-
-    if (arrowsIsAvailable) {
-      setCurrentSlide((prevState) => {
-        setArrowsIsAvailable(false);
-        sliderRef?.current?.slickGoTo(prevState + direction);
-        return prevState + direction;
-      });
-    }
   };
 
   return (
@@ -85,7 +67,6 @@ const PlansList = () => {
           className={styles["slick-arrow-prev"]}
           onClick={(e) => {
             e.preventDefault();
-            // changeSlide(e, -1);
             sliderRef?.current?.slickPrev();
           }}
         >

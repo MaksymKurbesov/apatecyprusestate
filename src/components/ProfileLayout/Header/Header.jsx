@@ -3,19 +3,19 @@ import Language from "../../Language/Language";
 import { ReactComponent as Logo } from "../../../assets/SVG/logo2.svg";
 import UserInfo from "../../UserInfo/UserInfo";
 import styles from "./Header.module.scss";
-import ProfileMenuItem from "../../ProfileMenu/ProfileMenuItem/ProfileMenuItem";
-import { Link, useLocation } from "react-router-dom";
+import ProfileMenuItem from "../ProfileMenu/ProfileMenuItem/ProfileMenuItem";
+import { Link, useLocation, useOutletContext } from "react-router-dom";
 import { getActiveMenuItem } from "../../../utils/helpers";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import Hamburger from "../../Hamburger/Hamburger";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import { useTranslation } from "react-i18next";
 
-const isDesktopMenu = () => {
+const isDesktopMenu = (rank) => {
   return (
     <div className={styles["settings"]}>
       <Language />
-      <UserInfo />
+      <UserInfo rank={rank} />
     </div>
   );
 };
@@ -23,7 +23,6 @@ const isDesktopMenu = () => {
 const isMobileMenu = (menuStatus, setIsMenuOpenHandler) => {
   return (
     <div className={styles["settings"]}>
-      <Language />
       <Hamburger
         menuStatus={menuStatus}
         openMenuHandler={() => {
@@ -39,7 +38,7 @@ const isMobileMenu = (menuStatus, setIsMenuOpenHandler) => {
   );
 };
 
-const Header = () => {
+const Header = ({ rank }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const [activeMenuItem, setActiveMenuItem] = useState(null);
@@ -74,7 +73,9 @@ const Header = () => {
         </div>
       ) : null}
 
-      {isDesktop ? isDesktopMenu() : isMobileMenu(isMenuOpen, setIsMenuOpen)}
+      {isDesktop
+        ? isDesktopMenu(rank)
+        : isMobileMenu(isMenuOpen, setIsMenuOpen)}
       <MobileMenu menuStatus={isMenuOpen} />
     </header>
   );

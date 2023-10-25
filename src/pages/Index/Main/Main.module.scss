@@ -17,12 +17,14 @@
     flex-direction: column;
 }
 
+
+
 .title {
-    max-width: 800px;
+    max-width: 900px;
     margin-bottom: 20px;
     text-align: center;
     font-weight: 700;
-    font-size: clamp(26px, 6.4vw, 50px);
+    font-size: clamp(26px, 6.4vw, 60px);
 }
 
 .title span {

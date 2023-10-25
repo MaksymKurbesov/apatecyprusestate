@@ -260,3 +260,27 @@
         top: 98.1%;
     }
 }
+
+@media screen and (max-width: 420px) {
+    .step:nth-child(3) {
+        top: 12.5%;
+    }
+    .step:nth-child(4) {
+        top: 26%;
+    }
+    .step:nth-child(5) {
+        top: 39.5%;
+    }
+    .step:nth-child(6) {
+        top: 54.2%
+    }
+    .step:nth-child(7) {
+        top: 69.2%
+    }
+    .step:nth-child(8) {
+        top: 83.9%
+    }
+    .step:nth-child(9) {
+        top: 97.6%;
+    }
+}

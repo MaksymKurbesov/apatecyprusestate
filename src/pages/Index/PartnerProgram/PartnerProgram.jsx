@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "../../../assets/images/partner-program-percentage.svg";
+import Image from "../../../assets/images/partner-program-percentage2.svg";
 import SectionLayout from "../../../Shared UI/SectionLayout/SectionLayout";
 import styles from "./PartnerProgram.module.scss";
 import { Link } from "react-router-dom";
@@ -14,9 +14,15 @@ const PartnerProgram = () => {
         image={Image}
         labelText={t("partner_program.partner_program")}
         titleText={t("partner_program.title")}
-        description={<p>{t("partner_program.description")}</p>}
+        description={
+          <p data-aos={"fade-right"}>{t("partner_program.description")}</p>
+        }
         moreInfoButton={
-          <Link to={"/partner-program"} className={"button"}>
+          <Link
+            data-aos={"fade-right"}
+            to={"/partner-program"}
+            className={"button"}
+          >
             {t("more")}
           </Link>
         }

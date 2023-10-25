@@ -23,26 +23,30 @@ const MobileMenu = ({ menuStatus }) => {
       >
         <div className={`${styles["mobile-menu"]}`}>
           <div className={styles["top-row"]}>
-            <Link to={"/"} className={styles["logotype"]}>
+            <Link to={"/#"} className={styles["logotype"]}>
               <Logo />
             </Link>
             <ul className={styles["social-links"]}>
               <li>
-                <a>Youtube</a>
+                <a href={"https://www.youtube.com/@apatecyprusestate"}>
+                  Youtube
+                </a>
               </li>
               <li>
-                <a>Telegram</a>
+                <a href={"https://t.me/apatenews"}>Telegram</a>
               </li>
               <li>
-                <a>Instagram</a>
+                <a href={"https://www.instagram.com/apatecyprusestate/"}>
+                  Instagram
+                </a>
               </li>
             </ul>
             <div className={styles["lang"]}>
-              <button
-                className={i18n.language === "gr" ? styles["langIsActive"] : ""}
-              >
-                GR
-              </button>
+              {/*<button*/}
+              {/*  className={i18n.language === "gr" ? styles["langIsActive"] : ""}*/}
+              {/*>*/}
+              {/*  GR*/}
+              {/*</button>*/}
               <button
                 className={i18n.language === "en" ? styles["langIsActive"] : ""}
                 onClick={() => i18n.changeLanguage("en")}
@@ -74,9 +78,9 @@ const MobileMenu = ({ menuStatus }) => {
             <li>
               <Link to={"/faq"}>FAQ</Link>
             </li>
-            <li>
-              <Link to={"/token"}>{t("menu.Token")}</Link>
-            </li>
+            {/*<li>*/}
+            {/*  <Link to={"/token"}>{t("menu.Token")}</Link>*/}
+            {/*</li>*/}
             {user ? (
               <li className={styles["cabinet"]}>
                 <Link to={"/profile/personal-area"}>{t("menu.cabinet")}</Link>
@@ -96,17 +100,18 @@ const MobileMenu = ({ menuStatus }) => {
           </ul>
 
           <div className={styles["contacts"]}>
-            <p>
+            <a href={"mailto:support@apatecyprusestate.com"}>
               <span>Email:</span> support@apatecyprusestate.com
-            </p>
-            <p>
+            </a>
+            <a href={"tel:35722761795"}>
               <span>{t("phone_number", { ns: "our-contacts" })}:</span> +357 22
               761795
-            </p>
-            <p>
-              <span>{t("our_address", { ns: "our-contacts" })}:</span> Tower 25,
-              Stasinou, Nicosia 1060, Cyprus
-            </p>
+            </a>
+            <a>
+              <span>{t("our_address", { ns: "our-contacts" })}:</span>
+              Basilissis Phreiderikis, 20, EL GRECO HOUSE, <br />
+              Floor 1, Flat/Office 104 1066, Leukosia, Cyprus
+            </a>
           </div>
         </div>
       </div>

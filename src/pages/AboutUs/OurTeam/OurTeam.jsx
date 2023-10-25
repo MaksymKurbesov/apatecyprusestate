@@ -6,9 +6,15 @@ import Alexandra from "../../../assets/images/team members/Alexandra Cleovoulou.
 import Niki from "../../../assets/images/team members/Niki Chatzimina.jfif";
 import Stefanos from "../../../assets/images/team members/stefanos-kyriakou.jpg";
 import Trifonos from "../../../assets/images/team members/Trifonas Mamas.jfif";
+import Pampina from "../../../assets/images/team members/Pampina Votsi.jfif";
 import { useTranslation } from "react-i18next";
 
 const TEAM = [
+  {
+    position: "Director",
+    name: "Pampina Votsi",
+    photo: Pampina,
+  },
   {
     position: "Registered Estate Agent",
     name: "Trifonas Mamas",

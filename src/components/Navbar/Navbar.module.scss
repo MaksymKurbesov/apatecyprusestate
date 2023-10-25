@@ -33,7 +33,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
     .nav-footer {
         margin: 20px auto 0;
     }
@@ -46,7 +46,7 @@
 @media screen and (max-width: 580px) {
     .nav-list-footer {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: max-content max-content;
         grid-template-rows: 1fr 1fr 1fr;
         gap: 20px;
     }

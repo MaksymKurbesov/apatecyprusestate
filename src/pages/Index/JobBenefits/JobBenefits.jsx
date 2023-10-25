@@ -23,7 +23,13 @@ const JobBenefits = () => {
         <ul className={styles["benefits-list"]}>
           {BENEFIT_ICONS.map((icon, index) => {
             return (
-              <li key={index} className={styles["benefit"]}>
+              <li
+                data-aos={"fade-right"}
+                data-aos-delay={200 * index}
+                data-aos-offset={-50}
+                key={index}
+                className={styles["benefit"]}
+              >
                 <div className={styles["icon"]}>
                   <img src={icon} alt={"Icon"} />
                 </div>

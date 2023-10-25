@@ -7,61 +7,59 @@ import Levels from "./Levels/Levels";
 import { doc, getDoc } from "firebase/firestore";
 import { useOutletContext } from "react-router-dom";
 import { FirebaseContext } from "../../../index";
+import { secondsToString } from "../../../utils/helpers/date";
 import {
   getTotalActiveReferrals,
   getTotalReferrals,
 } from "../../../utils/helpers/calculates";
-import { secondsToString } from "../../../utils/helpers/date";
 
 const Partners = () => {
   const { userData, userDeposits } = useOutletContext();
   const { db } = useContext(FirebaseContext);
+  const [referrals, setReferrals] = useState({});
 
-  const [referrals, setReferrals] = useState({
-    1: [],
-    2: [],
-    3: [],
-    4: [],
-    5: [],
-  });
+  const fetchAdditionalDataForUser = async (user) => {
+    const userDoc = doc(db, "users", user);
+    const userSnap = await getDoc(userDoc);
+
+    return userSnap.data();
+  };
 
   useEffect(() => {
-    Object.values(userData.referredTo).forEach((level, index) => {
-      level.map(async (user) => {
-        const userDoc = doc(db, "users", user);
-        const userSnap = await getDoc(userDoc);
+    const fetchData = async () => {
+      let updatedData = {};
 
-        if (!userSnap.exists()) return;
+      const promises = Object.keys(userData.referredTo).map(async (key) => {
+        const usersArray = userData.referredTo[key];
 
-        const { referredBy, registrationDate, referredTo, ...props } =
-          userSnap.data();
+        updatedData[key] = await Promise.all(
+          usersArray.map(async (userNick) => {
+            const user = await fetchAdditionalDataForUser(userNick);
 
-        const referredByRef = await getDoc(doc(db, "users", referredBy));
-
-        if (!referredByRef.exists()) return;
-
-        setReferrals((prevState) => {
-          return {
-            ...prevState,
-            [index + 1]: [
-              ...prevState[index + 1],
-              {
-                ...props,
-                sponsor: referredBy,
-                referrals: getTotalReferrals(referredTo),
-                registrationDate: secondsToString(registrationDate.seconds),
-                // invested: `$${props.invested}`,
-              },
-            ],
-          };
-        });
+            return {
+              ...user,
+              sponsor: user.referredBy,
+              registrationDate: secondsToString(user.registrationDate.seconds),
+            };
+          })
+        );
       });
-    });
+
+      await Promise.all(promises);
+
+      setReferrals(updatedData);
+    };
+
+    fetchData();
   }, []);
 
-  // if (loading) {
-  //   return null;
-  // }
+  const totalReferralsCount = getTotalReferrals(referrals);
+
+  const activeReferralsCount = getTotalActiveReferrals(referrals);
+
+  if (!referrals) {
+    return;
+  }
 
   return (
     <div className={styles["partners"]}>
@@ -71,11 +69,12 @@ const Partners = () => {
       />
       <Percentage />
       <UserInfo
-        totalReferrals={getTotalReferrals(referrals)}
-        totalActiveReferrals={getTotalActiveReferrals(referrals)}
+        totalReferralsCount={totalReferralsCount}
+        totalActiveReferrals={activeReferralsCount}
         purchasedDeposits={userDeposits.length}
+        userRank={userData.rank || "DEFAULT"}
       />
-      <Levels referrals={referrals} />
+      <Levels referrals={referrals} userRank={userData.rank || "DEFAULT"} />
     </div>
   );
 };

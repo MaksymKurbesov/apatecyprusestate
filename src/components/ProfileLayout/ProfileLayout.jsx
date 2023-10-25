@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./Header/Header";
-import ProfileMenu from "../ProfileMenu/ProfileMenu";
+import ProfileMenu from "./ProfileMenu/ProfileMenu";
 import styles from "./ProfileLayout.module.scss";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { useAuthState } from "../../hooks/useAuthState";
@@ -42,7 +42,7 @@ const ProfileLayout = () => {
 
   return (
     <div className={styles["profile-layout"]}>
-      <Header />
+      <Header rank={userData.rank || "DEFAULT"} />
       {windowSize > 1024 && <ProfileMenu userData={userData} />}
       <Outlet context={{ userData, userDeposits }} />
     </div>

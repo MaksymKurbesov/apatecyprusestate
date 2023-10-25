@@ -9,7 +9,7 @@ import Project from "../Project/Project";
 import { useTranslation } from "react-i18next";
 
 const Projects = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("projects");
   const { watch, register } = useFormContext();
   const [aboutProjectModalIsOpen, setAboutProjectModalIsOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -42,28 +42,32 @@ const Projects = () => {
                   alt={"Fire Icon"}
                   className={styles["fire-icon"]}
                 />{" "}
-                <span>{t("projects.project")}</span>
+                <span>{t("project")}</span>
               </div>
               <h3>{project.name}</h3>
               <div className={styles["description-wrapper"]}>
                 <p>
-                  {t("projects.from")} {project.price} €
+                  {t("from")} {project.price} €
                 </p>
                 <p>
                   ID: {project.id} | {project.floors}{" "}
-                  {t("projects.floors", { count: project.floors })} |{" "}
-                  {t(`projects.${project.type}`)}
+                  {t("floors", { count: project.floors })} |{" "}
+                  {t(`${project.type}`)}
                 </p>
               </div>
               <button
                 onClick={(e) => {
                   e.preventDefault();
                   openModal(setAboutProjectModalIsOpen);
-                  setSelectedProject(project);
+                  setSelectedProject({
+                    ...project,
+                    projectNumber: index + 1,
+                    region: watch("region"),
+                  });
                 }}
                 className={`${styles["more-button"]} button`}
               >
-                {t("projects.more")}
+                {t("more")}
               </button>
             </RadioButton>
           </div>

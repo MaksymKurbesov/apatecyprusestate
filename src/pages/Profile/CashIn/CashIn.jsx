@@ -7,21 +7,20 @@ import { useForm, FormProvider } from "react-hook-form";
 import TransactionConfirmation from "../../../components/TransactionConfirmation/TransactionConfirmation";
 import ColoredLabel from "../../../components/ColoredLabel/ColoredLabel";
 import { addTransaction } from "../../../Api/Transactions";
-import {
-  closeModal,
-  openModal,
-  telegramNotification,
-} from "../../../utils/helpers";
+import { closeModal, openModal } from "../../../utils/helpers";
 import { v4 as uuidv4 } from "uuid";
-import SuccesModal from "../../../components/SuccesModal/SuccesModal";
+import SuccessModal from "../../../components/SuccesModal/SuccessModal";
 import { auth } from "../../../index";
 import { getDateNow } from "../../../utils/helpers/date";
 import { useTranslation } from "react-i18next";
+import { telegramNotification } from "../../../Api/Notifications";
+import { useOutletContext } from "react-router-dom";
 
 const CashIn = () => {
   const { t } = useTranslation();
   const [isSuccessModalStatus, setIsSuccessModalStatus] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { userData } = useOutletContext();
 
   const methods = useForm({
     defaultValues: {
@@ -41,15 +40,12 @@ const CashIn = () => {
       type: "Пополнение",
       executor: data.wallet,
       nickname: auth.currentUser.displayName,
-    })
-      .then(() => {
-        openModal(setIsSuccessModalStatus);
-        telegramNotification({ ...data, type: "Пополнение" });
-        methods.reset();
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      rank: userData.rank || "DEFAULT",
+    });
+    await telegramNotification({ ...data, type: "Пополнение" });
+    openModal(setIsSuccessModalStatus);
+    methods.reset();
+    setLoading(false);
   };
 
   const STEPS = [
@@ -112,7 +108,7 @@ const CashIn = () => {
           <Stepper steps={STEPS} loading={loading} />
         </form>
       </FormProvider>
-      <SuccesModal
+      <SuccessModal
         closeHandler={() => closeModal(setIsSuccessModalStatus)}
         modalStatus={isSuccessModalStatus}
         toTransactionButton
@@ -129,7 +125,7 @@ const CashIn = () => {
             .
           </p>
         </div>
-      </SuccesModal>
+      </SuccessModal>
     </div>
   );
 };

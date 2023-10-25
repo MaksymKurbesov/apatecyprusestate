@@ -29,7 +29,7 @@ const Header = () => {
 
   return (
     <>
-      <div className={"container"}>
+      <div className={"container"} data-aos={"fade-down"} data-aos-delay={200}>
         <header className={`${styles["header"]}`}>
           <Link to={"/"} className={styles["logotype"]}>
             <Logo />

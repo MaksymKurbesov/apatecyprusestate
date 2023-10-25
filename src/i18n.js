@@ -2,16 +2,27 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import enLocales from "./utils/locales/main/en.json";
 import ruLocales from "./utils/locales/main/ru.json";
+import elLocales from "./utils/locales/main/el.json";
 import partnersProgramEN from "./utils/locales/partners-program/en.json";
 import partnersProgramRU from "./utils/locales/partners-program/ru.json";
+import partnersProgramEL from "./utils/locales/partners-program/el.json";
 import aboutUsEN from "./utils/locales/about-us/en.json";
 import aboutUsRU from "./utils/locales/about-us/ru.json";
+import aboutUsEL from "./utils/locales/about-us/el.json";
 import ourContactsEN from "./utils/locales/our-contacts/en.json";
 import ourContactsRU from "./utils/locales/our-contacts/ru.json";
+import ourContactsEL from "./utils/locales/our-contacts/el.json";
 import faqEN from "./utils/locales/faq/en.json";
 import faqRU from "./utils/locales/faq/ru.json";
+import faqEL from "./utils/locales/faq/el.json";
 import agreementEN from "./utils/locales/agreement/en.json";
 import agreementRU from "./utils/locales/agreement/ru.json";
+import projectsEN from "./utils/locales/projects/en.json";
+import projectsRU from "./utils/locales/projects/ru.json";
+import projectsEL from "./utils/locales/projects/el.json";
+import structureEN from "./utils/locales/structure/en.json";
+import structureRU from "./utils/locales/structure/ru.json";
+import structureEL from "./utils/locales/structure/el.json";
 
 const resources = {
   en: {
@@ -21,6 +32,8 @@ const resources = {
     "our-contacts": ourContactsEN,
     faq: faqEN,
     agreement: agreementEN,
+    projects: projectsEN,
+    structure: structureEN,
   },
   ru: {
     main: ruLocales,
@@ -29,6 +42,17 @@ const resources = {
     "our-contacts": ourContactsRU,
     faq: faqRU,
     agreement: agreementRU,
+    projects: projectsRU,
+    structure: structureRU,
+  },
+  el: {
+    main: elLocales,
+    "partners-program": partnersProgramEL,
+    "about-us": aboutUsEL,
+    "our-contacts": ourContactsEL,
+    faq: faqEL,
+    projects: projectsEL,
+    structure: structureEL,
   },
 };
 
@@ -50,7 +74,6 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "en",
-    debug: true,
     detection: {
       order: ["querystring", "cookie"],
       cache: ["cookie"],

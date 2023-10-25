@@ -1,27 +1,30 @@
 import { getPlanByRegion } from "../helpers";
-import { REFERRALS_PERCENTAGE_BY_LEVEL } from "../consts";
 
-export const getTotalIncomeFromReferrals = (referrals, level) => {
+export const getTotalIncomeFromReferrals = (
+  referrals,
+  level,
+  percentageByRank
+) => {
   return Object.values(referrals).reduce((accum, referral) => {
     const totalDeposited = calculateTotalDeposit(referral.wallets);
     const percentFromTotalDeposited =
-      (totalDeposited * REFERRALS_PERCENTAGE_BY_LEVEL[level]) / 100;
+      (totalDeposited * percentageByRank[level]) / 100;
 
     return accum + percentFromTotalDeposited;
   }, 0);
 };
 
 export const getTotalReferrals = (referrals) => {
-  return Object.values(referrals).reduce((accum, val) => {
-    return accum + val.length;
-  }, 0);
+  return Object.values(referrals).reduce(
+    (sum, usersArray) => sum + usersArray.length,
+    0
+  );
 };
 
 export const getTotalActiveReferrals = (referrals) => {
-  return Object.values(referrals).reduce((accum, value) => {
-    const activeReferrals = value.filter((item) => item.invested > 0).length;
-    return accum + activeReferrals;
-  }, 0);
+  return Object.values(referrals)
+    .reduce((allUsers, usersArray) => allUsers.concat(usersArray), [])
+    .filter((user) => user.invested > 0).length;
 };
 
 export const getTotalActiveReferralsByLevel = (referrals) => {
@@ -85,4 +88,33 @@ export const calculateTotalIncome = (amount, region) => {
   } else {
     return +(((amount * percent) / 100) * days).toFixed(2);
   }
+};
+
+function calculateNextInterestDate(deposit) {
+  const nextInterestDate = new Date(deposit.lastAccrual.seconds * 1000);
+
+  if (deposit.planNumber < 4) {
+    nextInterestDate.setDate(nextInterestDate.getDate() + 1); // Следующий день
+  } else {
+    nextInterestDate.setDate(nextInterestDate.getDate() + deposit.days); // Добавить весь срок депозита
+  }
+
+  return nextInterestDate;
+}
+
+export const getNearestAccrual = (deposits) => {
+  let earliestInterestDate = null;
+  let depositWithEarliestInterest = null;
+  const activeDeposits = deposits.filter((item) => item.isActive);
+
+  for (const deposit of activeDeposits) {
+    const nextInterestDate = calculateNextInterestDate(deposit);
+
+    if (!earliestInterestDate || nextInterestDate < earliestInterestDate) {
+      earliestInterestDate = nextInterestDate;
+      depositWithEarliestInterest = deposit;
+    }
+  }
+
+  return depositWithEarliestInterest;
 };

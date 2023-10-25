@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Table from "../../../Shared UI/Table/Table";
 import styles from "./Transactions.module.scss";
-import { getAllTransactions } from "../../../Api/Transactions";
+import {
+  getAllTransactions,
+  getNextTransactions,
+  getTransactionsCount,
+} from "../../../Api/Transactions";
 
 const columns = [
   {
@@ -32,14 +36,25 @@ const columns = [
 
 const Transactions = () => {
   const [userTransactions, setUserTransactions] = useState([]);
+  const [transactionsCount, setTransactionsCount] = useState(null);
+  const [lastVisible, setLastVisible] = useState(null);
 
   useEffect(() => {
-    const unsubscribeTransactions = getAllTransactions(setUserTransactions);
+    const getTransactions = async () => {
+      const count = await getTransactionsCount();
+      setTransactionsCount(count);
+
+      return await getAllTransactions(setUserTransactions, setLastVisible);
+    };
+
+    getTransactions();
 
     return () => {
-      unsubscribeTransactions();
+      getTransactions();
     };
   }, []);
+
+  console.log(lastVisible, "lastVisible");
 
   return (
     <div className={styles["transactions"]}>
@@ -49,6 +64,21 @@ const Transactions = () => {
         data={userTransactions}
         className={"transactions"}
       />
+      {transactionsCount > 10 &&
+      transactionsCount !== userTransactions.length ? (
+        <button
+          onClick={() =>
+            getNextTransactions(
+              setUserTransactions,
+              setLastVisible,
+              lastVisible
+            )
+          }
+          className={`${styles["more-button"]} button`}
+        >
+          Показать больше
+        </button>
+      ) : null}
     </div>
   );
 };

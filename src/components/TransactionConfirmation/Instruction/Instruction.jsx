@@ -3,9 +3,14 @@ import styles from "./Instruction.module.scss";
 import CopyText from "../../CopyText/CopyText";
 import { ReactComponent as ErrorIcon } from "../../../assets/SVG/exclamation.svg";
 import { useTranslation } from "react-i18next";
+import { useFormContext } from "react-hook-form";
+import { WALLETS } from "../../../utils/consts";
 
 const Instruction = ({ register, errors }) => {
   const { t } = useTranslation();
+  const { getValues } = useFormContext();
+
+  console.log(getValues("wallet"), "getValues");
 
   return (
     <div className={`${styles["instruction"]} custom-bg custom-border`}>
@@ -19,11 +24,17 @@ const Instruction = ({ register, errors }) => {
         </li>
         <li>
           <p>3. {t("instruction.3")}</p>
-          <CopyText text={`U40108873484bflls9jfclwse`} />
+          <CopyText
+            text={`${
+              WALLETS.find((wallet) => wallet.name === getValues("wallet"))
+                ?.our_wallet_number
+            }`}
+          />
         </li>
         <li className={styles["transaction-number-wrapper"]}>
           <p>4. {t("instruction.4")}</p>
           <input
+            autoComplete={"off"}
             {...register("transaction-hash", {
               required: true,
             })}
@@ -34,7 +45,7 @@ const Instruction = ({ register, errors }) => {
           {errors["transaction-hash"] ? (
             <div className={`${styles["transaction-error"]} error`}>
               <ErrorIcon />
-              <p>Введите номер транзакции</p>
+              <p>{t("instruction.enter_transaction_error")}</p>
             </div>
           ) : null}
         </li>

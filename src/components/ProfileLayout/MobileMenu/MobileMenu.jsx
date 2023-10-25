@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./MobileMenu.module.scss";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { logout } from "../../../Api/Auth";
 
 const MobileMenu = ({ menuStatus }) => {
-  const { t } = useTranslation(["main"]);
+  const { t, i18n } = useTranslation(["main"]);
 
   return (
     <div
@@ -21,19 +22,33 @@ const MobileMenu = ({ menuStatus }) => {
           <div className={styles["top-row"]}>
             <ul className={styles["social-links"]}>
               <li>
-                <a>Youtube</a>
+                <a href={"/#"}>Youtube</a>
               </li>
               <li>
-                <a>Telegram</a>
+                <a href={"https://t.me/apatenews"}>Telegram</a>
               </li>
               <li>
-                <a>Instagram</a>
+                <a href={"/#"}>Instagram</a>
               </li>
             </ul>
             <div className={styles["lang"]}>
-              <p>GR</p>
-              <p>EN</p>
-              <p>RU</p>
+              {/*<button*/}
+              {/*  className={i18n.language === "gr" ? styles["langIsActive"] : ""}*/}
+              {/*>*/}
+              {/*  GR*/}
+              {/*</button>*/}
+              <button
+                onClick={() => i18n.changeLanguage("en")}
+                className={i18n.language === "en" ? styles["langIsActive"] : ""}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => i18n.changeLanguage("ru")}
+                className={i18n.language === "ru" ? styles["langIsActive"] : ""}
+              >
+                RU
+              </button>
             </div>
           </div>
 
@@ -95,7 +110,7 @@ const MobileMenu = ({ menuStatus }) => {
               </NavLink>
             </li>
             <li className={styles["quit"]}>
-              <Link to={"/"}>{t(`menu.log_out`)}</Link>
+              <button onClick={() => logout()}>{t(`menu.log_out`)}</button>
             </li>
           </ul>
         </div>

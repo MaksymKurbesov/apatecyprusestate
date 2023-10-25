@@ -43,6 +43,22 @@
     flex-shrink: 0;
 }
 
+.user-rank {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.user-rank img  {
+    width: 25px;
+    //height: 25px;
+    margin-right: 5px;
+}
+
+.user-rank polygon {
+    fill: var(--semi-white);
+}
+
 .column p {
     color: rgba(255, 255, 255, 0.5);
 }

@@ -4,11 +4,13 @@ import { ReactComponent as Coins } from "../../../../assets/SVG/coins.svg";
 import { ReactComponent as TotalReferrals } from "../../../../assets/SVG/total-referrals.svg";
 import { ReactComponent as PurchasedDeposits } from "../../../../assets/SVG/purchased-deposits.svg";
 import { useTranslation } from "react-i18next";
+import { SPONSOR_NAME_MAP } from "../../../../utils/consts";
 
 const UserInfo = ({
-  totalReferrals,
+  totalReferralsCount,
   totalActiveReferrals,
   purchasedDeposits,
+  userRank,
 }) => {
   const { t } = useTranslation();
 
@@ -18,8 +20,12 @@ const UserInfo = ({
         <div className={styles["column"]}>
           <Coins />
           <div>
-            <p>{t("referrals.referrals")}</p>
-            <span>{t("referrals.partner")}</span>
+            <p>{t("referrals.your_status")}</p>
+            {/*<span>{t("referrals.partner")}</span>*/}
+            <span className={styles["user-rank"]}>
+              <img src={SPONSOR_NAME_MAP[userRank].icon} alt={""} width={30} />
+              {t(`referrals.${SPONSOR_NAME_MAP[userRank].name}`)}
+            </span>
           </div>
         </div>
         <div className={styles["column"]}>
@@ -27,7 +33,7 @@ const UserInfo = ({
           <div className={styles["total-referrals"]}>
             <div>
               <p>{t("referrals.total_referrals")}</p>
-              <span>{totalReferrals}</span>
+              <span>{totalReferralsCount}</span>
             </div>
             <div className={styles["active-referrals"]}>
               <p>{t("referrals.active_referrals")}</p>

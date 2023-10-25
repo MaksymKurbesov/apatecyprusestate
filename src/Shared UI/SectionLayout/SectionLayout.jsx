@@ -27,6 +27,8 @@ const SectionLayout = (props) => {
             alt={"decorate"}
             className={styles["image"]}
             width={"50%"}
+            data-aos={"fade-in"}
+            data-aos-delay={200}
           />
         )}
         <div className={styles["information"]}>

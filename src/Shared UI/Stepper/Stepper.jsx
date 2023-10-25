@@ -5,7 +5,7 @@ import { useFormContext } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useTranslation } from "react-i18next";
 
-const Stepper = ({ steps = [], loading }) => {
+const Stepper = ({ steps = [], loading, isRestrictions }) => {
   const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -13,6 +13,7 @@ const Stepper = ({ steps = [], loading }) => {
     clearErrors,
     trigger,
     formState: { errors },
+    getValues,
   } = useFormContext();
 
   const stepIsValid = (stepName) => {
@@ -33,6 +34,10 @@ const Stepper = ({ steps = [], loading }) => {
 
   const goNextPage = (event, stepName) => {
     event.preventDefault();
+
+    if (getValues("region") === "Individual") {
+      return;
+    }
 
     stepIsValid(stepName).then((stepValidity) => {
       if (!stepValidity) {
@@ -114,6 +119,7 @@ const Stepper = ({ steps = [], loading }) => {
                 goNextPage(event, steps[currentStep - 1].stepName)
               }
               className={`${styles["step-button-next"]} button`}
+              disabled={isRestrictions}
             >
               {t("next")}
             </button>

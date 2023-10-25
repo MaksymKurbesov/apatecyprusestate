@@ -1,8 +1,8 @@
 .wrapper {
     width: 90vw;
     height: 85vh;
+    padding: 25px 0;
     overflow-y: scroll;
-    padding: 30px;
     position: relative;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;
@@ -59,22 +59,93 @@
 }
 
 .name {
-    font-size: 38px;
-    font-weight: 600;
-    margin-bottom: 30px;
+    max-width: 100% !important;
+    margin: 0 auto 30px;
+    font-size: clamp(18px, 4vw, 38px) !important;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
+.name span {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+
 .images {
+    display: grid;
+    grid-template-columns: minmax(0, calc(80% - 15%)) 15%;
+    justify-content: center;
+    position: relative;
     margin: 50px auto;
-    width: 95%;
+    width: 100%;
 }
 
 .images img {
-    object-fit: cover;
-    object-position: top right;
-    margin-bottom: 0;
+    object-fit: contain;
 }
 
+
+.slider-for {
+    position: relative;
+    padding: 0 10px;
+    margin: 0 auto;
+    max-width: 100%;
+
+    :global .slick-slide {
+        padding: 0 20px;
+    }
+
+    :global .slick-list {
+        padding: 0;
+    }
+
+    img {
+        height: 35vw;
+        object-fit: contain;
+    }
+}
+
+.slider-nav {
+    height: 35vw;
+    overflow: hidden;
+
+    :global .slick-slide {
+        padding: 0;
+    }
+
+    :global .slick-list {
+        padding: 0;
+        overflow: visible;
+    }
+
+    img {
+        object-fit: cover;
+        object-position: top right;
+    }
+
+}
+
+.slick-arrow-prev, .slick-arrow-next {
+    position: absolute;
+    top: 50%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0px 3px 15px 0px rgba(42, 6, 184, 0.25);
+    background: #171831;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.slick-arrow-prev {
+    transform: translateY(-50%) rotate(90deg);
+    left: 10px;
+}
+
+.slick-arrow-next {
+    transform: translateY(-50%) rotate(-90deg);
+    right: 10px;
+}
 
 .description {
     margin: 0 auto;
@@ -86,6 +157,7 @@
 
 .description p {
     margin-bottom: 0 !important;
+    max-width: 100%;
 }
 
 .features-table, .distance-table {
@@ -134,6 +206,10 @@
 }
 
 @media screen and (max-width: 1200px) {
+    .images {
+        grid-template-columns: minmax(0, 75%) 25%;
+    }
+
     .tab-list, .features-table, .distance-table, .description {
         max-width: 100%;
         width: 100%;
@@ -142,29 +218,83 @@
 
 @media screen and (max-width: 768px) {
     .wrapper {
-        padding: 20px;
-        width: 100vw;
+        width: 90vw;
     }
 
     .name {
-        font-size: 32px;
-        margin-bottom: 0;
+        margin-bottom: 40px !important;
     }
 
     .images {
+        grid-template-columns: minmax(0, 1fr);
         margin: 25px auto;
+    }
+
+
+    .slider-nav {
+        height: 18vw;
+
+        :global .slick-track {
+            display: flex;
+            column-gap: 10px;
+        }
+
+        :global .slick-track .slick-slide {
+            display: flex;
+            height: auto;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .slider-for {
+        margin-bottom: 20px;
+
+        img {
+            height: 45vw;
+        }
+
+        :global .slick-track {
+            display: flex;
+        }
+
+        :global .slick-track .slick-slide {
+            display: flex;
+            height: auto;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+
+    .slick-arrow-prev {
+        left: 3px;
+    }
+
+    .slick-arrow-next {
+        right: 3px;
     }
 
     .tab-wrapper {
         font-size: 16px;
         padding: 10px 15px;
     }
+
+
 }
 
 @media screen and (max-width: 580px) {
-    .name {
-        font-size: 26px;
+    .slider-for {
+        img {
+            height: 100%;
+        }
+
+        :global .slick-slide {
+            padding: 0;
+        }
+
     }
+
 
     .tab-list {
         flex-direction: column;
@@ -176,6 +306,6 @@
 
     .close-button {
         top: 15px;
-        right: 30px;
+        right: 15px;
     }
 }

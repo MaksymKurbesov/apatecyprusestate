@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import ExitIcon from "../../assets/SVG/quit.svg";
 import styles from "./UserInfo.module.scss";
 import { logout } from "../../Api/Auth";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useOutletContext } from "react-router-dom";
 import { auth } from "../../index";
 import AvatarPlaceholder from "../../assets/images/avatar-placeholder.jpg";
+import { ReactComponent as DefaultStatus } from "../../assets/SVG/referral status/default.svg";
+import { SPONSOR_NAME_MAP } from "../../utils/consts";
 
-const UserInfo = () => {
+const UserInfo = ({ rank }) => {
   const navigate = useNavigate();
   const [userAvatar, setUserAvatar] = useState("");
 
@@ -29,6 +31,12 @@ const UserInfo = () => {
         alt={"User Avatar"}
       />
       <span className={styles["username"]}>
+        <NavLink
+          to={"/profile/referrals"}
+          className={styles["referral-status-icon"]}
+        >
+          <img src={SPONSOR_NAME_MAP[rank].icon} alt={""} width={25} />
+        </NavLink>
         {auth.currentUser?.displayName}
       </span>
       <img

@@ -12,13 +12,10 @@
 }
 
 .menu-wrapper {
-    //padding: 23px 40px;
     background-color: #0e0e26 !important;
     border-radius: 0 !important;
     border-bottom-left-radius: 8px !important;
     border-bottom-right-radius: 8px !important;
-    text-transform: uppercase;
-    font-weight: 400;
     height: 0;
     transition: 0.45s ease all;
     overflow: hidden;
@@ -45,8 +42,6 @@
 }
 
 .mobile-menu {
-    //max-width: 85%;
-    //padding-top: 10px;
     margin: 0 auto;
 }
 
@@ -100,8 +95,6 @@
     color: white !important;
 }
 
-
-
 .nav-links {
     max-width: 80%;
     margin: 0 auto 120px;
@@ -110,13 +103,12 @@
     grid-template-columns: repeat(3, max-content);
     grid-template-areas:
             "home partner ."
-            "about-us contacts sign-up"
-            "token faq sign-in";
+            "about-us contacts sign-in"
+            "faq . sign-up";
     justify-content: space-between;
     row-gap: 35px;
     column-gap: 20px;
     font-size: 28px;
-    font-weight: 500;
 }
 
 .nav-links li {
@@ -154,17 +146,16 @@
     grid-area: faq;
 }
 .nav-links li:nth-child(6) {
-    grid-area: token;
-}
-.nav-links li:nth-child(7) {
     grid-area: sign-in;
 }
-.nav-links li:nth-child(8) {
+.nav-links li:nth-child(7) {
     grid-area: sign-up;
 }
 
 
+
 .registration, .sign-in, .cabinet {
+    font-family: inherit;
     font-size: 16px;
     margin-top: auto;
     color: rgba(255, 255, 255, 0.5);
@@ -178,18 +169,18 @@
     color: rgba(255, 255, 255, 1);
 }
 
-.contacts p {
+.contacts a {
     font-size: 14px;
     font-weight: 500;
 }
 
-.contacts p:not(:last-child) {
+.contacts a:not(:last-child) {
     margin-right: 20px;
 }
 
-.contacts p span {
+.contacts a span {
     color: rgba(255, 255, 255, 0.4);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     display: block;
 }
@@ -269,7 +260,7 @@
         grid-template-areas:
             "home partner"
             "about-us contacts"
-            "token faq"
+            "faq ."
             "sign-up sign-in";
         margin-bottom: 50px;
     }

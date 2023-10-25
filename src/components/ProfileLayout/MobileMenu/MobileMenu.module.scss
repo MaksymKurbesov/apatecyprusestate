@@ -16,12 +16,10 @@
     border-radius: 0 !important;
     border-bottom-left-radius: 8px !important;
     border-bottom-right-radius: 8px !important;
-    //text-transform: uppercase;
     font-weight: 400;
     height: 0;
     transition: 0.45s ease all;
     overflow: hidden;
-    //height: 0;
 }
 
 .menu-open {
@@ -37,7 +35,6 @@
     max-width: 85%;
     padding: 100px 0 70px 0;
     margin: 0 auto;
-    //height: 0;
 }
 
 .top-row {
@@ -73,22 +70,20 @@
 
 .lang {
     display: flex;
+    gap: 20px;
 }
 
-.lang p:first-child {
-    background: linear-gradient(45deg, var(--gradient-A), var(--gradient-B));
-    color: white;
-}
-
-.lang p {
+.lang button {
     padding: 10px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
 }
 
-.lang p:not(:last-child) {
-    margin-right: 20px;
+.langIsActive {
+    background: linear-gradient(45deg, var(--gradient-A), var(--gradient-B)) !important;
+    color: white !important;
 }
 
 .active {
@@ -118,12 +113,10 @@
     content: '';
     position: absolute;
     top: 50%;
-    //transform: translateY(-50%);
     left: -23px;
     width: 13px;
     height: 2px;
     background: linear-gradient(45deg, var(--gradient-A), var(--gradient-B));
-    //transition: 0.35s ease all;
 }
 
 .nav-links li:hover {
@@ -156,10 +149,13 @@
 }
 
 
-.quit {
+.quit button {
+    font-family: inherit;
     font-size: 16px;
     margin-top: auto;
     color: rgba(255, 255, 255, 0.5);
+    background: none;
+    border: none;
 }
 
 

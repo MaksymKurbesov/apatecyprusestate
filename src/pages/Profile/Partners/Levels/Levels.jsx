@@ -8,6 +8,7 @@ import {
 } from "../../../../utils/helpers/calculates";
 import { normalizeReferralLevel } from "../../../../utils/helpers/transformersData";
 import { useTranslation } from "react-i18next";
+import { RANKS } from "../../../../utils/PERCENTAGES_BY_RANK";
 
 const columns = [
   {
@@ -32,11 +33,16 @@ const columns = [
   },
 ];
 
-const Levels = ({ referrals }) => {
+const Levels = ({ referrals, userRank }) => {
   const { t } = useTranslation();
+  const referralLength = Object.keys(RANKS[userRank]).length;
 
-  const accordionData = Object.values(referrals).map((level, index) => {
-    return {
+  const accordionData = [];
+
+  Object.values(referrals).map((level, index) => {
+    if (index + 1 > referralLength) return;
+
+    accordionData.push({
       title: (
         <div className={styles["level"]}>
           <p className={styles["level-number"]}>
@@ -51,7 +57,9 @@ const Levels = ({ referrals }) => {
           </p>
           <p>
             {t("referrals.total_income")}:{" "}
-            <span>${getTotalIncomeFromReferrals(level, index + 1)}</span>
+            <span>
+              ${getTotalIncomeFromReferrals(level, index + 1, RANKS[userRank])}
+            </span>
           </p>
         </div>
       ),
@@ -62,7 +70,7 @@ const Levels = ({ referrals }) => {
           className={"levels"}
         />
       ),
-    };
+    });
   });
 
   return (

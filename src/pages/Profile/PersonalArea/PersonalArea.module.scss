@@ -3,17 +3,19 @@
     display: grid;
     gap: 26px;
     grid-template-areas:
+        "restrictions restrictions"
         "wallets wallets"
         "nextAccrual userStatistic"
         "deposits deposits";
     grid-template-columns: 4fr 3fr;
-    grid-template-rows: repeat(3, max-content);
+    grid-template-rows: repeat(4, max-content);
     grid-area: content;
 }
 
 @media screen and (max-width: 1400px) {
     .personal-area {
         grid-template-areas:
+        "restrictions restrictions"
         "wallets wallets"
         "userStatistic userStatistic"
         "nextAccrual nextAccrual"

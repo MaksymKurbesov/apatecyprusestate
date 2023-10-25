@@ -3,17 +3,20 @@ import styles from "./Language.module.scss";
 import USFlag from "../../assets/SVG/US.svg";
 import Select from "../../Shared UI/Select/Select";
 import RUFlag from "../../assets/SVG/RUFLAG.svg";
+import ELFlag from "../../assets/SVG/EL.svg";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { useTranslation } from "react-i18next";
 
 const LANGUAGES = [
   { title: "English", value: "English", icon: USFlag, local: "en" },
   { title: "Русский", value: "Русский", icon: RUFlag, local: "ru" },
+  { title: "Ελληνικός", value: "Greek", icon: ELFlag, local: "el" },
 ];
 
 const MOBILE_LANGUAGES = [
   { title: "ENG", value: "English", icon: USFlag, local: "en" },
   { title: "РУС", value: "Русский", icon: RUFlag, local: "ru" },
+  { title: "EL", value: "Greek", icon: ELFlag, local: "el" },
 ];
 
 const Language = () => {

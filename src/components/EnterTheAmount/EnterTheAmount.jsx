@@ -4,10 +4,12 @@ import { checkIsDigitals, getPlanByRegion } from "../../utils/helpers";
 import ColoredLabel from "../ColoredLabel/ColoredLabel";
 import { useOutletContext } from "react-router-dom";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 const EnterTheAmount = ({ additionalInfo, isMakeDeposit, isWithdrawn }) => {
   const { userData } = useOutletContext();
   const { getValues, setFocus, register } = useFormContext();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setFocus("amount");
@@ -19,15 +21,16 @@ const EnterTheAmount = ({ additionalInfo, isMakeDeposit, isWithdrawn }) => {
         <span className={styles["prefix"]}>$</span>
         <input
           type={"text"}
+          autoComplete={"off"}
           {...register("amount", {
             valueAsNumber: true,
-            required: "Неверно указана сумма",
+            required: t("errors.wrong_amount"),
             validate: {
-              isNumber: (v) => checkIsDigitals(v) || "Неверно указана сумма",
+              isNumber: (v) => checkIsDigitals(v) || t("errors.wrong_amount"),
               ...((isMakeDeposit || isWithdrawn) && {
                 isEnoughBalance: (v) =>
                   v <= userData.wallets[getValues("wallet")].available ||
-                  `У вас недостаточно средств на счету. Пожалуйста, пополните баланс.`,
+                  t("errors.no_money"),
               }),
             },
             ...(isWithdrawn && {

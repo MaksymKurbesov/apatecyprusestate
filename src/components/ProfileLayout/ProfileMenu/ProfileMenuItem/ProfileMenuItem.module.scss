@@ -1,0 +1,14 @@
+.menu-item {
+    display: flex;
+    align-items: center;
+}
+
+.menu-item svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+}
+
+.header path, .header circle, .header ellipse {
+    fill-opacity: 1;
+}

@@ -3,7 +3,11 @@ import styles from "./SectionLabel.module.scss";
 
 const SectionLabel = ({ text, style }) => {
   return (
-    <div className={styles["section-label"]} style={style}>
+    <div
+      data-aos={"fade-right"}
+      className={styles["section-label"]}
+      style={style}
+    >
       {text}
     </div>
   );

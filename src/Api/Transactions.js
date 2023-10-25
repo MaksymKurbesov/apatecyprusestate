@@ -8,6 +8,9 @@ import {
   serverTimestamp,
   onSnapshot,
   where,
+  getCountFromServer,
+  getDocs,
+  startAfter,
 } from "firebase/firestore";
 import { auth, db } from "../index";
 import ColoredLabel from "../components/ColoredLabel/ColoredLabel";
@@ -31,16 +34,30 @@ export const addTransaction = async (transaction) => {
   }
 };
 
-export const getAllTransactions = (setTransactions) => {
+export const getTransactionsCount = async () => {
+  const transactionQuery = query(
+    collection(db, "transactions"),
+    where("nickname", "==", auth.currentUser.displayName)
+  );
+
+  const count = await getCountFromServer(transactionQuery);
+
+  return count.data().count;
+};
+
+export const getAllTransactions = async (setTransactions, setLastVisible) => {
   const transactions = [];
 
   try {
     const transactionQuery = query(
       collection(db, "transactions"),
-      limit(10),
       where("nickname", "==", auth.currentUser.displayName),
-      orderBy("date", "desc")
+      orderBy("date", "desc"),
+      limit(10)
     );
+
+    const transactions = await getDocs(transactionQuery);
+    setLastVisible(transactions.docs[transactions.docs.length - 1]);
 
     return onSnapshot(transactionQuery, (transactionSnaps) => {
       setTransactions(
@@ -64,4 +81,36 @@ export const getAllTransactions = (setTransactions) => {
   }
 
   return transactions;
+};
+
+export const getNextTransactions = async (
+  setTransactions,
+  setLastVisible,
+  lastVisible
+) => {
+  const transactionQuery = query(
+    collection(db, "transactions"),
+    where("nickname", "==", auth.currentUser.displayName),
+    orderBy("date", "desc"),
+    startAfter(lastVisible),
+    limit(10)
+  );
+
+  const transactions = await getDocs(transactionQuery);
+  setLastVisible(transactions.docs[transactions.docs.length - 1]);
+
+  transactions.docs.forEach((transaction) => {
+    const { id, amount, date, status } = transaction.data();
+
+    setTransactions((prevState) => [
+      ...prevState,
+      {
+        ...transaction.data(),
+        id: id.substring(0, 5),
+        amount: `$${amount.toFixed(2)}`,
+        date: secondsToString(date.seconds),
+        status: <ColoredLabel text={status} />,
+      },
+    ]);
+  });
 };

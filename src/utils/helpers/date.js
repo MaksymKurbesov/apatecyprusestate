@@ -18,7 +18,7 @@ export const daysPassedSince = (someDate) => {
   return Math.floor(difference / oneDayMilliseconds);
 };
 
-export const secondsToString = (seconds, isShort) => {
+export const secondsToString = (seconds = Date.now(), isShort) => {
   if (seconds < 0) return "-" + secondsToString(-seconds);
 
   if (isShort) {

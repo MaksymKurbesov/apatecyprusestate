@@ -22,6 +22,9 @@ import {
 import React from "react";
 import Admin from "./pages/Admin/Admin";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
+import TermsOfUse from "./pages/TermsOfUse/TermsOfUse";
+import Documents from "./pages/Documents/Documents";
+import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 
 export const ROUTES = [
   {
@@ -82,6 +85,30 @@ export const ROUTES = [
         element: (
           <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
             <SignUp />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/documents",
+        element: (
+          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+            <Documents />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/terms-of-use",
+        element: (
+          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+            <TermsOfUse />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/privacy-policy",
+        element: (
+          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+            <PrivacyPolicy />
           </Suspense>
         ),
       },

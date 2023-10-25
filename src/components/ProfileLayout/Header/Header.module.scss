@@ -43,7 +43,7 @@
 
 @media screen and (max-width: 1024px) {
     .header {
-        padding: 20px;
+        padding: 20px 30px;
     }
 
     .header:before {
@@ -51,7 +51,12 @@
     }
 
     .logotype {
+        height: 45px;
         margin-right: 0;
+    }
+
+    .logotype svg {
+        height: 45px;
     }
 }
 

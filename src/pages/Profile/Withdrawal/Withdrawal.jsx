@@ -7,17 +7,20 @@ import EnterTheAmount from "../../../components/EnterTheAmount/EnterTheAmount";
 import TransactionConfirmation from "../../../components/TransactionConfirmation/TransactionConfirmation";
 import { addTransaction } from "../../../Api/Transactions";
 import { v4 as uuidv4 } from "uuid";
-import SuccesModal from "../../../components/SuccesModal/SuccesModal";
+import SuccessModal from "../../../components/SuccesModal/SuccessModal";
 import {
   closeModal,
+  hasActiveRestrictions,
   openModal,
-  telegramNotification,
 } from "../../../utils/helpers";
 import { auth } from "../../../index";
 import { useOutletContext } from "react-router-dom";
 import EnterTheAmountAddInfo from "./EnterTheAmountAddInfo";
 import { getDateNow } from "../../../utils/helpers/date";
 import { useTranslation } from "react-i18next";
+import { telegramNotification } from "../../../Api/Notifications";
+import ErrorModal from "../../../components/ErrorModal/ErrorModal";
+import { setUserRestriction } from "../../../Api/UserData";
 
 const transactionId = uuidv4();
 
@@ -25,6 +28,8 @@ const Withdrawal = () => {
   const { t } = useTranslation();
   const { userData } = useOutletContext();
   const [isSuccessModalStatus, setIsSuccessModalStatus] = useState(false);
+  const [isInvalidPrivateKeyModalStatus, setIsInvalidPrivateKeyModalStatus] =
+    useState(false);
   const [loading, setLoading] = useState(false);
   const methods = useForm({
     defaultValues: {
@@ -33,12 +38,19 @@ const Withdrawal = () => {
     mode: "onChange",
   });
 
+  const userHasRestriction = hasActiveRestrictions(userData.restrictions);
+
   const selectedWallet = methods.watch("wallet");
   const amount = methods.watch("amount");
 
   const onSubmit = async (data) => {
-    if (userData.privateKey !== methods.watch("private-key")) {
-      console.log("неверный приватный ключ");
+    const invalidPrivateKey =
+      userData.restrictions.isPrivateKey &&
+      userData.privateKey !== methods.watch("private-key");
+
+    if (invalidPrivateKey) {
+      await setUserRestriction("isPrivateKeyInvalid");
+      setIsInvalidPrivateKeyModalStatus(true);
       return;
     }
 
@@ -49,15 +61,11 @@ const Withdrawal = () => {
       type: "Вывод",
       executor: data.wallet,
       nickname: auth.currentUser.displayName,
-    })
-      .then(() => {
-        openModal(setIsSuccessModalStatus);
-        telegramNotification({ ...data, type: "Вывод" });
-        methods.reset();
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    });
+    await telegramNotification({ ...data, type: "Вывод" });
+    openModal(setIsSuccessModalStatus);
+    methods.reset();
+    setLoading(false);
   };
 
   const STEPS = [
@@ -113,10 +121,14 @@ const Withdrawal = () => {
     <div className={styles["withdrawal"]}>
       <FormProvider {...methods}>
         <form id={"cash-in-form"} onSubmit={methods.handleSubmit(onSubmit)}>
-          <Stepper steps={STEPS} loading={loading} />
+          <Stepper
+            steps={STEPS}
+            loading={loading}
+            isRestrictions={userHasRestriction}
+          />
         </form>
       </FormProvider>
-      <SuccesModal
+      <SuccessModal
         closeHandler={() => closeModal(setIsSuccessModalStatus)}
         modalStatus={isSuccessModalStatus}
         toTransactionButton
@@ -133,7 +145,20 @@ const Withdrawal = () => {
             .
           </p>
         </div>
-      </SuccesModal>
+      </SuccessModal>
+      <ErrorModal
+        closeHandler={() => closeModal(setIsInvalidPrivateKeyModalStatus)}
+        modalStatus={isInvalidPrivateKeyModalStatus}
+      >
+        <h3>Приватный финансовый ключ был введён неверно!</h3>
+        <div className={styles["text"]}>
+          <p>
+            Если вы потеряли или забыли свой приватный ключ, воспользуйтесь
+            процедурой восстановления или свяжитесь с нашей службой поддержки
+            для дополнительной помощи.
+          </p>
+        </div>
+      </ErrorModal>
     </div>
   );
 };

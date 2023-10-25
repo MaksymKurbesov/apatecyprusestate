@@ -32,11 +32,13 @@
 }
 
 .modal-content h3 {
-    font-size: 44px;
+    max-width: 550px;
+    font-size: 40px;
     margin-bottom: 40px;
 }
 
 .modal-content p {
+    max-width: 550px;
     font-size: 16px;
     color: rgba(255, 255, 255, 0.6);
     line-height: 1.6;
@@ -44,6 +46,10 @@
 
 .modal-content p:last-of-type {
     margin-bottom: 60px;
+}
+
+.modal-content p:first-child:not(:only-child) {
+    margin-bottom: 30px;
 }
 
 :global(.buttons) {
@@ -75,9 +81,13 @@
         margin-bottom: 20px;
     }
 
+    .modal-content p {
+        font-size: 14px;
+    }
+
+
     .modal-content p:last-of-type {
         margin-bottom: 40px;
-        font-size: 14px;
     }
 
     .buttons button {
@@ -89,5 +99,9 @@
     .img {
         width: 125px;
         height: 125px;
+    }
+
+    .modal-content p:last-of-type {
+        margin-bottom: 30px;
     }
 }

@@ -1,0 +1,38 @@
+.terms-of-use {
+    padding: 100px 0;
+}
+
+.contacts {
+    max-width: 300px;
+}
+
+.header {
+    margin-bottom: 150px !important;
+
+
+    h1 {
+        font-size: clamp(30px, 5vw, 70px);
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 20px !important;
+        color: rgba(255, 255, 255, 0.35);
+    }
+}
+
+
+.terms-of-use div {
+    margin-bottom: 40px;
+}
+
+.terms-of-use div > strong:first-child {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.terms-of-use div > p {
+    margin-bottom: 5px;
+}

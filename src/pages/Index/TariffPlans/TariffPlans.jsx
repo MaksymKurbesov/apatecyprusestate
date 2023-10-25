@@ -22,7 +22,9 @@ const TariffPlans = () => {
           align={"center"}
           style={{ marginBottom: 30 }}
         />
-        <h3 className={styles["subtitle"]}>{t("tariff_plans.subtitle")}</h3>
+        <h3 data-aos={"fade-down"} className={styles["subtitle"]}>
+          {t("tariff_plans.subtitle")}
+        </h3>
         <div className={styles["plans-wrapper"]}>
           <FormProvider {...methods}>
             <PlansList isPayNow />

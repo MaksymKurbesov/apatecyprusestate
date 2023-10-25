@@ -8,7 +8,8 @@ const CopyText = ({ text }) => {
     <div className={styles["copy-text"]}>
       <span className={styles["link"]}>{text}</span>
       <button
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           navigator.clipboard.writeText(text);
         }}
         className={styles["copy-link-button"]}

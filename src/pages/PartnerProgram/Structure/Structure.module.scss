@@ -1,0 +1,146 @@
+.structure {
+    margin-bottom: 100px;
+}
+
+.structure h2 {
+    margin-bottom: 30px;
+}
+
+.subtitle {
+    color: var(--semi-white);
+    line-height: 32px;
+    margin-bottom: 40px;
+}
+
+.table-wrapper {
+    margin-bottom: 40px;
+}
+
+.table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.table tr {
+    display: grid;
+    grid-template-columns: minmax(260px, max-content) 1fr 1fr minmax(200px, max-content) minmax(160px, max-content);
+    text-align: center;
+}
+
+.rank {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.rank svg {
+    width: 25px;
+    height: 25px;
+}
+
+
+.table th {
+    color: var(--gradient-A);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.table td, .table th {
+    padding: 15px 10px;
+}
+
+.table, .table td, .table th {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.description li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.description span {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.description p {
+    padding-left: 25px;
+    color: var(--semi-white);
+}
+
+
+@media screen and (max-width: 1024px) {
+    .table-wrapper {
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .table {
+        font-size: 14px;
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    .table tr {
+        grid-template-columns: minmax(240px, max-content) 20% 15% minmax(200px, max-content) 1fr;
+    }
+
+    .description span {
+        font-size: 18px;
+    }
+
+    .description p {
+        font-size: 14px;
+        padding-left: 20px;
+    }
+
+    .table svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .table {
+        width: 800px;
+    }
+
+    .table th, .table td {
+        padding: 10px 5px;
+    }
+
+    .table tr {
+        grid-template-columns: minmax(235px, max-content) 17% 15% minmax(175px, max-content) 1fr;
+    }
+}
+
+
+@media screen and (max-width: 580px) {
+    .table {
+        width: 710px;
+        font-size: 12px;
+    }
+
+    .table tr {
+        grid-template-columns: minmax(210px, max-content) 15% 1fr minmax(155px, max-content) minmax(145px, max-content);
+    }
+}
+
+//.table tr:first-child th:first-child {
+//    border-top-left-radius: 8px;
+//}
+//
+//.table tr:first-child th:last-child {
+//    border-top-right-radius: 8px;
+//}
+//
+//.table tr:last-child td:first-child {
+//    border-bottom-left-radius: 8px;
+//}
+//
+//.table tr:last-child td:last-child {
+//    border-bottom-right-radius: 8px;
+//}

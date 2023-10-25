@@ -6,7 +6,7 @@ import Accordion from "../../components/Accordion/Accordion";
 import { ScrollRestoration } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const QUESTIONS_COUNT = 18;
+const QUESTIONS_COUNT = 17;
 
 const FaqPage = () => {
   const { t } = useTranslation("faq");

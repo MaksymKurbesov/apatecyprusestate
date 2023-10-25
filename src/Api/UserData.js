@@ -100,3 +100,15 @@ export const updateUserWallets = async (wallets) => {
     console.error(e);
   }
 };
+
+export const setUserRestriction = async (restriction) => {
+  const userDoc = doc(db, "users", auth.currentUser.displayName);
+  try {
+    await updateDoc(userDoc, {
+      [`restrictions.${restriction}`]: true,
+    });
+  } catch (e) {
+    alert(e);
+    console.error(e);
+  }
+};

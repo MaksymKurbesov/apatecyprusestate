@@ -11,6 +11,7 @@
     //background-size: 100%, 70%;
     background-repeat: no-repeat;
     margin-bottom: 220px;
+    z-index: 2;
 }
 
 
@@ -38,7 +39,33 @@
 .macbook {
     position: relative;
     top: -50px;
+    width: 60%;
 }
+
+.macbook img {
+    position: relative;
+    z-index: 4;
+    pointer-events: none;
+}
+
+
+.iframe-wrapper {
+    width: 81%;
+    height: 87.2%;
+    position: absolute;
+    top: 3.4%;
+    left: 50.1%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+    background: black;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.iframe-wrapper iframe {
+    border: none;
+}
+
 
 @media screen  and (max-width: 1200px) {
     .information {
@@ -52,7 +79,6 @@
 }
 
 @media screen and (max-width: 1024px) {
-
     .presentation h2 {
         margin-bottom: 10px;
     }
@@ -70,7 +96,6 @@
 
     .macbook {
         width: 100%;
-        right: -10px;
         margin-bottom: 30px;
     }
 }

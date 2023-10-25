@@ -7,10 +7,15 @@ import styles from "./MakeDeposit.module.scss";
 import { useForm, FormProvider } from "react-hook-form";
 import TransactionConfirmation from "../../../components/TransactionConfirmation/TransactionConfirmation";
 import { v4 as uuidv4 } from "uuid";
-import { closeModal, getPlanByRegion, openModal } from "../../../utils/helpers";
+import {
+  closeModal,
+  getPlanByRegion,
+  hasActiveRestrictions,
+  openModal,
+} from "../../../utils/helpers";
 import { addTransaction } from "../../../Api/Transactions";
 import { openDeposit } from "../../../Api/Deposits";
-import SuccesModal from "../../../components/SuccesModal/SuccesModal";
+import SuccessModal from "../../../components/SuccesModal/SuccessModal";
 import { auth } from "../../../index";
 import { updateUserBalanceAfterDeposit } from "../../../Api/UserData";
 import Projects from "../../../components/Projects/Projects";
@@ -21,12 +26,15 @@ import {
 } from "../../../utils/helpers/calculates";
 import { getDateNow } from "../../../utils/helpers/date";
 import { useTranslation } from "react-i18next";
+import { useOutletContext } from "react-router-dom";
 
 const transactionId = uuidv4();
 
 const MakeDeposit = () => {
   const { t } = useTranslation();
-  const [isSuccessModalStatus, setIsSuccessModalStatus] = useState(false);
+  const { userData } = useOutletContext();
+  const [individualModalStatus, setIndividualModalStatus] = useState(false);
+  const [successModalStatus, setSuccessModalStatus] = useState(false);
   const [loading, setLoading] = useState(false);
   const methods = useForm({
     defaultValues: {
@@ -34,6 +42,8 @@ const MakeDeposit = () => {
     },
     mode: "onChange",
   });
+
+  const userHasRestriction = hasActiveRestrictions(userData.restrictions);
 
   const selectedPlan = methods.watch("region");
   const selectedProject = methods.watch("project");
@@ -53,7 +63,7 @@ const MakeDeposit = () => {
 
     await openDeposit({ ...data, ...getPlanByRegion(data.region) })
       .then(() => {
-        openModal(setIsSuccessModalStatus);
+        openModal(setSuccessModalStatus);
         methods.reset();
       })
       .finally(() => {
@@ -146,12 +156,16 @@ const MakeDeposit = () => {
     <div className={styles["make-deposit"]}>
       <FormProvider {...methods}>
         <form id={"cash-in-form"} onSubmit={methods.handleSubmit(onSubmit)}>
-          <Stepper steps={STEPS} loading={loading} />
+          <Stepper
+            steps={STEPS}
+            loading={loading}
+            isRestrictions={userHasRestriction}
+          />
         </form>
       </FormProvider>
-      <SuccesModal
-        closeHandler={() => closeModal(setIsSuccessModalStatus)}
-        modalStatus={isSuccessModalStatus}
+      <SuccessModal
+        closeHandler={() => closeModal(setSuccessModalStatus)}
+        modalStatus={successModalStatus}
       >
         <h3>Инвестиционный план успешно открыт!</h3>
         <div className={styles["text"]}>
@@ -164,7 +178,7 @@ const MakeDeposit = () => {
             депозиту в личном кабинете.
           </p>
         </div>
-      </SuccesModal>
+      </SuccessModal>
     </div>
   );
 };

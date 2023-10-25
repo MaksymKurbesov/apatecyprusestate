@@ -7,6 +7,8 @@ import { calculateTotalDeposit } from "./calculates";
 import { addDays, secondsToString } from "./date";
 
 export const normalizeReferralLevel = (referralLevel) => {
+  console.log(referralLevel, "referralLevel");
+
   return referralLevel.map((item) => {
     const totalDeposit = calculateTotalDeposit(item.wallets);
 

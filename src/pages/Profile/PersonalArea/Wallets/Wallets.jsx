@@ -3,8 +3,11 @@ import styles from "./Wallets.module.scss";
 import Wallet from "./Wallet/Wallet";
 import Slider from "react-slick";
 import { ReactComponent as Chevron } from "../../../../assets/SVG/chevron-down.svg";
-import { WALLETS } from "../../../../utils/consts";
 import { useWindowSize } from "../../../../hooks/useWindowSize";
+import {
+  getCorrectWallets,
+  sortWalletsByAvailable,
+} from "../../../../utils/helpers";
 
 const settings = {
   infinite: true,
@@ -37,22 +40,15 @@ const settings = {
 const Wallets = ({ wallets }) => {
   const sliderRef = useRef(null);
   const windowSize = useWindowSize();
-  const walletsSortedByAvailable = Object.entries(wallets).sort(
-    (a, b) => b[1].available - a[1].available
-  );
+
+  const userWallets = getCorrectWallets(wallets);
+  const sortedUserWallets = sortWalletsByAvailable(userWallets);
 
   return (
     <div className={styles["wallets"]}>
       <Slider ref={sliderRef} {...settings}>
-        {walletsSortedByAvailable.map((wallet) => {
-          const foundWallet = WALLETS.find((wlt) => wlt.name === wallet[0]);
-
-          return (
-            <Wallet
-              key={wallet[0]}
-              wallet={{ name: wallet[0], ...wallet[1], ...foundWallet }}
-            />
-          );
+        {sortedUserWallets.map((userWallet) => {
+          return <Wallet key={userWallet.name} wallet={userWallet} />;
         })}
       </Slider>
       {windowSize > 480 ? (

@@ -180,8 +180,10 @@
     .step5of5:after {
         height: 100%;
     }
+}
 
-    //.stepper-head li {
-    //    font-size: 14px;
-    //}
+@media screen and (max-width: 480px) {
+    .buttons button {
+        padding: 10px 26px;
+    }
 }

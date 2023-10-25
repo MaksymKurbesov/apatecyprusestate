@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import SectionLabel from "../../Shared UI/SectionLabel/SectionLabel";
 import Title from "../../Shared UI/Title/Title";
 import styles from "./SignUp.module.scss";
-import {
-  ScrollRestoration,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
+import { ScrollRestoration, useSearchParams } from "react-router-dom";
 import SignUpForm from "./SignUpForm/SignUpForm";
 import ConfirmRegistrationModal from "./ConfirmRegistrationModal/ConfirmRegistrationModal";
 import ErrorRegistrationModal from "./ErrorRegistrationModal/ErrorRegistrationModal";
@@ -22,7 +18,7 @@ const SignUp = () => {
 
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const methods = useForm({
     mode: "onBlur",

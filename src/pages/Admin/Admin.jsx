@@ -4,11 +4,9 @@ import {
   collection,
   doc,
   where,
-  increment,
   query,
   updateDoc,
   onSnapshot,
-  getDoc,
 } from "firebase/firestore";
 import { FirebaseContext } from "../../index";
 import { addReferralRewards } from "../../utils/helpers";
@@ -16,6 +14,7 @@ import {
   updateUserBalanceAfterCashIn,
   updateUserBalanceAfterWithdrawn,
 } from "../../Api/UserData";
+import { RANKS } from "../../utils/PERCENTAGES_BY_RANK";
 
 const Admin = () => {
   const { db } = useContext(FirebaseContext);
@@ -34,13 +33,20 @@ const Admin = () => {
     });
   }, []);
 
-  const successTransaction = async ({ id, nickname, wallet, amount, type }) => {
+  const successTransaction = async ({
+    id,
+    nickname,
+    wallet,
+    amount,
+    type,
+    rank,
+  }) => {
     const transactionRef = doc(db, "transactions", id);
 
     if (type === "Пополнение") {
       await updateUserBalanceAfterCashIn(wallet, amount, nickname);
 
-      await addReferralRewards(nickname, amount, wallet);
+      await addReferralRewards(nickname, amount, wallet, RANKS[rank]);
     }
 
     if (type === "Вывод") {

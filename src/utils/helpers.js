@@ -1,11 +1,5 @@
-import { MENU_ITEMS } from "../components/ProfileMenu/ProfileMenu";
-import {
-  PLANS,
-  REFERRALS_LEVEL,
-  REFERRALS_PERCENTAGE_BY_LEVEL,
-  TELEGRAM_URL,
-  WALLETS,
-} from "./consts";
+import { MENU_ITEMS } from "../components/ProfileLayout/ProfileMenu/ProfileMenu";
+import { PLANS, WALLETS } from "./consts";
 import {
   arrayUnion,
   doc,
@@ -13,10 +7,10 @@ import {
   increment,
   updateDoc,
 } from "firebase/firestore";
-import { auth, db } from "../index";
-import axios from "axios";
+import { db } from "../index";
 import { addTransaction } from "../Api/Transactions";
 import { v4 as uuidv4 } from "uuid";
+import { RANKS } from "./PERCENTAGES_BY_RANK";
 
 export const openModal = (stateHandler) => {
   document.body.style.overflow = "hidden";
@@ -30,19 +24,14 @@ export const closeModal = (stateHandler) => {
   stateHandler(false);
 };
 
-export const convertStringToLink = (str) => {
-  return str.replace(/ /g, "-").toLowerCase();
-};
+export const addReferralRewards = async (
+  executorNickname,
+  amount,
+  wallet,
+  userRank
+) => {
+  const referralLength = Object.keys(userRank).length;
 
-export const telegramNotification = async (userData) => {
-  await axios.post(TELEGRAM_URL, {
-    chat_id: process.env.REACT_APP_CHAT_ID,
-    parse_mode: "html",
-    text: `Пользователь: ${auth.currentUser.displayName} \nТип операции: ${userData.type} \nСумма: $${userData.amount} \nНомер транзакции: ${userData["transaction-hash"]} \nКошелёк: ${userData.wallet}`,
-  });
-};
-
-export const addReferralRewards = async (executorNickname, amount, wallet) => {
   try {
     let currentReferralLevel = 1;
 
@@ -51,12 +40,11 @@ export const addReferralRewards = async (executorNickname, amount, wallet) => {
       const referredBySnap = await getDoc(referredByDoc);
       const referralNotFound = referredBy === "" || !referredBySnap.exists();
 
-      if (currentReferralLevel > REFERRALS_LEVEL || referralNotFound) {
+      if (currentReferralLevel > referralLength || referralNotFound) {
         return;
       }
 
-      const referralReward =
-        (amount / 100) * REFERRALS_PERCENTAGE_BY_LEVEL[currentReferralLevel];
+      const referralReward = (amount / 100) * userRank[currentReferralLevel];
 
       await updateDoc(referredByDoc, {
         referals: increment(referralReward),
@@ -98,12 +86,16 @@ export const addReferralToAllLevels = async (referredBy, signedUpUser) => {
     let currentReferralLevel = 1;
 
     const addReferral = async (referredBy) => {
-      if (currentReferralLevel > REFERRALS_LEVEL || referredBy === "") {
-        return;
-      }
-
       const referredByDoc = doc(db, "users", referredBy);
       const nextReferredBy = await getDoc(referredByDoc);
+
+      const referralLength = Object.keys(
+        RANKS[nextReferredBy.rank || "DEFAULT"]
+      ).length;
+
+      if (currentReferralLevel > referralLength || referredBy === "") {
+        return;
+      }
 
       if (!nextReferredBy.exists()) {
         return;
@@ -128,33 +120,21 @@ export const getPlanByRegion = (name) => {
   return PLANS.filter((plan) => plan.name === name)[0];
 };
 
-function calculateNextInterestDate(deposit) {
-  const nextInterestDate = new Date(deposit.lastAccrual.seconds * 1000);
+export const sortWalletsByAvailable = (wallets) => {
+  return wallets.sort((a, b) => b.available - a.available);
+};
 
-  if (deposit.planNumber < 4) {
-    nextInterestDate.setDate(nextInterestDate.getDate() + 1); // Следующий день
-  } else {
-    nextInterestDate.setDate(nextInterestDate.getDate() + deposit.days); // Добавить весь срок депозита
-  }
-
-  return nextInterestDate;
-}
-
-export const getNearestAccrual = (deposits) => {
-  let earliestInterestDate = null;
-  let depositWithEarliestInterest = null;
-  const activeDeposits = deposits.filter((item) => item.isActive);
-
-  for (const deposit of activeDeposits) {
-    const nextInterestDate = calculateNextInterestDate(deposit);
-
-    if (!earliestInterestDate || nextInterestDate < earliestInterestDate) {
-      earliestInterestDate = nextInterestDate;
-      depositWithEarliestInterest = deposit;
-    }
-  }
-
-  return depositWithEarliestInterest;
+export const getCorrectWallets = (userWallets) => {
+  return WALLETS.filter((wallet) =>
+    userWallets.hasOwnProperty(wallet.name)
+  ).map((wallet) => ({
+    ...wallet,
+    available: userWallets[wallet.name].available,
+    deposited: userWallets[wallet.name].deposited,
+    withdrawn: userWallets[wallet.name].withdrawn,
+    referrals: userWallets[wallet.name].referrals,
+    number: userWallets[wallet.name].number,
+  }));
 };
 
 export const getPagePath = (path) => {
@@ -167,6 +147,37 @@ export const getActiveMenuItem = (pathname) => {
 
 export const checkIsDigitals = (dig) => {
   return !new RegExp(/[^0-9.]/g).test(dig);
+};
+
+export const hasActiveRestrictions = (restrictions) => {
+  return Object.keys(restrictions).some((key) => {
+    if (typeof restrictions[key] === "boolean" && key !== "isPrivateKey") {
+      return restrictions[key];
+    }
+    if (
+      typeof restrictions[key] === "object" &&
+      restrictions[key].isActive !== undefined
+    ) {
+      return restrictions[key].isActive;
+    }
+    return false;
+  });
+};
+
+export const getActiveRestriction = (restrictions) => {
+  for (let key in restrictions) {
+    if (
+      typeof restrictions[key] === "boolean" &&
+      restrictions[key] &&
+      key !== "isPrivateKey"
+    ) {
+      return key;
+    }
+    if (typeof restrictions[key] === "object" && restrictions[key].isActive) {
+      return key;
+    }
+  }
+  return null;
 };
 
 export const addCustomUserFields = (user, phoneNumber) => {
@@ -191,11 +202,16 @@ export const addCustomUserFields = (user, phoneNumber) => {
     earned: 0,
     withdrawn: 0,
     registrationDate: new Date(user.metadata.creationTime),
-    referredTo: { 1: [], 2: [], 3: [], 4: [], 5: [] },
+    referredTo: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] },
     restrictions: {
+      isWithdrawnLimit: false,
+      isFinancialGateway: false,
       isPrivateKey: false,
       isPrivateKeyInvalid: false,
-      isReferralCheater: false,
+      isReferralCheater: {
+        isActive: false,
+        users: [],
+      },
       isMultiAcc: {
         isActive: false,
         users: [],
@@ -210,5 +226,6 @@ export const addCustomUserFields = (user, phoneNumber) => {
     },
     uid: user.uid,
     privateKey: "",
+    rank: "DEFAULT",
   };
 };
