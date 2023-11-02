@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./UserInfo.module.scss";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import ButtonWithState from "../../../../Shared UI/ButtonWithState/ButtonWithState";
 
-const UserInfo = ({ userData, loading }) => {
+const UserInfo = ({ userData, buttonState }) => {
   const { register } = useFormContext();
   const { t } = useTranslation();
 
@@ -97,14 +98,7 @@ const UserInfo = ({ userData, loading }) => {
           </div>
         </label>
       </div>
-      <button
-        type="submit"
-        form="settings-form"
-        className={`${styles["update-info-button"]} button`}
-        disabled={loading}
-      >
-        {t("settings.update_info")}
-      </button>
+      <ButtonWithState buttonState={buttonState} form={"settings-form"} />
     </div>
   );
 };

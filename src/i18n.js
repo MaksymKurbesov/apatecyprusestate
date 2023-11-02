@@ -79,7 +79,7 @@ i18n
       cache: ["cookie"],
     },
     resources,
-    ns: ["main", "partners-program"],
+    ns: ["main", "partners-program", "our-contacts"],
     backend: {
       loadPath: "./utils/locales/{{ns}}/{{lng}}.json",
     },

@@ -5,29 +5,30 @@ import Input from "../../../Shared UI/Input/Input";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { contactFormNotification } from "../../../Api/Notifications";
+import ButtonWithState from "../../../Shared UI/ButtonWithState/ButtonWithState";
 
 const ContactForm = () => {
   const { t } = useTranslation();
   const { register, handleSubmit, reset } = useForm({
     mode: "onBlur",
   });
-  const [buttonState, setButtonState] = useState("idle");
+  const [buttonState, setButtonState] = useState("idleContact");
 
   const contactFormHandler = (data) => {
     setButtonState("loading");
 
     try {
       contactFormNotification(data).then(() => {
-        setButtonState("success");
+        setButtonState("success_send");
         reset();
 
         setTimeout(() => {
-          setButtonState("idle");
+          setButtonState("idleContact");
         }, 2000);
       });
     } catch (e) {
       console.error(e);
-      setButtonState("idle");
+      setButtonState("idleContact");
     }
   };
 
@@ -59,19 +60,7 @@ const ContactForm = () => {
           type={"phone"}
           placeholder={t("contact_form.phone_number")}
         />
-        <button
-          className={`${
-            buttonState === "success" ? styles["success-button"] : ""
-          } button`}
-          style={{ width: "100%" }}
-          type="submit"
-          form="contact-form"
-          disabled={buttonState === "loading"}
-        >
-          {buttonState === "success"
-            ? t("contact_form.success")
-            : t("contact_form.contact_us")}
-        </button>
+        <ButtonWithState buttonState={buttonState} form={"contact-form"} />
       </form>
     </section>
   );

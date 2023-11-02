@@ -36,7 +36,6 @@
     text-align: center;
     padding: 28px 0.3em;
     font-weight: 500;
-
 }
 
 /////////////////// TRANSACTIONS STYLES ///////////////////
@@ -138,20 +137,26 @@
 }
 
 
+.deposits tbody td {
+    padding: 28px 0;
+    font-size: 14px;
+}
+
 @media screen and (max-width: 768px) {
+    .table tbody tr:not(:last-child):after {
+        content: none;
+    }
+
     .deposits tbody {
         box-shadow: none;
         border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
     }
 
     .deposits thead tr {
         display: none;
-    }
-
-    .deposits tbody {
-        display: flex;
-        flex-direction: column;
-        row-gap: 15px;
     }
 
     .deposits tbody tr {
@@ -162,7 +167,8 @@
         grid-template-columns: 80px 1fr max-content;
         grid-template-areas:
             "plan progress nextAccrual"
-            "amount received willReceived"
+            "paymentMethod paymentMethod amount"
+            "received . willReceived"
             "dateOpen dateOpen dateOpen"
             "dateClose dateClose dateClose";
         border-radius: 8px;
@@ -184,7 +190,7 @@
     }
 
     .deposits tbody td:nth-child(3):before {
-        top: 179px;
+        top: 201px;
     }
 
 
@@ -192,6 +198,7 @@
         text-align: left;
         padding: 0;
         font-size: 16px;
+
     }
 
     .deposits .plan-cell {
@@ -211,14 +218,22 @@
         justify-self: flex-end;
     }
 
+    .deposits .paymentMethod-cell {
+        grid-area: paymentMethod;
+        width: auto !important;
+        //justify-self: center;
+    }
+
     .deposits .amount-cell {
         grid-area: amount;
         width: auto !important;
+        justify-self: self-end;
+        text-align: right;
     }
 
     .deposits .received-cell {
         grid-area: received;
-        justify-self: center;
+        //justify-self: center;
         width: auto !important;
     }
 
@@ -264,7 +279,6 @@
         color: rgba(121, 87, 255, 1);
         width: auto !important;
     }
-
 
     .deposits-label {
         margin-bottom: 5px;

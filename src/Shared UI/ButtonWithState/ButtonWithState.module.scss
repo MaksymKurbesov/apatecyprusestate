@@ -1,0 +1,23 @@
+.buttonState {
+    background-image: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
+    background-size: 400% 100%;
+    background-position: 0 100%;
+    margin-top: 50px;
+}
+
+.buttonState:disabled {
+    background: #e9e9e9;
+    color: #858585;
+    cursor: not-allowed;
+}
+
+
+.success-button {
+    background-image: linear-gradient(90deg, var(--gradient-A), var(--gradient-B), #38f948) !important;
+    background-position: 100% 100% !important;
+}
+
+.failed-button {
+    background-image: linear-gradient(90deg, var(--gradient-A), var(--gradient-B), #f93838) !important;
+    background-position: 100% 100% !important;
+}

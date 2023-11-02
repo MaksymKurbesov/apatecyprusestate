@@ -145,6 +145,16 @@ export const getActiveMenuItem = (pathname) => {
   return MENU_ITEMS.find((item) => item.path === getPagePath(pathname));
 };
 
+export const generatePrivateKey = (length = 12) => {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+};
+
 export const checkIsDigitals = (dig) => {
   return !new RegExp(/[^0-9.]/g).test(dig);
 };

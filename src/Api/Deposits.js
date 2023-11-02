@@ -4,6 +4,7 @@ import {
   getDocs,
   increment,
   onSnapshot,
+  orderBy,
   query,
   runTransaction,
   serverTimestamp,
@@ -166,11 +167,9 @@ export const checkDepositsForAccruals = async () => {
 
 export const getAllDeposits = (setUserDeposits) => {
   try {
-    const depositsCollection = collection(
-      db,
-      "users",
-      auth.currentUser.displayName,
-      "deposits"
+    const depositsCollection = query(
+      collection(db, "users", auth.currentUser.displayName, "deposits"),
+      orderBy("date", "desc")
     );
 
     return onSnapshot(depositsCollection, (depositSnap) => {

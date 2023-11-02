@@ -214,8 +214,8 @@ export const PLANS = [
   {
     planNumber: 6,
     name: "Individual",
-    inDay: 2.3,
-    days: 24,
+    inDay: "∞",
+    days: "∞",
     minDeposit: 50000,
     maxDeposit: "∞",
     accrualsEveryday: false,

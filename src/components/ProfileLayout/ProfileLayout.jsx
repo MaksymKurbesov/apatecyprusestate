@@ -8,6 +8,7 @@ import { useAuthState } from "../../hooks/useAuthState";
 import { auth, FirebaseContext } from "../../index";
 import { doc, onSnapshot } from "firebase/firestore";
 import { getAllDeposits } from "../../Api/Deposits";
+import { getFunctions, httpsCallable } from "firebase/functions";
 
 const ProfileLayout = () => {
   const windowSize = useWindowSize();
@@ -16,6 +17,8 @@ const ProfileLayout = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const { db } = useContext(FirebaseContext);
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (loading) return;

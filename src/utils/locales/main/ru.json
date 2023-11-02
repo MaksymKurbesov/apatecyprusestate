@@ -167,6 +167,7 @@
     "amount": "Сумма",
     "received": "Получено",
     "willReceived": "Будет получено",
+    "paymentMethod": "Способ оплаты",
     "dateOpen": "Дата открытия",
     "dateClose": "Дата закрытия",
     "nickname": "Никнейм",
@@ -231,7 +232,12 @@
     "update_info": "Обновить данные",
     "wallets": "Кошельки",
     "save": "Сохранить",
-    "upload_photo": "Обновить фото"
+    "upload_photo": "Обновить фото",
+    "updated": "Обновлено!",
+    "error": "Ошибка!",
+    "loading": "Загрузка...",
+    "update_wallet": "Обновить кошельки",
+    "wallets_updated": "Кошельки обновлены!"
   },
   "footer": {
     "documents": "Документы",

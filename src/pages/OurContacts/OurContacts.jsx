@@ -18,11 +18,12 @@ import { ScrollRestoration } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ourContactsFormNotification } from "../../Api/Notifications";
 import { useForm } from "react-hook-form";
+import ButtonWithState from "../../Shared UI/ButtonWithState/ButtonWithState";
 
 const OurContacts = () => {
   const windowSize = useWindowSize();
   const { t } = useTranslation("our-contacts");
-  const [buttonState, setButtonState] = useState("idle");
+  const [buttonState, setButtonState] = useState("idleContact");
   const { register, handleSubmit, reset } = useForm({
     mode: "onBlur",
   });
@@ -32,16 +33,16 @@ const OurContacts = () => {
 
     try {
       ourContactsFormNotification(data).then(() => {
-        setButtonState("success");
+        setButtonState("success_send");
         reset();
 
         setTimeout(() => {
-          setButtonState("idle");
+          setButtonState("idleContact");
         }, 2000);
       });
     } catch (e) {
       console.error(e);
-      setButtonState("idle");
+      setButtonState("idleContact");
     }
   };
 
@@ -90,17 +91,10 @@ const OurContacts = () => {
                 name={"message"}
                 placeholder={t("your_message")}
               />
-              <button
-                className={`${
-                  buttonState === "success" ? styles["success-button"] : ""
-                } button`}
-                style={{ width: "100%" }}
-                type="submit"
-                form="contact-us-form"
-                disabled={buttonState === "loading"}
-              >
-                {buttonState === "success" ? t("success") : t("send")}
-              </button>
+              <ButtonWithState
+                buttonState={buttonState}
+                form={"contact-us-form"}
+              />
             </form>
           </div>
 

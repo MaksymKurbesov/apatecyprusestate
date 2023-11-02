@@ -158,6 +158,7 @@
     "amount": "Amount",
     "received": "Received",
     "willReceived": "Will Received",
+    "paymentMethod": "Payment Method",
     "dateOpen": "Date Open",
     "dateClose": "Date Close",
     "nickname": "Nickname",
@@ -229,7 +230,12 @@
     "update_info": "Update Info",
     "wallets": "Wallets",
     "save": "Save",
-    "upload_photo": "Upload photo"
+    "upload_photo": "Upload photo",
+    "updated": "Updated!",
+    "error": "Error!",
+    "loading": "Loading...",
+    "update_wallet": "Update wallet",
+    "wallets_updated": "Wallets updated!"
   },
   "footer": {
     "documents": "Documents",

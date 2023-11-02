@@ -7,18 +7,48 @@ import {
   query,
   updateDoc,
   onSnapshot,
+  getDocs,
 } from "firebase/firestore";
 import { FirebaseContext } from "../../index";
-import { addReferralRewards } from "../../utils/helpers";
+import { addReferralRewards, generatePrivateKey } from "../../utils/helpers";
 import {
   updateUserBalanceAfterCashIn,
   updateUserBalanceAfterWithdrawn,
 } from "../../Api/UserData";
 import { RANKS } from "../../utils/PERCENTAGES_BY_RANK";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { getTemplate } from "./PrivateKeyEmail";
 
 const Admin = () => {
   const { db } = useContext(FirebaseContext);
   const [transactions, setTransactions] = useState([]);
+  const { register, handleSubmit } = useForm();
+
+  const sendPrivateKeyToUser = async (userEmail) => {
+    const privateKey = generatePrivateKey();
+    const userRef = collection(db, "users");
+    const userQuery = query(userRef, where("email", "==", userEmail));
+    const userQuerySnaps = await getDocs(userQuery);
+    const userNickname = userQuerySnaps.docs[0].data().nickname;
+
+    axios
+      .post(
+        "https://us-central1-apathe-87c86.cloudfunctions.net/sendEmail/sendEmail",
+        {
+          to: userEmail,
+          subject: "Ваш Приватный Финансовый Ключ от Apate Cyprus Estate",
+          html: getTemplate(userEmail, userNickname, privateKey),
+        }
+      )
+      .then(async () => {
+        await updateDoc(userQuerySnaps.docs[0].ref, {
+          privateKey: privateKey,
+        });
+        alert("Приватный ключ отправлен!");
+      })
+      .catch((e) => alert(e));
+  };
 
   useEffect(() => {
     const transactionsDocRef = query(
@@ -32,6 +62,10 @@ const Admin = () => {
       );
     });
   }, []);
+
+  const onSubmit = async (data) => {
+    await sendPrivateKeyToUser(data.email);
+  };
 
   const successTransaction = async ({
     id,
@@ -112,6 +146,14 @@ const Admin = () => {
           })}
         </tbody>
       </table>
+      <div>
+        <form id={"private-key-form"} onSubmit={handleSubmit(onSubmit)}></form>
+        <h3>Выслать приватный ключ</h3>
+        <input {...register("email")} />
+        <button type="submit" form="private-key-form">
+          Отправить
+        </button>
+      </div>
     </div>
   );
 };

@@ -48,7 +48,7 @@ const Plan = ({ plan }) => {
               ? t("tariff_plans.at_the_end_of_the_term")
               : t("tariff_plans.daily")}
           </p>
-          <span>{inDay}%</span>
+          <span>{name === "Individual" ? inDay : `${inDay}%`}</span>
         </li>
         <li>
           <p>{t("tariff_plans.days")}</p>

@@ -12,18 +12,25 @@ const columns = [
     title: "Region",
     key: "region",
     responsive: [568],
-    width: "8%",
+    width: "12%",
   },
   {
     title: "Progress",
     key: "progress",
     responsive: [568],
+    width: "25%",
   },
   {
     title: <p>Next Accrual</p>,
     key: "nextAccrual",
     responsive: [568],
     width: "10%",
+  },
+  {
+    title: <p>Payment Method</p>,
+    key: "paymentMethod",
+    responsive: [568],
+    // width: "10%",
   },
   {
     title: "Amount",
@@ -47,13 +54,13 @@ const columns = [
     title: <p>Date Open</p>,
     key: "dateOpen",
     responsive: [568],
-    width: "12%",
+    width: "11%",
   },
   {
     title: <p>Date Close</p>,
     key: "dateClose",
     responsive: [568],
-    width: "12%",
+    width: "11%",
   },
 ];
 

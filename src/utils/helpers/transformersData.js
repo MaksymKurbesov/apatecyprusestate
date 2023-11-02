@@ -41,6 +41,7 @@ export const normalizeDeposits = (deposits) => {
       days,
       charges,
       isActive,
+      wallet,
     } = deposit;
 
     return {
@@ -64,6 +65,7 @@ export const normalizeDeposits = (deposits) => {
       ) : (
         <ColoredLabel text={"Выполнено"} />
       ),
+      paymentMethod: wallet,
       amount: `$${amount.toFixed(2)}`,
       received: `$${received.toFixed(2)}`,
       willReceived: `$${willReceived.toFixed(2)}`,

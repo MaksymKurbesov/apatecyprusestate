@@ -4,20 +4,30 @@ import { useForm } from "react-hook-form";
 import { updateUserWallets } from "../../../../Api/UserData";
 import { normalizeUserWallets } from "../../../../utils/helpers/transformersData";
 import { useTranslation } from "react-i18next";
+import ButtonWithState from "../../../../Shared UI/ButtonWithState/ButtonWithState";
 
 const Wallets = ({ userWallets }) => {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
+  const [buttonState, setButtonState] = useState("idleWallet");
 
   const { register, handleSubmit } = useForm({
     mode: "onChange",
   });
 
   const onSubmit = async (data) => {
-    setLoading(true);
-    updateUserWallets(data).then(() => {
-      setLoading(false);
-    });
+    setButtonState("loading");
+    updateUserWallets(data)
+      .then(() => {
+        setButtonState("walletsUpdated");
+      })
+      .catch((e) => {
+        setButtonState("failed");
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setButtonState("idleWallet");
+        }, 2000);
+      });
   };
 
   return (
@@ -54,14 +64,7 @@ const Wallets = ({ userWallets }) => {
           );
         })}
       </form>
-      <button
-        type="submit"
-        form="wallets-form"
-        className={`${styles["save-button"]} button`}
-        disabled={loading}
-      >
-        {t("settings.save")}
-      </button>
+      <ButtonWithState buttonState={buttonState} form={"wallets-form"} />
     </div>
   );
 };
