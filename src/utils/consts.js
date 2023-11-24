@@ -30,7 +30,7 @@ export const STATISTIC = [
     title: "ROI",
   },
   {
-    count: 2.3,
+    count: 23.5,
     title: "Capital",
   },
 ];
@@ -129,7 +129,7 @@ export const WALLETS = [
     name: "Bitcoin",
     label: "BTC",
     placeholder: "3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5",
-    our_wallet_number: "Tbc1qchrkev838v3m4vhraptckdp7ake0u264l5nafg",
+    our_wallet_number: "bc1qchrkev838v3m4vhraptckdp7ake0u264l5nafg",
   },
   {
     icon: EthereumIcon,

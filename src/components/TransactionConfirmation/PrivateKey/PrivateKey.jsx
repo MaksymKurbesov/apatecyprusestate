@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./PrivateKey.module.scss";
 import { ReactComponent as InfoIcon } from "../../../assets/SVG/info-circle.svg";
 import { ReactComponent as Exclamation } from "../../../assets/SVG/exclamation.svg";
 import { ErrorMessage } from "@hookform/error-message";
 import { useTranslation } from "react-i18next";
+import Popup from "../../Popup/Popup";
 
-const PrivateKey = ({ register, errors }) => {
+const PrivateKey = ({ register, errors, infoText }) => {
   const { t } = useTranslation();
+  const [isInfoHovered, setIsInfoHovered] = useState(false);
 
   return (
     <div className={`${styles["private-key"]} custom-border`}>
       <p>
         {t("private_key.title")}
-        <InfoIcon className={styles["info-icon"]} />
+        <InfoIcon
+          onMouseOver={() => setIsInfoHovered(true)}
+          onMouseOut={() => setIsInfoHovered(false)}
+          className={styles["info-icon"]}
+        />
       </p>
+      <div
+        className={`${isInfoHovered ? styles["show-pop-up"] : ""} ${
+          styles["pop-up-wrapper"]
+        }`}
+      >
+        <Popup text={infoText} />
+      </div>
       <input
         {...register("private-key", {
           required: "Введите пожалуйста приватный финансовый ключ",

@@ -54,7 +54,7 @@ import Project5Image7 from "../../assets/images/projects/limassol/project5/7.web
 export const LIMASSOL = [
   {
     id: 18643,
-    name: "2 Bedroom Apartment #38643",
+    name: "2 Bedroom Apartment #18643",
     description: (
       <>
         <p>
@@ -214,7 +214,7 @@ export const LIMASSOL = [
   },
   {
     id: 13454,
-    name: "2 Bedroom Apartment #53454",
+    name: "2 Bedroom Apartment #13454",
     description: (
       <>
         <p>
@@ -371,7 +371,7 @@ export const LIMASSOL = [
   },
   {
     id: 13967,
-    name: "1 Bedroom Apartment #73967",
+    name: "1 Bedroom Apartment #13967",
     description: (
       <>
         <p>

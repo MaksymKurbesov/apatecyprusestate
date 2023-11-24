@@ -11,6 +11,9 @@ import { logInWithEmailAndPassword } from "../../Api/Auth";
 import { ReactComponent as Exclamation } from "../../assets/SVG/exclamation.svg";
 import { ReactComponent as OpenEye } from "../../assets/SVG/eye.svg";
 import { useTranslation } from "react-i18next";
+import Modal from "../../Shared UI/Modal/Modal";
+import { closeModal, openModal } from "../../utils/helpers";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const SignIn = () => {
   const { t } = useTranslation();
@@ -23,12 +26,30 @@ const SignIn = () => {
     mode: "onBlur",
   });
 
+  const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
+  const [forgotPasswordMessage, setForgotPasswordMessage] = useState("");
+  const [isOpenForgotPasswordModal, setIsOpenForgotPasswordModal] =
+    useState(false);
+
   useEffect(() => {
     if (user) navigate("/profile/personal-area");
   }, [user]);
 
   const togglePasswordVisibility = () => {
     setPasswordShown(!passwordShown);
+  };
+
+  const forgotPasswordHandler = async () => {
+    try {
+      await sendPasswordResetEmail(auth, forgotPasswordEmail);
+      setForgotPasswordEmail("");
+      setForgotPasswordMessage(
+        "Письмо с восстановлением пароля успешно отправлено!"
+      );
+    } catch (e) {
+      setForgotPasswordMessage("Такого пользователя не существует!");
+      console.log(e, "error");
+    }
   };
 
   const signInHandler = async (data) => {
@@ -92,10 +113,16 @@ const SignIn = () => {
           <input type={"checkbox"} />
           <span>{t("log_in.remember_me")}</span>
         </div>
-        <p className={styles["forgot-password"]}>
+        <p
+          onClick={() => openModal(setIsOpenForgotPasswordModal)}
+          className={styles["forgot-password"]}
+        >
           {t("log_in.forgot_password")}
         </p>
-        <NavLink className={styles["dont-have-account"]} to={"/sign-up"}>
+        <NavLink
+          className={styles["dont-have-account"]}
+          to={"/authorization/sign-up"}
+        >
           {t("log_in.you_dont_have_account")}
         </NavLink>
         <button
@@ -108,6 +135,46 @@ const SignIn = () => {
         </button>
       </form>
       <ScrollRestoration />
+      <Modal
+        handleClose={() => closeModal(setIsOpenForgotPasswordModal)}
+        isOpen={isOpenForgotPasswordModal}
+        closeOnEsc
+      >
+        <div
+          onClick={() => closeModal(setIsOpenForgotPasswordModal)}
+          className={styles["close-button"]}
+        >
+          <span></span>
+          <span></span>
+        </div>
+        <h3>Забыли пароль?</h3>
+        <p>
+          Уважаемый пользователь! Если вы забыли свой пароль, не беспокойтесь!
+          Вы можете легко восстановить доступ к своему аккаунту. Просто введите
+          свой электронный адрес в поле ниже, и мы отправим вам инструкции по
+          сбросу пароля.
+        </p>
+        <div className={styles["forgot-password-wrapper"]}>
+          <input
+            value={forgotPasswordEmail}
+            onChange={(e) => setForgotPasswordEmail(e.target.value)}
+            className={styles["forgot-password-input"]}
+            placeholder={"Введите email"}
+          />
+          <p
+            className={`${
+              forgotPasswordMessage !== "Такого пользователя не существует!"
+                ? styles["success-message"]
+                : styles["error-message"]
+            } ${styles["message"]}`}
+          >
+            {forgotPasswordMessage}
+          </p>
+          <button onClick={forgotPasswordHandler} className={"button"}>
+            Восстановить пароль
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };

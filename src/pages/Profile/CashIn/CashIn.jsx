@@ -73,6 +73,7 @@ const CashIn = () => {
       content: (
         <TransactionConfirmation
           info
+          infoText={t("popups.cash_in_popup")}
           isInstruction={true}
           bill={[
             {

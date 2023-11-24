@@ -8,6 +8,8 @@ import { useFormContext } from "react-hook-form";
 import { doc, getDoc } from "firebase/firestore";
 import { logout, registerWithEmailAndPassword } from "../../../Api/Auth";
 import { useTranslation } from "react-i18next";
+import { getRegistrationTemplate } from "../RegistrationEmail";
+import axios from "axios";
 
 const SignUpForm = ({
   handleOpenAgreement,
@@ -32,9 +34,24 @@ const SignUpForm = ({
 
     if (!candidateSnap.exists()) {
       await registerWithEmailAndPassword(data)
-        .then((error) => {
+        .then(async (error) => {
           if (!error) {
             logout();
+            try {
+              await axios.post(
+                "https://apatecyprusestate-server.site:8000/register",
+                {
+                  to: data.email,
+                  subject: "Поздравляем с регистрацией на Apate Cyprus Estate!",
+                  html: getRegistrationTemplate(data.email, data.nickname),
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                }
+              );
+            } catch (e) {
+              console.log(e, "error send email");
+            }
             handleOpenConfirmModal();
             reset();
           } else {

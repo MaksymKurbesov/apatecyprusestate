@@ -17,12 +17,10 @@
     white-space: nowrap;
     margin-right: 15px;
     overflow-x: scroll;
-}
-
-.link {
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 }
+
 .link::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }

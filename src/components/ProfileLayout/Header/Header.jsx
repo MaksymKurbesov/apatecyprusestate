@@ -50,7 +50,7 @@ const Header = ({ rank }) => {
     setActiveMenuItem(getActiveMenuItem(location.pathname));
 
     setIsMenuOpen(false);
-    document.body.style.overflow = "visible";
+    // document.body.style.overflow = "visible";
 
     return () => {
       document.body.style.overflow = "visible";

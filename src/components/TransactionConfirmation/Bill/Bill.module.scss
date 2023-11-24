@@ -68,6 +68,29 @@
     border-radius: 8px;
 }
 
+.pop-up-wrapper {
+    position: absolute;
+    top: 80px;
+    left: 100px;
+    right: -40px;
+    z-index: 0;
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    transition: 0.35s ease all;
+}
+
+.show-pop-up {
+    opacity: 1;
+    z-index: 5;
+}
+
+@media screen and (max-width: 768px) {
+    .pop-up-wrapper {
+        left: 20px;
+        right: 10px;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .bill {
         padding: 30px 25px;

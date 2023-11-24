@@ -96,6 +96,40 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 500;
+    cursor: pointer;
+}
+
+.forgot-password-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.forgot-password-input {
+    width: 70%;
+    padding: 5px 0;
+    font-size: 18px;
+    font-family: inherit;
+    border: none;
+    color: white;
+    border-bottom: 3px solid var(--gradient-A);
+    background: none;
+    outline: none;
+    margin-bottom: 55px;
+}
+
+.message {
+    display: none;
+}
+
+.success-message {
+    color: #38f948 !important;
+    display: block;
+}
+
+.error-message {
+    color: #fc2f2f !important;
+    display: block;
 }
 
 .dont-have-account {
@@ -105,6 +139,33 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 500;
+}
+
+.close-button {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.close-button span {
+    display: block;
+    width: 2px;
+    height: 22px;
+    background: white;
+}
+
+.close-button span:nth-child(1) {
+    transform: rotateZ(45deg);
+}
+
+.close-button span:nth-child(2) {
+    transform: rotateZ(-45deg);
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 @media screen and (max-width: 768px) {

@@ -73,6 +73,7 @@
     bottom: -17px;
 }
 
+
 @media screen and (max-width: 480px) {
     .instruction {
         padding: 30px 25px;
@@ -86,7 +87,13 @@
         font-size: 14px;
     }
 
-    .transaction-number {
-
+    .our-wallet {
+        max-width: 285px;
     }
 }
+
+//@media screen and (max-width: 575px) {
+//    .instruction-list {
+//        width: 100%;
+//    }
+//}

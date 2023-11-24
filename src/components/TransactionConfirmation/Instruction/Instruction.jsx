@@ -22,7 +22,7 @@ const Instruction = ({ register, errors }) => {
         <li>
           <p>2. {t("instruction.2")}</p>
         </li>
-        <li>
+        <li className={styles["our-wallet"]}>
           <p>3. {t("instruction.3")}</p>
           <CopyText
             text={`${

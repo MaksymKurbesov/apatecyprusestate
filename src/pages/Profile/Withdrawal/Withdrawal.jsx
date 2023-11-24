@@ -90,6 +90,7 @@ const Withdrawal = () => {
       content: (
         <TransactionConfirmation
           isPrivateKey={userData.restrictions.isPrivateKey}
+          infoText={t("popups.private_key_popup")}
           bill={[
             {
               label: t("bill.payment_system"),

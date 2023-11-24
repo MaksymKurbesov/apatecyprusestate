@@ -10,6 +10,7 @@ const TransactionConfirmation = ({
   isInstruction,
   bill,
   info,
+  infoText,
 }) => {
   const {
     register,
@@ -19,8 +20,15 @@ const TransactionConfirmation = ({
 
   return (
     <>
-      {isPrivateKey && <PrivateKey register={register} errors={errors} />}
-      <Bill bill={bill} info={info} selectedWallet={watch("wallet")} />
+      {isPrivateKey && (
+        <PrivateKey register={register} errors={errors} infoText={infoText} />
+      )}
+      <Bill
+        bill={bill}
+        info={info}
+        infoText={infoText}
+        selectedWallet={watch("wallet")}
+      />
       {isInstruction && <Instruction register={register} errors={errors} />}
     </>
   );

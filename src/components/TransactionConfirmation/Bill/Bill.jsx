@@ -1,19 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Bill.module.scss";
 import { ReactComponent as InfoIcon } from "../../../assets/SVG/info-circle.svg";
 import ColoredLabel from "../../ColoredLabel/ColoredLabel";
 import { WALLETS } from "../../../utils/consts";
 import { useTranslation } from "react-i18next";
+import Popup from "../../Popup/Popup";
 
-const Bill = ({ bill, info, selectedWallet }) => {
+const Bill = ({ bill, info, infoText, selectedWallet }) => {
   const { t } = useTranslation();
+  const [isInfoHovered, setIsInfoHovered] = useState(false);
 
   return (
     <div className={`${styles["bill"]} custom-bg custom-border`}>
       <h3>
         {t("bill.transaction_confirmation")}
-        {info ? <InfoIcon className={styles["info-icon"]} /> : null}
+        {info ? (
+          <InfoIcon
+            onMouseOver={() => setIsInfoHovered(true)}
+            onMouseOut={() => setIsInfoHovered(false)}
+            className={styles["info-icon"]}
+          />
+        ) : null}
       </h3>
+
+      <div
+        className={`${isInfoHovered ? styles["show-pop-up"] : ""} ${
+          styles["pop-up-wrapper"]
+        }`}
+      >
+        <Popup text={infoText} />
+      </div>
+
       <ul>
         {bill.map((row) => {
           let rowWithCurrencyLabel =

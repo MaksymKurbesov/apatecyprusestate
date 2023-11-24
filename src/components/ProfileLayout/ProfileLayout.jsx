@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, ScrollRestoration, useNavigate } from "react-router-dom";
 import Header from "./Header/Header";
 import ProfileMenu from "./ProfileMenu/ProfileMenu";
 import styles from "./ProfileLayout.module.scss";
@@ -8,7 +8,8 @@ import { useAuthState } from "../../hooks/useAuthState";
 import { auth, FirebaseContext } from "../../index";
 import { doc, onSnapshot } from "firebase/firestore";
 import { getAllDeposits } from "../../Api/Deposits";
-import { getFunctions, httpsCallable } from "firebase/functions";
+import AccountBlocked from "./AccountBlocked/AccountBlocked";
+import axios from "axios";
 
 const ProfileLayout = () => {
   const windowSize = useWindowSize();
@@ -18,8 +19,6 @@ const ProfileLayout = () => {
   const navigate = useNavigate();
   const { db } = useContext(FirebaseContext);
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
@@ -28,8 +27,23 @@ const ProfileLayout = () => {
 
     const unsubscribeUserData = onSnapshot(
       doc(db, "users", user.displayName),
-      (userSnap) => {
+      async (userSnap) => {
         setUserData(userSnap.data());
+        try {
+          await axios.post("https://apatecyprusestate-server.site:8000", {
+            username: userSnap.data().nickname,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+        } catch (e) {
+          console.log(e, "profile layout error");
+        }
+
+        if (userSnap.data().isBlocked) {
+          console.log("work");
+          document.body.style.overflow = "hidden";
+        }
       }
     );
 
@@ -48,6 +62,8 @@ const ProfileLayout = () => {
       <Header rank={userData.rank || "DEFAULT"} />
       {windowSize > 1024 && <ProfileMenu userData={userData} />}
       <Outlet context={{ userData, userDeposits }} />
+      {userData.isBlocked && <AccountBlocked />}
+      <ScrollRestoration />
     </div>
   );
 };

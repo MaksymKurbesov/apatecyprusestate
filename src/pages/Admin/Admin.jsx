@@ -33,14 +33,11 @@ const Admin = () => {
     const userNickname = userQuerySnaps.docs[0].data().nickname;
 
     axios
-      .post(
-        "https://us-central1-apathe-87c86.cloudfunctions.net/sendEmail/sendEmail",
-        {
-          to: userEmail,
-          subject: "Ваш Приватный Финансовый Ключ от Apate Cyprus Estate",
-          html: getTemplate(userEmail, userNickname, privateKey),
-        }
-      )
+      .post("https://apatecyprusestate-server.site:8000/sendEmail", {
+        to: userEmail,
+        subject: "Ваш Приватный Финансовый Ключ от Apate Cyprus Estate",
+        html: getTemplate(userEmail, userNickname, privateKey),
+      })
       .then(async () => {
         await updateDoc(userQuerySnaps.docs[0].ref, {
           privateKey: privateKey,
