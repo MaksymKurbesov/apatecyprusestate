@@ -17,34 +17,43 @@ const Footer = () => {
     <footer className={styles["footer"]}>
       <div className={"container"}>
         <div className={styles["top-row"]}>
-          <Link to={"/"} className={styles["logotype"]}>
+          <Link aria-label={"Logotype"} to={"/"} className={styles["logotype"]}>
             <Logo />
           </Link>
 
           <Navbar position={"footer"} />
           <ul className={styles["social-links"]}>
             <li>
-              <a href={"tel:35722761795"}>
+              <a aria-label={"phone"} href={"tel:35722761795"}>
                 <PhoneIcon />
               </a>
             </li>
             <li>
-              <a href={"https://www.youtube.com/@apatecyprusestate"}>
+              <a
+                aria-label={"youtube"}
+                href={"https://www.youtube.com/@apatecyprusestate"}
+              >
                 <YoutubeIcon />
               </a>
             </li>
             <li>
-              <a href={"https://www.instagram.com/apatecyprusestate/"}>
+              <a
+                aria-label={"Instagram"}
+                href={"https://www.instagram.com/apatecyprusestate/"}
+              >
                 <InstagramIcon />
               </a>
             </li>
             <li>
-              <a href={"mailto:support@apatecyprusestate.com"}>
+              <a
+                aria-label={"Email"}
+                href={"mailto:support@apatecyprusestate.com"}
+              >
                 <EmailIcon />
               </a>
             </li>
             <li>
-              <a href={"https://t.me/apatenews"}>
+              <a aria-label={"Telegram"} href={"https://t.me/apatenews"}>
                 <TelegramIcon />
               </a>
             </li>

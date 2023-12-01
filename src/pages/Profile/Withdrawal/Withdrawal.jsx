@@ -41,9 +41,12 @@ const Withdrawal = () => {
   const userHasRestriction = hasActiveRestrictions(userData.restrictions);
 
   const selectedWallet = methods.watch("wallet");
+
   const amount = methods.watch("amount");
 
   const onSubmit = async (data) => {
+    if (userData.wallets[data.wallet].number === "") return;
+
     const invalidPrivateKey =
       userData.restrictions.isPrivateKey &&
       userData.privateKey !== methods.watch("private-key");
@@ -62,7 +65,11 @@ const Withdrawal = () => {
       executor: data.wallet,
       nickname: auth.currentUser.displayName,
     });
-    await telegramNotification({ ...data, type: "Вывод" });
+    await telegramNotification({
+      ...data,
+      walletNumber: userData.wallets[data.wallet].number,
+      type: "Вывод",
+    });
     openModal(setIsSuccessModalStatus);
     methods.reset();
     setLoading(false);
@@ -90,6 +97,7 @@ const Withdrawal = () => {
       content: (
         <TransactionConfirmation
           isPrivateKey={userData.restrictions.isPrivateKey}
+          userWithWallet={!!userData.wallets[selectedWallet]?.number}
           infoText={t("popups.private_key_popup")}
           bill={[
             {

@@ -4,6 +4,7 @@ import Bill from "./Bill/Bill";
 import Instruction from "./Instruction/Instruction";
 import PrivateKey from "./PrivateKey/PrivateKey";
 import { useFormContext } from "react-hook-form";
+import { useOutletContext } from "react-router-dom";
 
 const TransactionConfirmation = ({
   isPrivateKey,
@@ -11,12 +12,14 @@ const TransactionConfirmation = ({
   bill,
   info,
   infoText,
+  userWithWallet,
 }) => {
   const {
     register,
     watch,
     formState: { errors },
   } = useFormContext();
+  const { userData } = useOutletContext();
 
   return (
     <>
@@ -30,6 +33,11 @@ const TransactionConfirmation = ({
         selectedWallet={watch("wallet")}
       />
       {isInstruction && <Instruction register={register} errors={errors} />}
+      {!userWithWallet && (
+        <p className={"error"}>
+          Укажите кошелёк в настройках для вывода средств!
+        </p>
+      )}
     </>
   );
 };

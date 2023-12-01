@@ -31,7 +31,7 @@ const Header = () => {
     <>
       <div className={"container"} data-aos={"fade-down"} data-aos-delay={200}>
         <header className={`${styles["header"]}`}>
-          <Link to={"/"} className={styles["logotype"]}>
+          <Link aria-label={"Logotype"} to={"/"} className={styles["logotype"]}>
             <Logo />
           </Link>
           <div className={styles["settings"]}>

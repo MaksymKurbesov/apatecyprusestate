@@ -65,6 +65,7 @@ const PlansList = () => {
       <>
         <button
           className={styles["slick-arrow-prev"]}
+          name={"prev"}
           onClick={(e) => {
             e.preventDefault();
             sliderRef?.current?.slickPrev();
@@ -75,6 +76,7 @@ const PlansList = () => {
 
         <button
           className={styles["slick-arrow-next"]}
+          name={"next"}
           onClick={(e) => {
             e.preventDefault();
             sliderRef?.current?.slickNext();

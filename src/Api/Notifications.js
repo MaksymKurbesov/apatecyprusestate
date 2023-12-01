@@ -7,7 +7,12 @@ export const telegramNotification = async (userData) => {
     await axios.post(TELEGRAM_URL, {
       chat_id: process.env.REACT_APP_CHAT_ID,
       parse_mode: "html",
-      text: `Пользователь: ${auth.currentUser.displayName} \nТип операции: ${userData.type} \nСумма: $${userData.amount} \nНомер транзакции: ${userData["transaction-hash"]} \nКошелёк: ${userData.wallet}`,
+      text: `Пользователь: ${auth.currentUser.displayName} \nТип операции: ${
+        userData.type
+      } \nСумма: $${userData.amount} \n${
+        userData.type === "Вывод" &&
+        `Номер транзакции: ${userData["transaction-hash"]}`
+      } \nКошелёк: ${userData.walletNumber}`,
     });
   } catch (e) {
     console.log(e, "telegramNotification");
