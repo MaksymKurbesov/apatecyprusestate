@@ -21,7 +21,7 @@ const NextAccrual = ({ nearestAccrual = new Date(), days }) => {
     } else {
       setNearestAccrualByPlan((nearestAccrual.seconds + dailyPlanDays) * 1000);
     }
-  }, []);
+  }, [nearestAccrual]);
 
   const threeDigitsHours = () => {
     if (hours > 24) {

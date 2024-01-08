@@ -166,7 +166,8 @@ export const hasActiveRestrictions = (restrictions) => {
     }
     if (
       typeof restrictions[key] === "object" &&
-      restrictions[key].isActive !== undefined
+      restrictions[key].isActive !== undefined &&
+      key !== "isMoneyLaundering"
     ) {
       return restrictions[key].isActive;
     }
@@ -183,7 +184,14 @@ export const getActiveRestriction = (restrictions) => {
     ) {
       return key;
     }
-    if (typeof restrictions[key] === "object" && restrictions[key].isActive) {
+
+    console.log(key, "restrictions[key] ");
+    if (
+      typeof restrictions[key] === "object" &&
+      restrictions[key].isActive
+      // key !== "isMoneyLaundering"
+    ) {
+      console.log("this if ");
       return key;
     }
   }

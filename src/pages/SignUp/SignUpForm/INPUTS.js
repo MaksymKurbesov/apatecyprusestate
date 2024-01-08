@@ -6,7 +6,7 @@ export const INPUTS = [
       required: true,
       validate: {
         matchPattern: (v) =>
-          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v),
+          /^\s*\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+\s*$/.test(v),
       },
     },
     errorMessages: {

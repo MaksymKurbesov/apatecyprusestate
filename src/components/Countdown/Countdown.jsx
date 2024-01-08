@@ -5,6 +5,8 @@ import styles from "./Countdown.module.scss";
 const Countdown = ({ deadline }) => {
   const { hours, minutes, seconds } = useTimer(new Date(deadline));
 
+  console.log(deadline, "deadline");
+
   if (seconds <= 0 && minutes <= 0 && hours <= 0) {
     return <p>Готово!</p>;
   }

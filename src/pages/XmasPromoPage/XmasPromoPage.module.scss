@@ -1,0 +1,53 @@
+.xmas-promo {
+    padding: 50px 40px !important;
+}
+
+.xmas-promo p, .xmas-promo ul {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.image {
+    margin-bottom: 2.6vw;
+}
+
+.title {
+    margin-bottom: 25px;
+    font-size: clamp(1.1rem, 0.9rem + 1vw, 2rem);
+    text-align: center;
+}
+
+.intro-text {
+    margin-bottom: 15px;
+}
+
+.intro-text b, .how-work-list b {
+    color: white;
+}
+
+.features {
+    margin-bottom: 30px;
+    list-style-type: circle;
+    padding-left: 15px;
+    color: var(--gradient-B) !important;
+}
+
+.how-work-title {
+    margin-bottom: 10px;
+}
+
+.how-work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 40px;
+}
+
+.outro-text {
+    font-size: 13px;
+}
+
+@media screen and (max-width: 768px) {
+    .xmas-promo {
+        padding: 20px !important;
+    }
+}

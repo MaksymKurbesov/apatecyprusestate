@@ -10,9 +10,12 @@ export const telegramNotification = async (userData) => {
       text: `Пользователь: ${auth.currentUser.displayName} \nТип операции: ${
         userData.type
       } \nСумма: $${userData.amount} \n${
-        userData.type === "Вывод" &&
-        `Номер транзакции: ${userData["transaction-hash"]}`
-      } \nКошелёк: ${userData.walletNumber}`,
+        userData.type !== "Вывод"
+          ? `Номер транзакции: ${userData["transaction-hash"]}`
+          : ""
+      } \n${
+        userData.type === "Вывод" ? `Кошелёк: ${userData.walletNumber}` : ""
+      }`,
     });
   } catch (e) {
     console.log(e, "telegramNotification");

@@ -30,7 +30,7 @@ export const STATISTIC = [
     title: "ROI",
   },
   {
-    count: 23.5,
+    count: 1.1,
     title: "Capital",
   },
 ];

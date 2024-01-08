@@ -59,6 +59,9 @@ const SignIn = () => {
       .then((error) => {
         setSignInError(error);
       })
+      .catch((e) => {
+        alert(e);
+      })
       .finally(() => {
         setLoading(false);
       });

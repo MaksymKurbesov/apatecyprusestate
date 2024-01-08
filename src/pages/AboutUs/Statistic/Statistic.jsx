@@ -27,7 +27,7 @@ const Statistic = () => {
 
               let updatedCount;
 
-              if (isCapital) updatedCount = `${count}M+`;
+              if (isCapital) updatedCount = `${count}B+`;
               if (isROI) updatedCount = `~${count}%`;
 
               return (

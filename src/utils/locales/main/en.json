@@ -261,5 +261,6 @@
   "popups": {
     "cash_in_popup": "We would like to inform you that your payment will be processed manually. We are very grateful that you will take the time to go through the manual payment process. However, you have really helped us by ensuring that your payment is processed correctly, and for that we are grateful. If you have any questions or problems, please email tech support. Thanks again for your contribution to our company!",
     "private_key_popup": "Important: You are about to enter your private financial key. This key is a unique combination of characters that gives you access to your personal financial information.\n\n Be careful when using your private key. Do not disclose it to third parties, do not save it on public or unsecured devices. If it is lost or stolen, your funds may be at risk. Please make sure you are in a secure and private environment before entering your private key. If you are unsure if your environment is safe, postpone this process until a more appropriate time. Enter your key only if you are absolutely sure of your actions. Remember that it is your responsibility to keep your private key safe."
-  }
+  },
+  "billion": "B"
 }

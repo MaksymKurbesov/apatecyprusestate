@@ -97,7 +97,7 @@ const makeAccruals = async (depositRef) => {
     await runTransaction(db, async (transaction) => {
       const deposit = await transaction.get(depositRef);
 
-      const { amount, lastAccrual, region, wallet, charges, days } =
+      const { amount, lastAccrual, region, wallet, charges, days, isActive } =
         deposit.data();
 
       const percentageInDay = getPlanByRegion(region).inDay;
@@ -130,9 +130,15 @@ const makeAccruals = async (depositRef) => {
       await transaction.update(userDoc, {
         earned: increment(receivedByOneCharge * daysWithoutAccruals),
         [`wallets.${wallet}.available`]: isLastCharge
-          ? increment(receivedByOneCharge * daysWithoutAccruals + amount)
+          ? increment(receivedByOneCharge * (days - charges))
           : increment(receivedByOneCharge * daysWithoutAccruals),
       });
+
+      if (isActive && isLastCharge) {
+        await transaction.update(userDoc, {
+          [`wallets.${wallet}.available`]: increment(amount),
+        });
+      }
     });
   } catch (e) {
     console.error(e);
@@ -148,7 +154,9 @@ export const checkDepositsForAccruals = async () => {
   try {
     await getDocs(allDepositsQuery).then((snap) => {
       snap.docs.forEach(async (item) => {
-        if (!item.data().isActive) return;
+        if (!item.data().isActive) {
+          return;
+        }
 
         const depositWithOneAccrual = item.data().planNumber > 3;
 

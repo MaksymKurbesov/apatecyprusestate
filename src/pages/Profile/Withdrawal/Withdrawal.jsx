@@ -86,7 +86,12 @@ const Withdrawal = () => {
       title: t("stepper.enter_amount"),
       content: (
         <EnterTheAmount
-          additionalInfo={<EnterTheAmountAddInfo amount={amount} />}
+          additionalInfo={
+            <EnterTheAmountAddInfo
+              amount={amount}
+              selectedWallet={selectedWallet}
+            />
+          }
           isWithdrawn
         />
       ),
@@ -99,6 +104,7 @@ const Withdrawal = () => {
           isPrivateKey={userData.restrictions.isPrivateKey}
           userWithWallet={!!userData.wallets[selectedWallet]?.number}
           infoText={t("popups.private_key_popup")}
+          isWithdrawal
           bill={[
             {
               label: t("bill.payment_system"),

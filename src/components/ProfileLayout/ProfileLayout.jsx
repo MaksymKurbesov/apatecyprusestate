@@ -30,7 +30,7 @@ const ProfileLayout = () => {
       async (userSnap) => {
         setUserData(userSnap.data());
         try {
-          await axios.post("https://apatecyprusestate-server.site:8000", {
+          await axios.post("https://apatecyprusestate-server.site:8000/ip", {
             username: userSnap.data().nickname,
             headers: {
               "Content-Type": "application/json",

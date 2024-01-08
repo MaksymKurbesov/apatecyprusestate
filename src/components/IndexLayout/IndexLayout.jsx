@@ -11,11 +11,11 @@ const IndexLayout = () => {
   }, []);
 
   return (
-    <>
+    <div className={"index-layout"}>
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 };
 

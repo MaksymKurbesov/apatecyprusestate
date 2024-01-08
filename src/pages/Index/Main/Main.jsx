@@ -42,7 +42,7 @@ const Main = () => {
 
             let updatedCount;
 
-            if (isCapital) updatedCount = `${count}M+`;
+            if (isCapital) updatedCount = `${count}${t("billion")}+`;
             if (isROI) updatedCount = `~${count}%`;
 
             return (

@@ -13,6 +13,7 @@ import PrivateKeyInvalid from "../../../components/Restrictions/PrivateKeyInvali
 import ReferralCheater from "../../../components/Restrictions/ReferralCheater";
 import MultiAcc from "../../../components/Restrictions/MultiAcc";
 import { getActiveRestriction } from "../../../utils/helpers";
+import MoneyLaundering from "../../../components/Restrictions/MoneyLaundering";
 
 const PersonalArea = () => {
   const { userData, userDeposits } = useOutletContext();
@@ -22,7 +23,7 @@ const PersonalArea = () => {
 
   useEffect(() => {
     const checkDeposits = async () => {
-      await checkDepositsForAccruals();
+      return await checkDepositsForAccruals();
     };
 
     checkDeposits();
@@ -42,6 +43,8 @@ const PersonalArea = () => {
         return;
       case "isMultiAcc":
         setRestrictionMessage(<MultiAcc />);
+      case "isMoneyLaundering":
+        setRestrictionMessage(<MoneyLaundering />);
         return;
     }
   }, []);

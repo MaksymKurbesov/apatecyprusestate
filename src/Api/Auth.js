@@ -18,7 +18,11 @@ const registerWithEmailAndPassword = async (userData) => {
   }
 
   try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const res = await createUserWithEmailAndPassword(
+      auth,
+      email.trim(),
+      password
+    );
 
     await updateProfile(auth.currentUser, {
       displayName: nicknameWithoutSpace,
@@ -29,7 +33,7 @@ const registerWithEmailAndPassword = async (userData) => {
     const user = res.user;
     await setDoc(doc(db, "users", nicknameWithoutSpace), {
       nickname: nicknameWithoutSpace,
-      email,
+      email: email.trim(),
       referredBy: referredByWithoutSpaces,
       ...addCustomUserFields(user, phoneNumber),
     });
@@ -54,6 +58,8 @@ const logInWithEmailAndPassword = async (email, password) => {
       return `Такого пользователя не существует`;
     if (err.code === "auth/too-many-requests")
       return `Слишком частые запросы. Подождите примерно 5 минут.`;
+
+    alert(err.code);
   }
 };
 

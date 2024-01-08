@@ -25,6 +25,7 @@ import RequireAuth from "./components/RequireAuth/RequireAuth";
 import TermsOfUse from "./pages/TermsOfUse/TermsOfUse";
 import Documents from "./pages/Documents/Documents";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
+import XmasPromoPage from "./pages/XmasPromoPage/XmasPromoPage";
 
 export const ROUTES = [
   {
@@ -109,6 +110,14 @@ export const ROUTES = [
         element: (
           <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
             <PrivacyPolicy />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/xmas-promotion",
+        element: (
+          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+            <XmasPromoPage />
           </Suspense>
         ),
       },
