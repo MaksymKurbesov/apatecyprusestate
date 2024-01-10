@@ -80,23 +80,30 @@ const languageDetector: LanguageDetectorAsyncModule = {
   }
 }
 
+// const options: initReactI18next. ={}
+
 i18n
   .use(languageDetector)
   .use(initReactI18next)
   .init({
+    returnNull: false,
     fallbackLng: 'en',
     detection: {
       order: ['querystring', 'cookie'],
       cache: ['cookie']
     },
     resources,
-    ns: ['main', 'partners-program', 'our-contacts'],
+    ns: [
+      'main',
+      'partners-program',
+      'our-contacts',
+      'about-us',
+      'faq',
+      'projects',
+      'structure'
+    ],
     backend: {
       loadPath: './utils/locales/{{ns}}/{{lng}}.json'
-    },
-
-    interpolation: {
-      escapeValue: false
     }
   })
   .catch((e) => {

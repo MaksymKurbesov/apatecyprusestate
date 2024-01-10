@@ -9,17 +9,8 @@ import ErrorRegistrationModal from './ErrorRegistrationModal/ErrorRegistrationMo
 import { closeModal, openModal } from '../../utils/helpers'
 import { useTranslation } from 'react-i18next'
 import Agreement from '../../components/Agreement/Agreement'
-import { useForm, FormProvider, UseFormSetValue } from 'react-hook-form'
-
-interface IFormInputs {
-  email: string
-  nickname: string
-  password: string
-  confirmPassword: string
-  phoneNumber: string
-  referredBy?: string
-  agreement: boolean
-}
+import { useForm, FormProvider } from 'react-hook-form'
+import { ISignUpFields } from '../../@types/Inputs'
 
 export const SignUp: FC = () => {
   const { t } = useTranslation()
@@ -30,7 +21,7 @@ export const SignUp: FC = () => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string>()
 
-  const methods = useForm<IFormInputs>({
+  const methods = useForm<ISignUpFields>({
     mode: 'onBlur',
     defaultValues: {
       referredBy: searchParams.get('ref') || ''

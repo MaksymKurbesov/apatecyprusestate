@@ -7,7 +7,7 @@ interface ITitle {
   style?: CSSProperties
 }
 
-const Title = ({ text, align, style }: ITitle) => {
+const Title = ({ text, align = 'left', style }: ITitle) => {
   return (
     <h2
       data-aos={'fade-right'}

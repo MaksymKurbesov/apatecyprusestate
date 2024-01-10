@@ -10,22 +10,7 @@ import { doc, onSnapshot, DocumentData } from 'firebase/firestore'
 import { getAllDeposits } from '../../Api/Deposits'
 import AccountBlocked from './AccountBlocked/AccountBlocked'
 import axios from 'axios'
-
-export interface IWallet {
-  available: number
-  deposited: number
-  number: string
-  referrals: number
-  withdrawn: number
-}
-
-export interface IWallets {
-  Bitcoin: IWallet
-  Ethereum: IWallet
-  'Perfect Money': IWallet
-  'TRC20 Tether': IWallet
-  '': IWallet
-}
+import { IWallets } from '../../@types/Wallets'
 
 interface IUserData {
   contacts: {

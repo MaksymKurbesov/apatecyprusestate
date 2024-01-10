@@ -1,0 +1,82 @@
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+  User,
+  Auth
+} from 'firebase/auth'
+import {
+  setDoc,
+  doc,
+  FirestoreError,
+  FirestoreErrorCode
+} from 'firebase/firestore'
+import { db } from '../index'
+import { addCustomUserFields, addReferralToAllLevels } from '../utils/helpers'
+import { ISignUpFields } from '../@types/Inputs'
+
+const registerWithEmailAndPassword = async (userData: ISignUpFields) => {
+  const { nickname, email, password, referredBy, phoneNumber } = userData
+  const nicknameWithoutSpace = nickname.trim()
+  let referredByWithoutSpaces = ''
+
+  if (referredBy) {
+    referredByWithoutSpaces = referredBy
+  }
+
+  try {
+    const auth: Auth = await getAuth()
+    const res = await createUserWithEmailAndPassword(
+      auth,
+      email.trim(),
+      password
+    )
+
+    const user: User = res.user
+
+    await updateProfile(user, {
+      displayName: nicknameWithoutSpace
+    }).catch((err) => console.log(err))
+
+    await addReferralToAllLevels(referredByWithoutSpaces, nicknameWithoutSpace)
+
+    await setDoc(doc(db, 'users', nicknameWithoutSpace), {
+      nickname: nicknameWithoutSpace,
+      email: email.trim(),
+      referredBy: referredByWithoutSpaces,
+      ...addCustomUserFields(user, phoneNumber)
+    })
+  } catch (err) {
+    console.error(err)
+    if (err instanceof FirestoreError) {
+      if (err.code === 'auth/email-already-in-use') {
+        return `Извините, но этот email адрес уже занят. Пожалуйста, выберите другой email адрес для вашей учетной записи.`
+      }
+    }
+  }
+}
+
+const logInWithEmailAndPassword = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password)
+  } catch (err) {
+    console.log(err.code)
+
+    if (err.code === 'auth/wrong-password')
+      return `Неверный email адрес или пароль`
+    if (err.code === 'auth/user-not-found')
+      return `Такого пользователя не существует`
+    if (err.code === 'auth/too-many-requests')
+      return `Слишком частые запросы. Подождите примерно 5 минут.`
+
+    alert(err.code)
+  }
+}
+
+const logout = () => {
+  signOut(auth)
+}
+
+export { registerWithEmailAndPassword, logInWithEmailAndPassword, logout }

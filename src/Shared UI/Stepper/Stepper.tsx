@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from 'react'
+import React, { MouseEvent, useState } from 'react'
 import styles from './Stepper.module.scss'
 import { ReactComponent as Exclamation } from '../../assets/SVG/exclamation.svg'
 import { useFormContext } from 'react-hook-form'
@@ -26,7 +26,7 @@ const Stepper = ({ steps = [], loading, isRestrictions }: IStepper) => {
     return trigger(stepName)
   }
 
-  const goPrevPage = (event) => {
+  const goPrevPage = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault()
 
     clearErrors()
@@ -38,7 +38,10 @@ const Stepper = ({ steps = [], loading, isRestrictions }: IStepper) => {
     }
   }
 
-  const goNextPage = (event: MouseEvent, stepName: string) => {
+  const goNextPage = (
+    event: MouseEvent<HTMLButtonElement>,
+    stepName: string
+  ) => {
     event.preventDefault()
 
     if (getValues('region') === 'Individual') {
@@ -103,7 +106,7 @@ const Stepper = ({ steps = [], loading, isRestrictions }: IStepper) => {
         <div className={styles['buttons']}>
           {currentStep !== 1 ? (
             <button
-              onClick={goPrevPage}
+              onClick={(e) => goPrevPage(e)}
               className={`${styles['step-button-back']} custom-border button`}
             >
               {t('back')}

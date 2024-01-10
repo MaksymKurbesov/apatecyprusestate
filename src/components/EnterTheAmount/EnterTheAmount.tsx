@@ -5,7 +5,8 @@ import ColoredLabel from '../ColoredLabel/ColoredLabel'
 import { useOutletContext } from 'react-router-dom'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { IContextType, IWallet, IWallets } from '../ProfileLayout/ProfileLayout'
+import { IContextType } from '../ProfileLayout/ProfileLayout'
+import { IWallets } from '../../@types/Wallets'
 
 interface IEnterTheAmount {
   additionalInfo: ReactNode

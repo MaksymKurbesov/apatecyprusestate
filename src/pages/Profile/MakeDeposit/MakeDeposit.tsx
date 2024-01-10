@@ -4,7 +4,7 @@ import WalletsList from '../../../components/WalletsList/WalletsList'
 import EnterTheAmount from '../../../components/EnterTheAmount/EnterTheAmount'
 import PlansList from '../../../components/PlansList/PlansList'
 import styles from './MakeDeposit.module.scss'
-import { useForm, FormProvider, UseFormProps } from 'react-hook-form'
+import { useForm, FormProvider } from 'react-hook-form'
 import TransactionConfirmation from '../../../components/TransactionConfirmation/TransactionConfirmation'
 import { v4 as uuidv4 } from 'uuid'
 import {

@@ -5,22 +5,18 @@ import styles from './FaqPage.module.scss'
 import Accordion from '../../components/Accordion/Accordion'
 import { ScrollRestoration } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { normalizeKey } from '../../utils/helpers'
 
 const QUESTIONS_COUNT = 17
 
-interface IQuestions {
-  title: any
-  content: any
-}
-
 export const FaqPage: FC = () => {
   const { t } = useTranslation('faq')
-  const QUESTIONS: Array<IQuestions> = []
+  const QUESTIONS = []
 
   for (let i = 1; i <= QUESTIONS_COUNT; i++) {
     QUESTIONS.push({
-      title: t(`${i}.question`),
-      content: t(`${i}.answer`)
+      title: t(normalizeKey(`${i}.question`)),
+      content: t(normalizeKey(`${i}.answer`))
     })
   }
 
