@@ -43,6 +43,23 @@ const registerWithEmailAndPassword = async (userData) => {
     if (err.code === "auth/email-already-in-use") {
       return `Извините, но этот email адрес уже занят. Пожалуйста, выберите другой email адрес для вашей учетной записи.`;
     }
+
+    if (err.code === "auth/invalid-email") {
+      return `Вы указали неверный email адрес.`;
+    }
+
+    if (err.code === "auth/weak-password") {
+      return `Вы указали слишком легкий пароль.`;
+    }
+
+    if (
+      err.code === "auth/operation-not-allowed" ||
+      err.code === "auth/invalid-argument"
+    ) {
+      return `Вы указали неверный данные. Попробуйте снова.`;
+    }
+
+    return err.code;
   }
 };
 
