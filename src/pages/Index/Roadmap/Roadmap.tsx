@@ -77,7 +77,7 @@ const Roadmap = () => {
               <span>{windowSize <= 480 ? date : index + 1}</span>
               <div className={styles['step-info']}>
                 {windowSize > 480 && <h3>{date}</h3>}
-                <p>{t(`roadmap.${index + 1}`)}</p>
+                {/*<p>{t(`roadmap.${index + 1}`)}</p>*/}
               </div>
             </div>
           )

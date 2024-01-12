@@ -1,5 +1,5 @@
 import React from 'react'
-import Bill from './Bill/Bill'
+import Bill, { IBill } from './Bill/Bill'
 import Instruction from './Instruction/Instruction'
 import PrivateKey from './PrivateKey/PrivateKey'
 import { useFormContext } from 'react-hook-form'
@@ -7,7 +7,7 @@ import { useFormContext } from 'react-hook-form'
 interface ITransactionConfirmation {
   isPrivateKey?: boolean
   isInstruction?: boolean
-  bill: any[]
+  bill: IBill[]
   info?: boolean
   infoText?: any
   userWithWallet?: boolean

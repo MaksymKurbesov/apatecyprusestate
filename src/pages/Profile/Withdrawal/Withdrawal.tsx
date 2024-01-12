@@ -21,10 +21,8 @@ import { useTranslation } from 'react-i18next'
 import { telegramNotification } from '../../../Api/Notifications'
 import ErrorModal from '../../../components/ErrorModal/ErrorModal'
 import { setUserRestriction } from '../../../Api/UserData'
-import {
-  IContextType,
-  IWallets
-} from '../../../components/ProfileLayout/ProfileLayout'
+import { IContextType } from '../../../components/ProfileLayout/ProfileLayout'
+import { IWallets } from '../../../@types/IWallets'
 
 const transactionId = uuidv4()
 
@@ -47,7 +45,7 @@ export const Withdrawal: FC = () => {
 
   const userHasRestriction = hasActiveRestrictions(userData.restrictions)
 
-  const selectedWallet: keyof IWallets = methods.watch('wallet')
+  const selectedWallet: any = methods.watch('wallet')
   const amount = methods.watch('amount')
 
   const onSubmit = async (data: IFormInputs) => {
@@ -108,7 +106,7 @@ export const Withdrawal: FC = () => {
       content: (
         <TransactionConfirmation
           isPrivateKey={userData.restrictions.isPrivateKey}
-          userWithWallet={!!userData.wallets[selectedWallet]?.number}
+          userWithWallet={!!userData.wallets[selectedWallet].number}
           infoText={t('popups.private_key_popup')}
           isWithdrawal
           bill={[

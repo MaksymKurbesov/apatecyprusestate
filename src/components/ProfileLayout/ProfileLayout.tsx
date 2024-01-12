@@ -10,63 +10,19 @@ import { doc, onSnapshot, DocumentData } from 'firebase/firestore'
 import { getAllDeposits } from '../../Api/Deposits'
 import AccountBlocked from './AccountBlocked/AccountBlocked'
 import axios from 'axios'
-import { IWallets } from '../../@types/Wallets'
-
-interface IUserData {
-  contacts: {
-    phoneNumber: string
-    telegram: string
-    vk: string
-  }
-  earned: number
-  email: string
-  firstName: string
-  invested: number
-  lastName: string
-  nickname: string
-  privateKey: string
-  rank: string
-  referrals: number
-  referredBy: string
-  referredTo: {
-    '1': []
-    '2': []
-    '3': []
-    '4': []
-    '5': []
-    '6': []
-  }
-  registrationDate: {
-    __time__: '2023-11-29T13:07:48.000Z'
-  }
-  restrictions: {
-    isFinancialGateway: boolean
-    isMultiAcc: {
-      isActive: boolean
-      users: []
-    }
-    isPrivateKey: boolean
-    isPrivateKeyInvalid: boolean
-    isReferralCheater: {
-      isActive: boolean
-      users: []
-    }
-    isWithdrawnLimit: boolean
-  }
-  uid: string
-  wallets: IWallets
-  withdrawn: number
-}
+import { IUser } from '../../@types/IUser'
+import { IDeposit } from '../../@types/IDeposit'
+import { Ranks } from '../../utils/PERCENTAGES_BY_RANK'
 
 export interface IContextType {
-  userData: IUserData
-  userDeposits: any
+  userData: IUser
+  userDeposits: IDeposit[]
 }
 
 const ProfileLayout = () => {
   const windowSize = useWindowSize()
   const [userData, setUserData] = useState<DocumentData>()
-  const [userDeposits, setUserDeposits] = useState([])
+  const [userDeposits, setUserDeposits] = useState<IDeposit[]>([])
   const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()
   const { db } = useContext<IFirebaseContext>(FirebaseContext)
@@ -75,7 +31,10 @@ const ProfileLayout = () => {
     if (loading) return
     if (!user) return navigate('/')
 
-    const unsubscribeDeposits = getAllDeposits(setUserDeposits)
+    const unsubscribeDeposits = getAllDeposits(
+      setUserDeposits,
+      user.displayName
+    )
 
     const unsubscribeUserData = onSnapshot(
       doc(db, 'users', user.displayName),
@@ -114,7 +73,9 @@ const ProfileLayout = () => {
 
   return (
     <div className={styles['profile-layout']}>
-      <Header rank={userData.rank || 'DEFAULT'} />
+      <Header
+        rank={Ranks[userData.rank as keyof typeof Ranks] || Ranks.DEFAULT}
+      />
       {windowSize > 1024 && <ProfileMenu userData={userData} />}
       <Outlet context={{ userData, userDeposits }} />
       {userData.isBlocked && <AccountBlocked />}

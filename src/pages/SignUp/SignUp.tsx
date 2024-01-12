@@ -10,7 +10,7 @@ import { closeModal, openModal } from '../../utils/helpers'
 import { useTranslation } from 'react-i18next'
 import Agreement from '../../components/Agreement/Agreement'
 import { useForm, FormProvider } from 'react-hook-form'
-import { ISignUpFields } from '../../@types/Inputs'
+import { ISignUpFields } from '../../@types/IInputs'
 
 export const SignUp: FC = () => {
   const { t } = useTranslation()

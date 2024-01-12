@@ -1,5 +1,8 @@
 declare module '*.scss'
 
+declare module '*.jpeg'
+declare module '*.jpg'
+
 declare module '*.svg' {
   import React = require('react')
   export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>
@@ -13,3 +16,5 @@ declare module '*.webp' {
 }
 
 declare module 'uuid'
+
+declare module 'react-slick'

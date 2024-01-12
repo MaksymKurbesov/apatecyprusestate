@@ -52,7 +52,7 @@ export const MakeDeposit = () => {
   const selectedPlan = methods.watch('region')
   const selectedProject = methods.watch('project')
   const selectedWallet = methods.watch('wallet')
-  const amount = methods.watch('amount')
+  const amount = Number(methods.watch('amount'))
 
   const onSubmit = async (data: IFormInputs) => {
     setLoading(true)
@@ -65,7 +65,10 @@ export const MakeDeposit = () => {
       nickname: auth.currentUser?.displayName
     })
 
-    await openDeposit({ ...data, ...getPlanByRegion(data.region) })
+    await openDeposit(
+      { ...data, ...getPlanByRegion(data.region) },
+      userData.nickname
+    )
       .then(() => {
         openModal(setSuccessModalStatus)
         methods.reset()

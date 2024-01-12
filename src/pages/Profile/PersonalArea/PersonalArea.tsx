@@ -16,6 +16,7 @@ import { getActiveRestriction } from '../../../utils/helpers'
 import MoneyLaundering from '../../../components/Restrictions/MoneyLaundering'
 import { FC } from 'react'
 import { IContextType } from '../../../components/ProfileLayout/ProfileLayout'
+import { IWallets } from '../../../@types/IWallets'
 
 export const PersonalArea: FC = () => {
   const { userData, userDeposits } = useOutletContext<IContextType>()
@@ -25,7 +26,7 @@ export const PersonalArea: FC = () => {
 
   useEffect(() => {
     const checkDeposits = async () => {
-      return await checkDepositsForAccruals()
+      return await checkDepositsForAccruals(userData.nickname)
     }
 
     checkDeposits()
@@ -57,8 +58,8 @@ export const PersonalArea: FC = () => {
       {restrictionMessage}
       <Wallets wallets={userData.wallets} />
       <NextAccrual
-        nearestAccrual={getNearestAccrual(userDeposits)?.lastAccrual}
-        days={getNearestAccrual(userDeposits)?.days}
+        nearestAccrual={getNearestAccrual(userDeposits).lastAccrual}
+        days={getNearestAccrual(userDeposits).days}
       />
       <UserStatistic statistic={{ invested, earned, withdrawn, referrals }} />
       <Deposits deposits={userDeposits} />

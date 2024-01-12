@@ -6,7 +6,7 @@ import { useOutletContext } from 'react-router-dom'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { IContextType } from '../ProfileLayout/ProfileLayout'
-import { IWallets } from '../../@types/Wallets'
+import { IWallets } from '../../@types/IWallets'
 
 interface IEnterTheAmount {
   additionalInfo: ReactNode

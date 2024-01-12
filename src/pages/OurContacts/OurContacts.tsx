@@ -18,38 +18,36 @@ import { ScrollRestoration } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ourContactsFormNotification } from '../../Api/Notifications'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import ButtonWithState from '../../Shared UI/ButtonWithState/ButtonWithState'
-
-interface FormValues {
-  'user-name': string
-  email: string
-  'phone-number': string
-  message: string
-}
+import ButtonWithState, {
+  BUTTON_STATE
+} from '../../Shared UI/ButtonWithState/ButtonWithState'
+import { IOurContactsFields } from '../../@types/IInputs'
 
 export const OurContacts: FC = () => {
   const windowSize = useWindowSize()
   const { t } = useTranslation('our-contacts')
-  const [buttonState, setButtonState] = useState('idleContact')
-  const { register, handleSubmit, reset } = useForm<FormValues>({
+  const [buttonState, setButtonState] = useState<BUTTON_STATE>(
+    BUTTON_STATE.idleContact
+  )
+  const { register, handleSubmit, reset } = useForm<IOurContactsFields>({
     mode: 'onBlur'
   })
 
-  const contactFormHandler: SubmitHandler<FormValues> = (data) => {
-    setButtonState('loading')
+  const contactFormHandler: SubmitHandler<IOurContactsFields> = (data) => {
+    setButtonState(BUTTON_STATE.loading)
 
     try {
       ourContactsFormNotification(data).then(() => {
-        setButtonState('success_send')
+        setButtonState(BUTTON_STATE.success_send)
         reset()
 
         setTimeout(() => {
-          setButtonState('idleContact')
+          setButtonState(BUTTON_STATE.idleContact)
         }, 2000)
       })
     } catch (e) {
       console.error(e)
-      setButtonState('idleContact')
+      setButtonState(BUTTON_STATE.idleContact)
     }
   }
 

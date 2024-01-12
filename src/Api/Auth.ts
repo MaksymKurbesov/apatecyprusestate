@@ -7,15 +7,13 @@ import {
   User,
   Auth
 } from 'firebase/auth'
-import {
-  setDoc,
-  doc,
-  FirestoreError,
-  FirestoreErrorCode
-} from 'firebase/firestore'
+
+import { AuthErrorCodes } from 'firebase/auth'
+import { setDoc, doc } from 'firebase/firestore'
+
 import { db } from '../index'
 import { addCustomUserFields, addReferralToAllLevels } from '../utils/helpers'
-import { ISignUpFields } from '../@types/Inputs'
+import { ISignUpFields } from '../@types/IInputs'
 
 const registerWithEmailAndPassword = async (userData: ISignUpFields) => {
   const { nickname, email, password, referredBy, phoneNumber } = userData
@@ -43,40 +41,46 @@ const registerWithEmailAndPassword = async (userData: ISignUpFields) => {
     await addReferralToAllLevels(referredByWithoutSpaces, nicknameWithoutSpace)
 
     await setDoc(doc(db, 'users', nicknameWithoutSpace), {
-      nickname: nicknameWithoutSpace,
       email: email.trim(),
-      referredBy: referredByWithoutSpaces,
-      ...addCustomUserFields(user, phoneNumber)
+      ...addCustomUserFields(
+        user,
+        phoneNumber,
+        nicknameWithoutSpace,
+        referredByWithoutSpaces
+      )
     })
   } catch (err) {
     console.error(err)
-    if (err instanceof FirestoreError) {
-      if (err.code === 'auth/email-already-in-use') {
-        return `Извините, но этот email адрес уже занят. Пожалуйста, выберите другой email адрес для вашей учетной записи.`
-      }
+    const isError = typeof err === 'object' && err !== null && 'code' in err
+
+    if (isError && err.code === AuthErrorCodes.EMAIL_EXISTS) {
+      return `Извините, но этот email адрес уже занят. Пожалуйста, выберите другой email адрес для вашей учетной записи.`
     }
+
+    throw err
   }
 }
 
-const logInWithEmailAndPassword = async (email, password) => {
+const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(getAuth(), email, password)
   } catch (err) {
-    console.log(err.code)
+    console.error(err)
+    const isError = typeof err === 'object' && err !== null && 'code' in err
 
-    if (err.code === 'auth/wrong-password')
+    if (isError && err.code === 'auth/wrong-password')
       return `Неверный email адрес или пароль`
-    if (err.code === 'auth/user-not-found')
+    if (isError && err.code === 'auth/user-not-found')
       return `Такого пользователя не существует`
-    if (err.code === 'auth/too-many-requests')
+    if (isError && err.code === 'auth/too-many-requests')
       return `Слишком частые запросы. Подождите примерно 5 минут.`
 
-    alert(err.code)
+    alert(err)
   }
 }
 
 const logout = () => {
-  signOut(auth)
+  signOut(getAuth())
 }
 
 export { registerWithEmailAndPassword, logInWithEmailAndPassword, logout }
