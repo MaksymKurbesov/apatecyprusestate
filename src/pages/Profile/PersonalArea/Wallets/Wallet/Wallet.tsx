@@ -2,10 +2,10 @@ import React, { FC } from 'react'
 import styles from './Wallet.module.scss'
 import ColoredLabel from '../../../../../components/ColoredLabel/ColoredLabel'
 import { useTranslation } from 'react-i18next'
-import { IWallet } from '../../../../../@types/IWallets'
+import { IDisplayWallet, IWallet } from '../../../../../@types/IWallets'
 
 interface IWalletProps {
-  wallet: IWallet
+  wallet: IWallet & IDisplayWallet
 }
 
 const Wallet: FC<IWalletProps> = ({ wallet }) => {

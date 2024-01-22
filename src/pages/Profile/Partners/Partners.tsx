@@ -1,96 +1,88 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import styles from './Partners.module.scss'
 import ReferralLink from './ReferralLink/ReferralLink'
 import Percentage from './Percentage/Percentage'
 import UserInfo from './UserInfo/UserInfo'
 import Levels from './Levels/Levels'
-import { doc, DocumentData, getDoc } from 'firebase/firestore'
+import { doc, DocumentData, Firestore, getDoc } from 'firebase/firestore'
 import { useOutletContext } from 'react-router-dom'
 import { FirebaseContext } from '../../../index'
-import { secondsToString } from '../../../utils/helpers/date'
+import { IContextType } from '../../../components/ProfileLayout/ProfileLayout'
+import { Ranks } from '../../../utils/PERCENTAGES_BY_RANK'
+import { dateToString } from '../../../utils/helpers/date'
+import { IUser } from '../../../@types/IUser'
+import { fetchUserData } from '../../../Api/UserData'
 import {
+  calculateTotalDeposited,
   getTotalActiveReferrals,
   getTotalReferrals
 } from '../../../utils/helpers/calculates'
-import { IUser } from '../../../@types/IUser'
-import { IPlan } from '../../../@types/IPlans'
-import { IContextType } from '../../../components/ProfileLayout/ProfileLayout'
-import { Ranks } from '../../../utils/PERCENTAGES_BY_RANK'
 
 export interface IReferral {
   nickname: string
   sponsor: string
-  totalReferrals: number
+  referrals: number
   registrationDate: string
-  deposited: number
+  deposited: string
+}
+
+export interface IReferralsInitial {
+  [key: string]: string[]
 }
 
 export interface IReferrals {
   [key: string]: IReferral[]
 }
 
-// updatedData[key] = await Promise.all(
-//   usersArray.map(async (userNick: string) => {
-//     const user = await fetchAdditionalDataForUser(userNick)
-//
-//     if (!user) return
-//
-//     return {
-//       ...user,
-//       sponsor: user.referredBy,
-//       registrationDate: secondsToString(user.registrationDate.seconds)
-//     }
-//   })
-// )
+const enrichReferralData = async (
+  referralObject: IReferralsInitial
+): Promise<IReferrals> => {
+  const enrichedData: IReferrals = {}
 
-const Partners = () => {
-  const { userData, userDeposits } = useOutletContext<IContextType>()
-  const { db } = useContext(FirebaseContext)
-  const [referrals, setReferrals] = useState<IReferrals>()
+  for (const level in referralObject) {
+    const userNicknames = referralObject[level]
+    const userDetailsPromises = userNicknames.map((nickname: string) =>
+      fetchUserData(nickname)
+    )
 
-  const fetchAdditionalDataForUser = async (user: string) => {
-    const userDoc = doc(db, 'users', user)
-    const userSnap: DocumentData = await getDoc(userDoc)
+    const userDetails = await Promise.all(userDetailsPromises)
 
-    return userSnap.data()
+    enrichedData[level] = userDetails.map((user) => {
+      console.log(user.registrationDate, 'user.registrationDate')
+
+      return {
+        nickname: user.nickname,
+        sponsor: user.referredBy,
+        deposited: `$${calculateTotalDeposited(user.wallets)}`,
+        registrationDate: dateToString(user.registrationDate),
+        referrals: getTotalReferrals(user.referredTo)
+      }
+    })
   }
 
+  return enrichedData
+}
+
+export const Partners: FC = () => {
+  const { userData, userDeposits } = useOutletContext<IContextType>()
+  const [referrals, setReferrals] = useState<IReferrals>()
+  const [userRank, setUserRank] = useState<Ranks>(Ranks.DEFAULT)
+
   useEffect(() => {
+    setUserRank(userData.rank)
+
     const fetchData = async () => {
-      let updatedData = {} as IReferrals
-
-      // Object.keys(userData.referredTo).map(async (key) => {
-      //   const usersArray = userData.referredTo[key]
-      //
-      //   updatedData[key] = usersArray.map(async (userNick: string) => {
-      //     const user = await fetchAdditionalDataForUser(userNick)
-      //
-      //     if (!user) return
-      //
-      //     return {
-      //       nickname: user.nickname,
-      //       sponsor: user.referredBy,
-      //       deposited: user.deposited,
-      //       registrationDate: secondsToString(user.registrationDate.seconds),
-      //       totalReferrals: 0
-      //     }
-      //   })
-      // })
-
-      // await Promise.all(promises)
-
-      setReferrals(updatedData)
+      const enrichedReferrals = await enrichReferralData(
+        userData.referredTo as IReferralsInitial
+      )
+      setReferrals(enrichedReferrals)
     }
 
     fetchData()
   }, [])
 
-  const totalReferralsCount = getTotalReferrals(referrals)
-
-  const activeReferralsCount = getTotalActiveReferrals(referrals)
-
   if (!referrals) {
-    return
+    return null
   }
 
   return (
@@ -101,15 +93,12 @@ const Partners = () => {
       />
       <Percentage />
       <UserInfo
-        // totalReferralsCount={totalReferralsCount}
-        totalReferralsCount={0}
-        totalActiveReferrals={activeReferralsCount}
+        totalReferralsCount={getTotalReferrals(referrals)}
+        totalActiveReferrals={getTotalActiveReferrals(referrals)}
         purchasedDeposits={userDeposits.length}
-        userRank={userData.rank || Ranks.DEFAULT}
+        userRank={userRank}
       />
-      <Levels referrals={referrals} userRank={Ranks.DEFAULT} />
+      <Levels referrals={referrals} userRank={userRank} />
     </div>
   )
 }
-
-export default Partners

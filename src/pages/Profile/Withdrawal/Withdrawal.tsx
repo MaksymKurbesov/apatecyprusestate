@@ -1,7 +1,8 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useMemo, useState } from 'react'
+import { DevTool } from '@hookform/devtools'
 import styles from './Withdrawal.module.scss'
 import Stepper from '../../../Shared UI/Stepper/Stepper'
-import { useForm, FormProvider } from 'react-hook-form'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import WalletsList from '../../../components/WalletsList/WalletsList'
 import EnterTheAmount from '../../../components/EnterTheAmount/EnterTheAmount'
 import TransactionConfirmation from '../../../components/TransactionConfirmation/TransactionConfirmation'
@@ -15,59 +16,78 @@ import {
 } from '../../../utils/helpers'
 import { auth } from '../../../index'
 import { useOutletContext } from 'react-router-dom'
-import EnterTheAmountAddInfo from './EnterTheAmountAddInfo'
 import { getDateNow } from '../../../utils/helpers/date'
 import { useTranslation } from 'react-i18next'
 import { telegramNotification } from '../../../Api/Notifications'
 import ErrorModal from '../../../components/ErrorModal/ErrorModal'
 import { setUserRestriction } from '../../../Api/UserData'
 import { IContextType } from '../../../components/ProfileLayout/ProfileLayout'
-import { IWallets } from '../../../@types/IWallets'
+import { IWithdrawnFormFields } from '../../../@types/IInputs'
+import { RESTRICTIONS } from '../../../@types/IUser'
+import { serverTimestamp } from 'firebase/firestore'
 
-const transactionId = uuidv4()
+interface ICommission {
+  [key: string]: [number, string]
+}
 
-interface IFormInputs {
-  wallet: keyof IWallets
-  amount: string
-  'private-key': string
+export const COMMISSION: ICommission = {
+  'TRC20 Tether': [1, 'USD'],
+  'Perfect Money': [0.5, '%'],
+  Bitcoin: [5.8, 'USD'],
+  Ethereum: [3.5, 'USD']
 }
 
 export const Withdrawal: FC = () => {
   const { t } = useTranslation()
   const { userData } = useOutletContext<IContextType>()
+
   const [isSuccessModalStatus, setIsSuccessModalStatus] = useState(false)
   const [isInvalidPrivateKeyModalStatus, setIsInvalidPrivateKeyModalStatus] =
     useState(false)
+
   const [loading, setLoading] = useState(false)
-  const methods = useForm<IFormInputs>({
+  const methods = useForm<IWithdrawnFormFields>({
     mode: 'onChange'
   })
 
+  const { watch, reset, handleSubmit, control } = methods
+
+  const [currentStep, setCurrentStep] = useState<number>(1)
+
   const userHasRestriction = hasActiveRestrictions(userData.restrictions)
 
-  const selectedWallet: any = methods.watch('wallet')
-  const amount = methods.watch('amount')
+  const selectedWallet: string = watch('wallet')
+  const amount: number = watch('amount')
+  const transactionId = uuidv4()
 
-  const onSubmit = async (data: IFormInputs) => {
+  const onSubmit: SubmitHandler<IWithdrawnFormFields> = async (
+    data: IWithdrawnFormFields
+  ) => {
     if (userData.wallets[data.wallet].number === '') return
 
     const invalidPrivateKey =
       userData.restrictions.isPrivateKey &&
-      userData.privateKey !== methods.watch('private-key')
+      userData.privateKey !== watch('private-key')
 
     if (invalidPrivateKey) {
-      await setUserRestriction('isPrivateKeyInvalid')
+      await setUserRestriction(
+        RESTRICTIONS.PRIVATE_KEY_INVALID,
+        userData.nickname
+      )
       setIsInvalidPrivateKeyModalStatus(true)
       return
     }
 
     setLoading(true)
+
     await addTransaction({
       ...data,
       id: transactionId,
       type: 'Вывод',
       executor: data.wallet,
-      nickname: auth.currentUser?.displayName
+      nickname: userData.nickname,
+      status: 'Выполнено',
+      date: serverTimestamp()
     })
     await telegramNotification({
       ...data,
@@ -75,71 +95,74 @@ export const Withdrawal: FC = () => {
       type: 'Вывод'
     })
     openModal(setIsSuccessModalStatus)
-    methods.reset()
+    reset()
     setLoading(false)
   }
 
-  const STEPS = [
-    {
-      stepName: 'wallet',
-      title: t('stepper.choose_wallet'),
-      content: <WalletsList />
-    },
-    {
-      stepName: 'amount',
-      title: t('stepper.enter_amount'),
-      content: (
-        <EnterTheAmount
-          additionalInfo={
-            <EnterTheAmountAddInfo
-              amount={amount}
-              selectedWallet={selectedWallet}
-            />
-          }
-          isWithdrawn
-        />
-      )
-    },
-    {
-      stepName: 'cashInConfirm',
-      title: t('stepper.transaction_confirmation'),
-      content: (
-        <TransactionConfirmation
-          isPrivateKey={userData.restrictions.isPrivateKey}
-          userWithWallet={!!userData.wallets[selectedWallet].number}
-          infoText={t('popups.private_key_popup')}
-          isWithdrawal
-          bill={[
-            {
-              label: t('bill.payment_system'),
-              value: <p>{selectedWallet}</p>
-            },
-            {
-              label: t('bill.amount'),
-              value: <p>{Number(amount).toFixed(2)}</p>
-            },
-            {
-              label: t('bill.commission'),
-              value: <p>0.00</p>
-            },
-            {
-              label: t('bill.date'),
-              value: getDateNow()
-            },
-            {
-              label: 'Transaction ID',
-              value: transactionId.slice(1, 17)
-            }
-          ]}
-        />
-      )
-    }
-  ]
+  const STEPS = useMemo(
+    () => [
+      {
+        stepName: 'wallet',
+        title: t('stepper.choose_wallet'),
+        content: <WalletsList />
+      },
+      {
+        stepName: 'amount',
+        title: t('stepper.enter_amount'),
+        content: selectedWallet && (
+          <EnterTheAmount
+            amount={amount}
+            selectedWallet={selectedWallet}
+            isWithdrawn
+          />
+        )
+      },
+      {
+        stepName: 'cashInConfirm',
+        title: t('stepper.transaction_confirmation'),
+        content: selectedWallet && (
+          <TransactionConfirmation
+            isPrivateKey={userData.restrictions.isPrivateKey}
+            userWithWallet={!!userData.wallets[selectedWallet].number}
+            infoText={t('popups.private_key_popup')}
+            isWithdrawal
+            bill={[
+              {
+                label: t('bill.payment_system'),
+                value: <p>{selectedWallet}</p>
+              },
+              {
+                label: t('bill.amount'),
+                value: <p>{Number(amount).toFixed(2)}</p>
+              },
+              {
+                label: t('bill.commission'),
+                value: <p>{COMMISSION[selectedWallet][0]}</p>
+              },
+              {
+                label: t('bill.will_be_received'),
+                value: <p>{Number(amount) - COMMISSION[selectedWallet][0]}</p>
+              },
+              {
+                label: t('bill.date'),
+                value: getDateNow()
+              },
+              {
+                label: 'Transaction ID',
+                value: transactionId.slice(1, 17)
+              }
+            ]}
+          />
+        )
+      }
+    ],
+    [selectedWallet, amount]
+  )
 
   return (
     <div className={styles['withdrawal']}>
       <FormProvider {...methods}>
-        <form id={'cash-in-form'} onSubmit={methods.handleSubmit(onSubmit)}>
+        <form id={'cash-in-form'} onSubmit={handleSubmit(onSubmit)}>
           <Stepper
             steps={STEPS}
             loading={loading}
@@ -178,6 +201,7 @@ export const Withdrawal: FC = () => {
           </p>
         </div>
       </ErrorModal>
+      <DevTool control={control} />
     </div>
   )
 }

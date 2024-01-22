@@ -49,7 +49,8 @@ const Bill: FC<IBillProps> = ({ bill, info, infoText, selectedWallet }) => {
             row.label === t('bill.amount') ||
             row.label === t('bill.income_in_day') ||
             row.label === t('bill.total_income') ||
-            row.label === t('bill.commission')
+            row.label === t('bill.commission') ||
+            row.label === t('bill.will_be_received')
 
           const wallet = WALLETS.find(
             (wallet) => wallet.name === selectedWallet

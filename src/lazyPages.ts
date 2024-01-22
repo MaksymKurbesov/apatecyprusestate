@@ -64,13 +64,15 @@ export const Transactions = lazy(() =>
     ({ Transactions }) => ({ default: Transactions })
   )
 )
-// export const Partners = lazy(() =>
-//   import('./pages/Profile/Partners/Partners').then((module) => ({
-//     default: module.default
-//   }))
-// )
-// export const Settings = lazy(() =>
-//   import('./pages/Profile/Settings/Settings').then((module) => ({
-//     default: module.default
-//   }))
-// )
+
+export const Partners = lazy(() =>
+  import('./pages/Profile/Partners/Partners').then(({ Partners }) => ({
+    default: Partners
+  }))
+)
+
+export const Settings = lazy(() =>
+  import('./pages/Profile/Settings/Settings').then(({ Settings }) => ({
+    default: Settings
+  }))
+)

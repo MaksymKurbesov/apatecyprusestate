@@ -4,7 +4,8 @@ import {
   doc,
   getDoc,
   increment,
-  updateDoc
+  updateDoc,
+  serverTimestamp
 } from 'firebase/firestore'
 import { db } from '../index'
 import { addTransaction } from '../Api/Transactions'
@@ -68,7 +69,7 @@ export const addReferralRewards = async (
         nickname: referredBySnap.data().nickname,
         status: 'Выполнено',
         type: 'Реферальные',
-        wallet
+        date: serverTimestamp()
       })
 
       currentReferralLevel++
@@ -272,7 +273,7 @@ export const addCustomUserFields = (
     earned: 0,
     nickname,
     withdrawn: 0,
-    registrationDate: new Date(user.metadata.creationTime as string),
+    registrationDate: serverTimestamp(),
     referredBy: referredByWithoutSpaces,
     referredTo: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] },
     restrictions: {
@@ -285,6 +286,10 @@ export const addCustomUserFields = (
         users: []
       },
       isMultiAcc: {
+        isActive: false,
+        users: []
+      },
+      isMoneyLaundering: {
         isActive: false,
         users: []
       }

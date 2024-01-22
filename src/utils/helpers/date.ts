@@ -1,10 +1,10 @@
-import { Timestamp } from 'firebase/firestore'
+import { FieldValue, Timestamp } from 'firebase/firestore'
 
-export const addDays = (date: Timestamp, days: number): number => {
-  const result = new Date(date.seconds * 1000)
+export const addDays = (date: Date, days: number): Timestamp => {
+  const result = new Date(date)
   result.setDate(result.getDate() + days)
 
-  return new Date(result.getTime()).getTime()
+  return Timestamp.fromDate(new Date(result.getTime()))
 }
 
 export const daysPassedSince = (someDate: Timestamp) => {
@@ -18,17 +18,22 @@ export const daysPassedSince = (someDate: Timestamp) => {
   return Math.floor(difference / oneDayMilliseconds)
 }
 
-export const secondsToString = (seconds: number, isShort?: boolean): string => {
-  if (seconds < 0) return '-' + secondsToString(-seconds)
+export const dateToString = (
+  date: Timestamp | FieldValue,
+  isShort?: boolean
+): string => {
+  // if (seconds < 0) return '-' + secondsToString(-seconds)
+
+  if (date instanceof FieldValue) return ''
 
   if (isShort) {
-    return new Date(seconds * 1000).toLocaleDateString('ru-RU', {
+    return new Date(date.toDate()).toLocaleDateString('ru-RU', {
       timeZone: 'UTC',
       month: 'short',
       day: '2-digit'
     })
   } else {
-    return new Date(seconds * 1000).toLocaleDateString('ru-RU')
+    return new Date(date.toDate()).toLocaleDateString('ru-RU')
   }
 }
 

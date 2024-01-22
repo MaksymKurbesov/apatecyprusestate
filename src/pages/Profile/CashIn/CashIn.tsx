@@ -16,11 +16,8 @@ import { useTranslation } from 'react-i18next'
 import { telegramNotification } from '../../../Api/Notifications'
 import { useOutletContext } from 'react-router-dom'
 import { IContextType } from '../../../components/ProfileLayout/ProfileLayout'
-
-interface IFormInputs {
-  wallet: string
-  amount: string
-}
+import { ICashInFormFields } from '../../../@types/IInputs'
+import { serverTimestamp } from 'firebase/firestore'
 
 export const CashIn: FC = () => {
   const { t } = useTranslation()
@@ -28,21 +25,24 @@ export const CashIn: FC = () => {
   const [loading, setLoading] = useState(false)
   const { userData } = useOutletContext<IContextType>()
 
-  const methods = useForm<IFormInputs>({
+  const methods = useForm<ICashInFormFields>({
     mode: 'onChange'
   })
 
   const selectedWallet = methods.watch('wallet')
   const amount = methods.watch('amount')
 
-  const onSubmit = async (data: IFormInputs) => {
+  const onSubmit = async (data: ICashInFormFields) => {
     setLoading(true)
     await addTransaction({
       ...data,
+
       id: uuidv4(),
       type: 'Пополнение',
       executor: data.wallet,
-      nickname: auth.currentUser?.displayName,
+      nickname: userData.nickname,
+      status: 'Ожидание',
+      date: serverTimestamp(),
       rank: userData.rank || 'DEFAULT'
     })
     await telegramNotification({ ...data, type: 'Пополнение' })
@@ -62,11 +62,13 @@ export const CashIn: FC = () => {
       title: t('stepper.enter_amount'),
       content: (
         <EnterTheAmount
-          additionalInfo={
-            <p>
-              {t('bill.commission')}:<span> 0.00 USD</span>
-            </p>
-          }
+          // additionalInfo={
+          //   <p>
+          //     {t('bill.commission')}:<span> 0.00 USD</span>
+          //   </p>
+          // }
+          amount={amount}
+          selectedWallet={selectedWallet}
         />
       )
     },

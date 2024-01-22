@@ -4,9 +4,15 @@ export interface IWallet {
   number: string
   referrals: number
   withdrawn: number
-  name?: string
-  label?: string
-  icon?: any
+  // name?: string
+  // label?: string
+  // icon?: any
+}
+
+export interface IDisplayWallet {
+  name: string
+  label: string
+  icon: any
 }
 
 export interface IWallets {

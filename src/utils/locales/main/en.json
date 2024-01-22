@@ -182,6 +182,7 @@
   "bill": {
     "transaction_confirmation": "Transaction confirmation",
     "will_be_withdrawn": "Will be withdrawn subject to commission",
+    "will_be_received": "Will be received",
     "region": "Region",
     "project": "Project",
     "income_in_day": "Income in day",

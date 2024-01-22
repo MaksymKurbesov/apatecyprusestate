@@ -11,9 +11,9 @@ import {
   MakeDeposit,
   OurContacts,
   PartnerProgramPage,
-  // Partners,
+  Partners,
   PersonalArea,
-  // Settings,
+  Settings,
   SignIn,
   SignUp,
   Transactions,
@@ -167,22 +167,22 @@ export const ROUTES = [
           </Suspense>
         )
       },
-      // {
-      //   path: '/profile/referrals',
-      //   element: (
-      //     <Suspense fallback={<div className={'suspense'}>Loading...</div>}>
-      //       <Partners />
-      //     </Suspense>
-      //   )
-      // },
-      // {
-      //   path: '/profile/settings',
-      //   element: (
-      //     <Suspense fallback={<div className={'suspense'}>Loading...</div>}>
-      //       <Settings />
-      //     </Suspense>
-      //   )
-      // },
+      {
+        path: '/profile/referrals',
+        element: (
+          <Suspense fallback={<div className={'suspense'}>Loading...</div>}>
+            <Partners />
+          </Suspense>
+        )
+      },
+      {
+        path: '/profile/settings',
+        element: (
+          <Suspense fallback={<div className={'suspense'}>Loading...</div>}>
+            <Settings />
+          </Suspense>
+        )
+      },
       {
         path: '/profile/admin',
         element: (

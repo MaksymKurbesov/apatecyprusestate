@@ -1,13 +1,13 @@
-import React from "react";
-import styles from "./Table.module.scss";
-import { useTranslation } from "react-i18next";
+import React from 'react'
+import styles from './Table.module.scss'
+import { useTranslation } from 'react-i18next'
 
 const Table = ({ columns = [], data = [], className }) => {
-  const { t } = useTranslation();
-  const labelClassName = `${styles[`${className}-label`]} ${styles["label"]}`;
+  const { t } = useTranslation()
+  const labelClassName = `${styles[`${className}-label`]} ${styles['label']}`
 
   return (
-    <table className={`${styles["table"]} ${styles[className]}`}>
+    <table className={`${styles['table']} ${styles[className]}`}>
       <thead>
         <tr>
           {columns.map((column) => {
@@ -19,7 +19,7 @@ const Table = ({ columns = [], data = [], className }) => {
               >
                 {t(`table_headers.${column.key}`)}
               </td>
-            );
+            )
           })}
         </tr>
       </thead>
@@ -38,16 +38,20 @@ const Table = ({ columns = [], data = [], className }) => {
                     <div className={labelClassName}>
                       {t(`table_headers.${column.key}`)}
                     </div>
-                    <div>{item[column.key]}</div>
+                    <div>
+                      {column.key === 'date'
+                        ? item[column.key][1]
+                        : item[column.key]}
+                    </div>
                   </td>
-                );
+                )
               })}
             </tr>
-          );
+          )
         })}
       </tbody>
     </table>
-  );
-};
+  )
+}
 
-export default Table;
+export default Table

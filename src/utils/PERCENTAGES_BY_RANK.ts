@@ -78,15 +78,15 @@ export interface IRank {
 }
 
 export enum Ranks {
-  DEFAULT,
-  NOVICE,
-  IRON,
-  BRONZE,
-  SILVER,
-  GOLD,
-  PLATINUM,
-  BRILLIANT,
-  SAPPHIRE
+  DEFAULT = 'DEFAULT',
+  NOVICE = 'NOVICE',
+  IRON = 'IRON',
+  BRONZE = 'BRONZE',
+  SILVER = 'SILVER',
+  GOLD = 'GOLD',
+  PLATINUM = 'PLATINUM',
+  BRILLIANT = 'BRILLIANT',
+  SAPPHIRE = 'SAPPHIRE'
 }
 
 export interface IRanks {

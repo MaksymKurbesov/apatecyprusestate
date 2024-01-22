@@ -6,8 +6,8 @@ import Accordion, {
   IAccordionProps
 } from '../../../../components/Accordion/Accordion'
 import {
-  getTotalActiveReferralsByLevel,
-  getTotalIncomeFromReferrals
+  getActiveReferralsByLevel,
+  getRewardsByLevel
 } from '../../../../utils/helpers/calculates'
 import { normalizeReferralLevel } from '../../../../utils/helpers/transformersData'
 import { useTranslation } from 'react-i18next'
@@ -48,7 +48,7 @@ const Levels: FC<ILevelsProps> = ({ referrals, userRank }) => {
 
   const accordionData = [] as IAccordionData[]
 
-  Object.values(referrals).map((level, index) => {
+  Object.values(referrals).map((referralLevelUsers, index) => {
     if (index + 1 > referralLength) return
 
     accordionData.push({
@@ -58,16 +58,20 @@ const Levels: FC<ILevelsProps> = ({ referrals, userRank }) => {
             {t('referrals.level')} {index + 1}
           </p>
           <p>
-            {t('referrals.referrals')}: <span>{level.length}</span>
+            {t('referrals.referrals')}: <span>{referralLevelUsers.length}</span>
           </p>
           <p className={styles['active-referrals']}>
             {t('referrals.active_referrals')}:{' '}
-            <span>{getTotalActiveReferralsByLevel(level)}</span>
+            <span>{getActiveReferralsByLevel(referralLevelUsers)}</span>
           </p>
           <p>
             {t('referrals.total_income')}:{' '}
             <span>
-              ${getTotalIncomeFromReferrals(level, index + 1, RANKS[userRank])}
+              $
+              {getRewardsByLevel(
+                referralLevelUsers,
+                RANKS[userRank][index + 1]
+              )}
             </span>
           </p>
         </div>
@@ -75,7 +79,7 @@ const Levels: FC<ILevelsProps> = ({ referrals, userRank }) => {
       content: (
         <Table
           columns={columns}
-          data={normalizeReferralLevel(level)}
+          data={referralLevelUsers}
           className={'levels'}
         />
       )

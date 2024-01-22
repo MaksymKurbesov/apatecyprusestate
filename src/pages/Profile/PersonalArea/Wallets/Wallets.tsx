@@ -8,7 +8,7 @@ import {
   getCorrectWallets,
   sortWalletsByAvailable
 } from '../../../../utils/helpers'
-import { IWallet, IWallets } from '../../../../@types/IWallets'
+import { IDisplayWallet, IWallet, IWallets } from '../../../../@types/IWallets'
 
 const settings = {
   infinite: true,
@@ -53,8 +53,8 @@ const Wallets: FC<IWalletsProps> = ({ wallets }) => {
   return (
     <div className={styles['wallets']}>
       <Slider ref={sliderRef} {...settings}>
-        {sortedUserWallets.map((userWallet: IWallet) => {
-          return <Wallet wallet={userWallet} />
+        {sortedUserWallets.map((userWallet: IWallet & IDisplayWallet) => {
+          return <Wallet wallet={userWallet} key={userWallet.name} />
         })}
       </Slider>
       {windowSize > 480 ? (

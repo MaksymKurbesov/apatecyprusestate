@@ -3,16 +3,14 @@ import Progress from '../../Shared UI/Progress/Progress'
 import Countdown from '../../components/Countdown/Countdown'
 import ColoredLabel from '../../components/ColoredLabel/ColoredLabel'
 import React from 'react'
-import { calculateTotalDeposit } from './calculates'
-import { addDays, secondsToString } from './date'
+import { calculateTotalDeposited } from './calculates'
+import { addDays, dateToString } from './date'
 import { IDeposit } from '../../@types/IDeposit'
 import { IWallets } from '../../@types/IWallets'
 
 export const normalizeReferralLevel = (referralLevel: any) => {
-  console.log(referralLevel, 'referralLevel')
-
   return referralLevel.map((item: any) => {
-    const totalDeposit = calculateTotalDeposit(item.wallets)
+    const totalDeposit = calculateTotalDeposited(item.wallets)
 
     return {
       ...item,
@@ -71,8 +69,9 @@ export const normalizeDeposits = (deposits: IDeposit[]) => {
       amount: `$${amount.toFixed(2)}`,
       received: `$${received.toFixed(2)}`,
       willReceived: `$${willReceived.toFixed(2)}`,
-      dateOpen: secondsToString(date.seconds, true),
-      dateClose: secondsToString(addDays(date, days) / 1000, true),
+      dateOpen: dateToString(date, true),
+      // dateClose: secondsToString(addDays(date.toDate(), days) / 1000, true),
+      dateClose: 'closed',
       isActive
     }
   })

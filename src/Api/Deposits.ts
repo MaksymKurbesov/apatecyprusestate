@@ -42,7 +42,7 @@ export const openDeposit = async (deposit: IPlan, nickname: string) => {
       region,
       wallet,
       project,
-      date: serverTimestamp(),
+      date: new Date(),
       received: 0,
       willReceived: calculateTotalIncome(Number(amount), region),
       charges: 0,
@@ -86,7 +86,8 @@ const makeAccrual = async (depositRef: DocumentReference, nickname: string) => {
           id: uuidv4(),
           type: 'Начисление',
           nickname,
-          status: 'Выполнено'
+          status: 'Выполнено',
+          date: serverTimestamp()
         })
       }
     })
@@ -112,7 +113,7 @@ const makeAccruals = async (
       const percentageInDay = getPlanByRegion(region).inDay
       const daysWithoutAccruals = daysPassedSince(lastAccrual)
       const isLastCharge = daysWithoutAccruals + charges >= days
-      const updatedTime = addDays(lastAccrual, daysWithoutAccruals)
+      const updatedTime = addDays(lastAccrual.toDate(), daysWithoutAccruals)
       const receivedByOneCharge = (amount * percentageInDay) / 100
 
       for (let i = 0; i < daysWithoutAccruals; i++) {
@@ -123,7 +124,7 @@ const makeAccruals = async (
           type: 'Начисление',
           nickname,
           status: 'Выполнено',
-          date: addDays(lastAccrual, i + 1)
+          date: addDays(lastAccrual.toDate(), i + 1)
         })
       }
 

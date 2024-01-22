@@ -19,7 +19,7 @@ import {
 import { RANKS } from '../../utils/PERCENTAGES_BY_RANK'
 import { useForm } from 'react-hook-form'
 import { sendPrivateKeyToUser } from './helpers'
-import { addTransaction } from '../../Api/Transactions'
+import { addTransaction } from '../../Api/Transactions.ts'
 import { v4 as uuidv4 } from 'uuid'
 
 const Admin = () => {

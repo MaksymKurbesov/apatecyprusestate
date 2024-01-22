@@ -159,7 +159,11 @@ export const MENU_LIST = [
   }
 ]
 
-export const LABEL_COLORS = {
+interface ILabelColors {
+  [key: string]: string
+}
+
+export const LABEL_COLORS: ILabelColors = {
   ETH: 'blue',
   USDT: 'green',
   USD: 'green',

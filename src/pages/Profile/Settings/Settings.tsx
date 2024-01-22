@@ -14,30 +14,21 @@ import {
 } from 'firebase/auth'
 import { IContextType } from '../../../components/ProfileLayout/ProfileLayout'
 import { useAuthState } from '../../../hooks/useAuthState'
-
-interface IFormInputs {
-  newPassword: string
-  confirmPassword: string
-  oldPassword: string
-  phoneNumber: string
-  telegram: string
-  vkontakte: string
-  firstName: string
-  lastName: string
-}
+import { BUTTON_STATE } from '../../../Shared UI/ButtonWithState/ButtonWithState'
+import { ISettingsFormFields } from '../../../@types/IInputs'
 
 export const Settings: FC = () => {
   const { userData } = useOutletContext<IContextType>()
-  const [buttonState, setButtonState] = useState('idleInfo')
-  const methods = useForm<IFormInputs>({
+  const [buttonState, setButtonState] = useState(BUTTON_STATE.idleInfo)
+  const methods = useForm<ISettingsFormFields>({
     mode: 'onChange'
   })
 
   const [user, userLoading] = useAuthState(auth)
 
-  const onSubmit = async (data: IFormInputs) => {
-    setButtonState('loading')
-    await updateUserInfo(data)
+  const onSubmit = async (data: ISettingsFormFields) => {
+    setButtonState(BUTTON_STATE.loading)
+    await updateUserInfo(data, userData.nickname)
 
     if (data.newPassword !== '' && data.newPassword === data.confirmPassword) {
       try {
@@ -51,19 +42,19 @@ export const Settings: FC = () => {
         })
       } catch (e) {
         console.log(e, 'error')
-        setButtonState('failed')
+        setButtonState(BUTTON_STATE.failed)
         setTimeout(() => {
-          setButtonState('idleInfo')
+          setButtonState(BUTTON_STATE.idleInfo)
         }, 2000)
         return
       }
     }
 
-    setButtonState('success')
+    setButtonState(BUTTON_STATE.success)
     methods.reset()
 
     setTimeout(() => {
-      setButtonState('idleInfo')
+      setButtonState(BUTTON_STATE.idleInfo)
     }, 2000)
   }
 

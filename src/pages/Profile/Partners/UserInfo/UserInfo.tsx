@@ -22,6 +22,10 @@ const UserInfo: FC<IUserInfoProps> = ({
 }) => {
   const { t } = useTranslation()
 
+  // console.log(SPONSOR_NAME_MAP, 'SPONSOR_NAME_MAP')
+  // console.log(userRank, 'userRank')
+  // console.log(SPONSOR_NAME_MAP[userRank], 'SPONSOR_NAME_MAP[userRank]')
+
   return (
     <div className={`${styles['user-info-wrapper']} custom-bg custom-border`}>
       <div className={`${styles['user-info']}`}>
@@ -29,7 +33,7 @@ const UserInfo: FC<IUserInfoProps> = ({
           <Coins />
           <div>
             <p>{t('referrals.your_status')}</p>
-            {/*<span>{t("referrals.partner")}</span>*/}
+            <span>{t('referrals.partner')}</span>
             <span className={styles['user-rank']}>
               <img src={SPONSOR_NAME_MAP[userRank].icon} alt={''} width={30} />
               {/*{t(`referrals.${SPONSOR_NAME_MAP[userRank].name}`)}*/}

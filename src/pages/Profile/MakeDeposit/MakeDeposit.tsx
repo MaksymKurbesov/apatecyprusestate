@@ -28,24 +28,22 @@ import { getDateNow } from '../../../utils/helpers/date'
 import { useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
 import { IContextType } from '../../../components/ProfileLayout/ProfileLayout'
-
-const transactionId = uuidv4()
-
-interface IFormInputs {
-  region: string
-  project: string
-  wallet: string
-  amount: string
-}
+import { onAuthStateChanged } from 'firebase/auth'
+import { useAuthState } from '../../../hooks/useAuthState'
+import { IMakeDepositFormFields } from '../../../@types/IInputs'
+import { FieldValue, serverTimestamp, Timestamp } from 'firebase/firestore'
 
 export const MakeDeposit = () => {
   const { t } = useTranslation()
   const { userData } = useOutletContext<IContextType>()
   const [successModalStatus, setSuccessModalStatus] = useState(false)
+  const [user] = useAuthState(auth)
   const [loading, setLoading] = useState(false)
-  const methods = useForm<IFormInputs>({
+  const methods = useForm<IMakeDepositFormFields>({
     mode: 'onChange'
   })
+
+  const transactionId = uuidv4()
 
   const userHasRestriction = hasActiveRestrictions(userData.restrictions)
 
@@ -54,15 +52,17 @@ export const MakeDeposit = () => {
   const selectedWallet = methods.watch('wallet')
   const amount = Number(methods.watch('amount'))
 
-  const onSubmit = async (data: IFormInputs) => {
+  const onSubmit = async (data: IMakeDepositFormFields) => {
     setLoading(true)
+
     await addTransaction({
-      ...data,
-      id: transactionId,
-      status: 'Выполнено',
-      type: 'Вклад',
+      amount,
+      date: serverTimestamp(),
       executor: data.wallet,
-      nickname: auth.currentUser?.displayName
+      id: transactionId,
+      nickname: userData.nickname,
+      status: 'Выполнено',
+      type: 'Вклад'
     })
 
     await openDeposit(
@@ -79,8 +79,8 @@ export const MakeDeposit = () => {
 
     await updateUserBalanceAfterDeposit(
       data.wallet,
-      data.amount,
-      auth.currentUser?.displayName
+      Number(data.amount),
+      user.displayName
     )
   }
 
@@ -105,12 +105,14 @@ export const MakeDeposit = () => {
       title: t('stepper.enter_amount'),
       content: (
         <EnterTheAmount
-          additionalInfo={
-            <EnterTheAmountAddInfo
-              amount={amount}
-              selectedPlan={selectedPlan}
-            />
-          }
+          // additionalInfo={
+          //   <EnterTheAmountAddInfo
+          //     amount={amount}
+          //     selectedPlan={selectedPlan}
+          //   />
+          // }
+          amount={amount}
+          selectedWallet={selectedWallet}
           isMakeDeposit
         />
       )

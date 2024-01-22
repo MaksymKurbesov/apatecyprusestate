@@ -184,6 +184,7 @@
   "bill": {
     "transaction_confirmation": "Подтверждение транзакции",
     "will_be_withdrawn": "Будет выведено с учётом комиссии",
+    "will_be_received": "Будет получено",
     "region": "Регион",
     "project": "Проект",
     "income_in_day": "Доход в день",
@@ -213,7 +214,7 @@
     "your_status": "Ваш статус",
     "partner": "Партнёр",
     "referrals": "Рефералов",
-    "total_income": "Общий доход",
+    "total_income": "Вознаграждение",
     "total_referrals": "Всего рефералов",
     "active_referrals": "Активных",
     "purchased_deposits": "Куплено депозитов",

@@ -1,53 +1,62 @@
 import { getPlanByRegion } from '../helpers'
 import { IDeposit } from '../../@types/IDeposit'
 import { IWallets } from '../../@types/IWallets'
-import { IReferral, IReferrals } from '../../pages/Profile/Partners/Partners'
+import {
+  IReferral,
+  IReferrals,
+  IReferralsInitial
+} from '../../pages/Profile/Partners/Partners'
 
-export const getTotalIncomeFromReferrals = (
+export const getRewardsByLevel = (
   referrals: IReferral[],
-  level: any,
   percentageByRank: any
 ) => {
-  return Object.values(referrals).reduce((accum: any, referral: any) => {
-    const totalDeposited = calculateTotalDeposit(referral.wallets)
-    const percentFromTotalDeposited =
-      (totalDeposited * percentageByRank[level]) / 100
+  return Object.values(referrals).reduce((accum, referral) => {
+    const deposited = referral.deposited.replace(/[^0-9]/g, '')
+
+    const percentFromTotalDeposited = (+deposited * percentageByRank) / 100
 
     return accum + percentFromTotalDeposited
   }, 0)
 }
 
-export const getTotalReferrals = (referrals: any) => {
+export const getTotalReferrals = (
+  referrals: IReferralsInitial | IReferrals
+): number => {
   return Object.values(referrals).reduce(
-    (sum, usersArray: any) => sum + usersArray.length,
+    (sum, usersArray) => sum + usersArray.length,
     0
   )
 }
 
-export const getTotalActiveReferrals = (referrals: any): number => {
-  const refs: any = Object.values(referrals)
+export const getTotalActiveReferrals = (
+  referrals: IReferralsInitial | IReferrals
+) => {
+  let count = 0
+  for (const key in referrals) {
+    const users = referrals[key] as IReferral[]
 
-  if (refs) {
-    return refs
-      .reduce(
-        (allUsers: any, usersArray: any) => allUsers.concat(usersArray),
-        []
-      )
-      .filter((user: any) => user.invested > 0).length
+    count += users.filter((user) => {
+      const deposited = user.deposited.replace(/[^0-9]/g, '')
+
+      return +deposited > 0
+    }).length
   }
 
-  return 0
+  return count
 }
 
-export const getTotalActiveReferralsByLevel = (referrals: any): number => {
+export const getActiveReferralsByLevel = (referrals: IReferral[]): number => {
   if (referrals.length === 0) {
     return 0
   }
 
   let totalActiveReferrals = 0
 
-  referrals.forEach((referral: any) => {
-    if (referral.invested > 0) {
+  referrals.forEach((referral) => {
+    const deposited = referral.deposited.replace(/[^0-9]/g, '')
+
+    if (+deposited > 0) {
       totalActiveReferrals++
     }
   })
@@ -55,7 +64,7 @@ export const getTotalActiveReferralsByLevel = (referrals: any): number => {
   return totalActiveReferrals
 }
 
-export const calculateTotalDeposit = (userWallets: IWallets) => {
+export const calculateTotalDeposited = (userWallets: IWallets) => {
   return Object.values(userWallets).reduce(
     (sum, wallet) => sum + wallet.deposited,
     0

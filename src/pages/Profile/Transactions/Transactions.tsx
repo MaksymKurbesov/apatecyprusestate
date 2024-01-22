@@ -6,6 +6,14 @@ import {
   getNextTransactions,
   getTransactionsCount
 } from '../../../Api/Transactions'
+import {
+  Timestamp,
+  QueryDocumentSnapshot,
+  DocumentData
+} from 'firebase/firestore'
+import { IContextType } from '../../../components/ProfileLayout/ProfileLayout'
+import { useOutletContext } from 'react-router-dom'
+import { ITransaction } from '../../../@types/ITransaction'
 
 const columns = [
   {
@@ -35,16 +43,22 @@ const columns = [
 ]
 
 export const Transactions: FC = () => {
-  const [userTransactions, setUserTransactions] = useState([])
+  const [userTransactions, setUserTransactions] = useState<ITransaction[]>([])
   const [transactionsCount, setTransactionsCount] = useState<number>()
-  const [lastVisible, setLastVisible] = useState(null)
+  const [lastVisible, setLastVisible] = useState<DocumentData>()
+
+  const { userData } = useOutletContext<IContextType>()
 
   useEffect(() => {
     const getTransactions = async () => {
-      const count = await getTransactionsCount()
+      const count = await getTransactionsCount(userData.nickname)
       setTransactionsCount(count)
 
-      return await getAllTransactions(setUserTransactions, setLastVisible)
+      return await getAllTransactions(
+        setUserTransactions,
+        setLastVisible,
+        userData.nickname
+      )
     }
 
     getTransactions()
@@ -65,13 +79,14 @@ export const Transactions: FC = () => {
         className={'transactions'}
       />
       {transactionsCount > 10 &&
-      transactionsCount !== userTransactions.length ? (
+      transactionsCount !== userTransactions?.length ? (
         <button
           onClick={() =>
             getNextTransactions(
               setUserTransactions,
               setLastVisible,
-              lastVisible
+              lastVisible,
+              userData.nickname
             )
           }
           className={`${styles['more-button']} button`}
