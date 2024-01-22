@@ -77,7 +77,6 @@ const Stepper = ({ steps = [], loading, isRestrictions }) => {
 
       <div className={styles[`step-${steps[currentStep - 1].stepName}`]}>
         {steps[currentStep - 1].content}
-
         {steps.map((step) => {
           return (
             <ErrorMessage

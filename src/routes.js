@@ -113,14 +113,6 @@ export const ROUTES = [
           </Suspense>
         ),
       },
-      {
-        path: "/xmas-promotion",
-        element: (
-          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
-            <XmasPromoPage />
-          </Suspense>
-        ),
-      },
     ],
   },
   {
