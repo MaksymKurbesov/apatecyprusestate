@@ -7,7 +7,6 @@ import {
   query,
   updateDoc,
   onSnapshot,
-  getDocs,
   increment,
 } from "firebase/firestore";
 import { auth, FirebaseContext } from "../../index";
@@ -21,6 +20,7 @@ import { useForm } from "react-hook-form";
 import { sendPrivateKeyToUser } from "./helpers";
 import { addTransaction } from "../../Api/Transactions";
 import { v4 as uuidv4 } from "uuid";
+import { checkIp } from "../../Api/CheckIp";
 
 const Admin = () => {
   const { db } = useContext(FirebaseContext);
@@ -178,6 +178,9 @@ const Admin = () => {
             </button>
           </div>
         </form>
+      </div>
+      <div>
+        <button onClick={() => checkIp()}>Проверить айпишники</button>
       </div>
     </div>
   );
