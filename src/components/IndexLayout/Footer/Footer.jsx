@@ -53,7 +53,10 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a aria-label={"Telegram"} href={"https://t.me/apatenews"}>
+              <a
+                aria-label={"Telegram"}
+                href={"https://t.me/ApateCyprusSupport"}
+              >
                 <TelegramIcon />
               </a>
             </li>
