@@ -1,89 +1,89 @@
-import React, { useState } from 'react'
-import styles from './Withdrawal.module.scss'
-import Stepper from '../../../Shared UI/Stepper/Stepper'
-import { useForm, FormProvider } from 'react-hook-form'
-import WalletsList from '../../../components/WalletsList/WalletsList'
-import EnterTheAmount from '../../../components/EnterTheAmount/EnterTheAmount'
-import TransactionConfirmation from '../../../components/TransactionConfirmation/TransactionConfirmation'
-import { addTransaction } from '../../../Api/Transactions'
-import { v4 as uuidv4 } from 'uuid'
-import SuccessModal from '../../../components/SuccesModal/SuccessModal'
+import React, { useState } from "react";
+import styles from "./Withdrawal.module.scss";
+import Stepper from "../../../Shared UI/Stepper/Stepper";
+import { useForm, FormProvider } from "react-hook-form";
+import WalletsList from "../../../components/WalletsList/WalletsList";
+import EnterTheAmount from "../../../components/EnterTheAmount/EnterTheAmount";
+import TransactionConfirmation from "../../../components/TransactionConfirmation/TransactionConfirmation";
+import { addTransaction } from "../../../Api/Transactions";
+import { v4 as uuidv4 } from "uuid";
+import SuccessModal from "../../../components/SuccesModal/SuccessModal";
 import {
   closeModal,
   hasActiveRestrictions,
-  openModal
-} from '../../../utils/helpers'
-import { auth } from '../../../index'
-import { useOutletContext } from 'react-router-dom'
-import EnterTheAmountAddInfo from './EnterTheAmountAddInfo'
-import { getDateNow } from '../../../utils/helpers/date'
-import { useTranslation } from 'react-i18next'
-import { telegramNotification } from '../../../Api/Notifications'
-import ErrorModal from '../../../components/ErrorModal/ErrorModal'
-import { setUserRestriction } from '../../../Api/UserData'
+  openModal,
+} from "../../../utils/helpers";
+import { auth } from "../../../index";
+import { useOutletContext } from "react-router-dom";
+import EnterTheAmountAddInfo, { COMMISSION } from "./EnterTheAmountAddInfo";
+import { getDateNow } from "../../../utils/helpers/date";
+import { useTranslation } from "react-i18next";
+import { telegramNotification } from "../../../Api/Notifications";
+import ErrorModal from "../../../components/ErrorModal/ErrorModal";
+import { setUserRestriction } from "../../../Api/UserData";
 
-const transactionId = uuidv4()
+const transactionId = uuidv4();
 
 const Withdrawal = () => {
-  const { t } = useTranslation()
-  const { userData } = useOutletContext()
-  const [isSuccessModalStatus, setIsSuccessModalStatus] = useState(false)
+  const { t } = useTranslation();
+  const { userData } = useOutletContext();
+  const [isSuccessModalStatus, setIsSuccessModalStatus] = useState(false);
   const [isInvalidPrivateKeyModalStatus, setIsInvalidPrivateKeyModalStatus] =
-    useState(false)
-  const [loading, setLoading] = useState(false)
+    useState(false);
+  const [loading, setLoading] = useState(false);
   const methods = useForm({
     defaultValues: {
-      amount: 0
+      amount: 0,
     },
-    mode: 'onChange'
-  })
+    mode: "onChange",
+  });
 
-  const userHasRestriction = hasActiveRestrictions(userData.restrictions)
+  const userHasRestriction = hasActiveRestrictions(userData.restrictions);
 
-  const selectedWallet = methods.watch('wallet')
+  const selectedWallet = methods.watch("wallet");
 
-  const amount = methods.watch('amount')
+  const amount = methods.watch("amount");
 
   const onSubmit = async (data) => {
-    if (userData.wallets[data.wallet].number === '') return
+    if (userData.wallets[data.wallet].number === "") return;
 
     const invalidPrivateKey =
       userData.restrictions.isPrivateKey &&
-      userData.privateKey !== methods.watch('private-key')
+      userData.privateKey !== methods.watch("private-key");
 
     if (invalidPrivateKey || userData.forcePrivateKey) {
-      await setUserRestriction('isPrivateKeyInvalid')
-      setIsInvalidPrivateKeyModalStatus(true)
-      return
+      await setUserRestriction("isPrivateKeyInvalid");
+      setIsInvalidPrivateKeyModalStatus(true);
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
     await addTransaction({
       ...data,
       id: transactionId,
-      type: 'Вывод',
+      type: "Вывод",
       executor: data.wallet,
-      nickname: auth.currentUser.displayName
-    })
+      nickname: auth.currentUser.displayName,
+    });
     await telegramNotification({
       ...data,
       walletNumber: userData.wallets[data.wallet].number,
-      type: 'Вывод'
-    })
-    openModal(setIsSuccessModalStatus)
-    methods.reset()
-    setLoading(false)
-  }
+      type: "Вывод",
+    });
+    openModal(setIsSuccessModalStatus);
+    methods.reset();
+    setLoading(false);
+  };
 
   const STEPS = [
     {
-      stepName: 'wallet',
-      title: t('stepper.choose_wallet'),
-      content: <WalletsList />
+      stepName: "wallet",
+      title: t("stepper.choose_wallet"),
+      content: <WalletsList />,
     },
     {
-      stepName: 'amount',
-      title: t('stepper.enter_amount'),
+      stepName: "amount",
+      title: t("stepper.enter_amount"),
       content: (
         <EnterTheAmount
           additionalInfo={
@@ -94,48 +94,50 @@ const Withdrawal = () => {
           }
           isWithdrawn
         />
-      )
+      ),
     },
     {
-      stepName: 'cashInConfirm',
-      title: t('stepper.transaction_confirmation'),
+      stepName: "cashInConfirm",
+      title: t("stepper.transaction_confirmation"),
       content: (
         <TransactionConfirmation
           isPrivateKey={userData.restrictions.isPrivateKey}
           userWithWallet={!!userData.wallets[selectedWallet]?.number}
-          infoText={t('popups.private_key_popup')}
+          infoText={t("popups.private_key_popup")}
           isWithdrawal
           bill={[
             {
-              label: t('bill.payment_system'),
-              value: <p>{selectedWallet}</p>
+              label: t("bill.payment_system"),
+              value: <p>{selectedWallet}</p>,
             },
             {
-              label: t('bill.amount'),
-              value: <p>{amount.toFixed(2)}</p>
+              label: t("bill.amount"),
+              value: <p>{amount.toFixed(2)}</p>,
             },
             {
-              label: t('bill.commission'),
-              value: <p>0.00</p>
+              label: t("bill.commission"),
+              value: (
+                <p>{selectedWallet && COMMISSION[selectedWallet][0]}.00</p>
+              ),
             },
             {
-              label: t('bill.date'),
-              value: getDateNow()
+              label: t("bill.date"),
+              value: getDateNow(),
             },
             {
-              label: 'Transaction ID',
-              value: transactionId.slice(1, 17)
-            }
+              label: "Transaction ID",
+              value: transactionId.slice(1, 17),
+            },
           ]}
         />
-      )
-    }
-  ]
+      ),
+    },
+  ];
 
   return (
-    <div className={styles['withdrawal']}>
+    <div className={styles["withdrawal"]}>
       <FormProvider {...methods}>
-        <form id={'cash-in-form'} onSubmit={methods.handleSubmit(onSubmit)}>
+        <form id={"cash-in-form"} onSubmit={methods.handleSubmit(onSubmit)}>
           <Stepper
             steps={STEPS}
             loading={loading}
@@ -149,7 +151,7 @@ const Withdrawal = () => {
         toTransactionButton
       >
         <h3>Заявка на вывод средств успешно принята!</h3>
-        <div className={styles['text']}>
+        <div className={styles["text"]}>
           <p>
             Мы рады сообщить вам, что ваша заявка на вывод средств была успешно
             принята и находится в обработке. Наши специалисты скоро проверят ваш
@@ -166,7 +168,7 @@ const Withdrawal = () => {
         modalStatus={isInvalidPrivateKeyModalStatus}
       >
         <h3>Приватный финансовый ключ был введён неверно!</h3>
-        <div className={styles['text']}>
+        <div className={styles["text"]}>
           <p>
             Если вы потеряли или забыли свой приватный ключ, воспользуйтесь
             процедурой восстановления или свяжитесь с нашей службой поддержки
@@ -175,7 +177,7 @@ const Withdrawal = () => {
         </div>
       </ErrorModal>
     </div>
-  )
-}
+  );
+};
 
-export default Withdrawal
+export default Withdrawal;

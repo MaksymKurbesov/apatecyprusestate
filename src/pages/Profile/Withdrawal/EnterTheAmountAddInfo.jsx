@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const COMMISSION = {
+export const COMMISSION = {
   "TRC20 Tether": [1, "USD"],
   "Perfect Money": [0.5, "%"],
   Bitcoin: [5.8, "USD"],
