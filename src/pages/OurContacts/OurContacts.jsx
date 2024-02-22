@@ -31,6 +31,18 @@ const OurContacts = () => {
   const contactFormHandler = (data) => {
     setButtonState("loading");
 
+    const formIsEmpty =
+      data["user-name"] === "" ||
+      data.telegram === "" ||
+      data["phone-number"] === "";
+
+    console.log(data, "data");
+
+    if (formIsEmpty) {
+      setButtonState("idleContact");
+      return;
+    }
+
     try {
       ourContactsFormNotification(data).then(() => {
         setButtonState("success_send");

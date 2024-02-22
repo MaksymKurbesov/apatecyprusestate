@@ -30,6 +30,15 @@
     cursor: pointer;
 }
 
+.isActiveDeposit {
+    background: rgba(255, 255, 255, 0.4);
+    cursor: not-allowed;
+}
+
+.isActiveDeposit svg {
+    cursor: not-allowed !important;
+}
+
 .slick-arrow-prev {
     transform: translateY(-50%) rotate(90deg);
     left: -10px;

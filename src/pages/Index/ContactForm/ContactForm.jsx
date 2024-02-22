@@ -16,6 +16,16 @@ const ContactForm = () => {
 
   const contactFormHandler = (data) => {
     setButtonState("loading");
+    const formIsEmpty =
+      data["user-name"] === "" ||
+      data.telegram === "" ||
+      data["phone-number"] === "" ||
+      data.message === "";
+
+    if (formIsEmpty) {
+      setButtonState("idleContact");
+      return;
+    }
 
     try {
       contactFormNotification(data).then(() => {

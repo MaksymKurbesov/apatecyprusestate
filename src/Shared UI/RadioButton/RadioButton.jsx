@@ -1,7 +1,14 @@
 import React from "react";
 import styles from "./RadioButton.module.scss";
 
-const RadioButton = ({ value, register, radioName, children }) => {
+const RadioButton = ({
+  value,
+  register,
+  radioName,
+  children,
+  disabled,
+  canOpenAnyDeposit,
+}) => {
   let message = "";
 
   if (radioName === "region") {
@@ -28,6 +35,7 @@ const RadioButton = ({ value, register, radioName, children }) => {
           },
         })}
         value={value}
+        disabled={disabled && !canOpenAnyDeposit}
       />
       <label htmlFor={value}>{children}</label>
     </div>

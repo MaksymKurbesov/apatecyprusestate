@@ -32,7 +32,7 @@ const transactionId = uuidv4();
 
 const MakeDeposit = () => {
   const { t } = useTranslation();
-  const { userData } = useOutletContext();
+  const { userData, userDeposits } = useOutletContext();
   const [individualModalStatus, setIndividualModalStatus] = useState(false);
   const [successModalStatus, setSuccessModalStatus] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -81,7 +81,12 @@ const MakeDeposit = () => {
     {
       stepName: "region",
       title: t("stepper.region"),
-      content: <PlansList />,
+      content: (
+        <PlansList
+          userDeposits={userDeposits}
+          canOpenAnyDeposit={userData.canOpenAnyDeposit}
+        />
+      ),
     },
     {
       stepName: "project",

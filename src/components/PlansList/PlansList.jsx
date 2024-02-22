@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./PlansList.module.scss";
 import Plan from "./Plan/Plan";
 import Slider from "react-slick";
@@ -26,10 +26,12 @@ const setSlidesToShow = (windowSize) => {
   return slidesToShow;
 };
 
-const PlansList = () => {
+const PlansList = ({ userDeposits, canOpenAnyDeposit }) => {
   const windowDimension = useWindowSize();
   const sliderRef = useRef(null);
   const { watch, register } = useFormContext();
+
+  const [activeDeposits, setActiveDeposits] = useState([]);
 
   const settings = {
     infinite: false,
@@ -39,6 +41,18 @@ const PlansList = () => {
     arrows: false,
   };
 
+  useEffect(() => {
+    if (!userDeposits) return;
+
+    setActiveDeposits(
+      userDeposits
+        .filter((deposit) => deposit.isActive)
+        .map((deposit) => deposit.planNumber)
+    );
+  }, []);
+
+  console.log(activeDeposits, "activeDeposits");
+
   return (
     <>
       <Slider ref={sliderRef} {...settings}>
@@ -46,15 +60,22 @@ const PlansList = () => {
           const isChecked = watch("region") === plan.name;
           const checkedClassName = isChecked && styles["isChecked"];
 
+          const isActiveDeposit =
+            activeDeposits.includes(index + 1) && !canOpenAnyDeposit;
+
           return (
             <div
               key={index}
-              className={`${styles["plan-wrapper"]} ${checkedClassName}`}
+              className={`${styles["plan-wrapper"]} ${
+                isActiveDeposit ? styles["isActiveDeposit"] : ""
+              } ${checkedClassName}`}
             >
               <RadioButton
                 register={register}
                 value={plan.name}
                 radioName={"region"}
+                disabled={isActiveDeposit}
+                canOpenAnyDeposit={canOpenAnyDeposit}
               >
                 <Plan plan={plan} />
               </RadioButton>
