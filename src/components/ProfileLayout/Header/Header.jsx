@@ -38,7 +38,7 @@ const isMobileMenu = (menuStatus, setIsMenuOpenHandler) => {
   );
 };
 
-const Header = ({ rank }) => {
+const Header = ({ rank, userData }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const [activeMenuItem, setActiveMenuItem] = useState(null);
@@ -76,7 +76,7 @@ const Header = ({ rank }) => {
       {isDesktop
         ? isDesktopMenu(rank)
         : isMobileMenu(isMenuOpen, setIsMenuOpen)}
-      <MobileMenu menuStatus={isMenuOpen} />
+      <MobileMenu userData={userData} menuStatus={isMenuOpen} />
     </header>
   );
 };

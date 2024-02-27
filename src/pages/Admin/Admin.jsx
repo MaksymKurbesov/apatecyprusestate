@@ -116,30 +116,59 @@ const Admin = () => {
         </thead>
         <tbody>
           {transactions.map((transaction) => {
+            const hash = transaction["transaction-hash"];
+            const type = transaction.type;
+            const typeStyle =
+              type === "Вывод" ? styles["withdrawn"] : styles["deposit"];
+
             return (
-              <tr className={styles["transaction"]} key={transaction.id}>
-                <td>{transaction.nickname}</td>
-                <td>{transaction.amount}</td>
-                <td>{transaction.wallet}</td>
-                <td>{transaction.type}</td>
-                <td>{transaction["transaction-hash"]}</td>
-                <td>{transaction["private-key"]}</td>
+              <tr className={`${styles["transaction"]}`} key={transaction.id}>
                 <td>
-                  <button
-                    onClick={() => {
-                      successTransaction(transaction);
-                    }}
-                  >
-                    Выполнено
-                  </button>
+                  <span>Никнейм</span>
+                  {transaction.nickname}
+                </td>
+                <td>
+                  <span>Сумма</span>
+                  {transaction.amount}
+                </td>
+                <td>
+                  <span>Кошелёк</span>
+                  {transaction.wallet}
+                </td>
+                <td className={typeStyle}>
+                  <span>Тип</span>
+                  {type}
+                </td>
+                <td>
+                  <span>Хеш</span>
+                  {hash && hash.length > 10
+                    ? `${hash.substring(0, 5)}.....${hash.substring(
+                        hash.length - 5
+                      )}`
+                    : hash}
+                </td>
+                <td>
+                  <span>Ключ</span>
+                  {transaction["private-key"]}
                 </td>
                 <td>
                   <button
+                    className={styles["cancel-button"]}
                     onClick={() => {
                       cancelTransaction(transaction);
                     }}
                   >
                     Отмена
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className={styles["success-button"]}
+                    onClick={() => {
+                      successTransaction(transaction);
+                    }}
+                  >
+                    Выполнено
                   </button>
                 </td>
               </tr>

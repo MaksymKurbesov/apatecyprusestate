@@ -59,7 +59,7 @@ const ProfileLayout = () => {
 
   return (
     <div className={styles["profile-layout"]}>
-      <Header rank={userData.rank || "DEFAULT"} />
+      <Header userData={userData} rank={userData.rank || "DEFAULT"} />
       {windowSize > 1024 && <ProfileMenu userData={userData} />}
       <Outlet context={{ userData, userDeposits }} />
       {userData.isBlocked && <AccountBlocked />}

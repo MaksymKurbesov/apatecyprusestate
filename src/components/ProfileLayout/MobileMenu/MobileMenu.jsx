@@ -3,8 +3,9 @@ import styles from "./MobileMenu.module.scss";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { logout } from "../../../Api/Auth";
+import { ReactComponent as Settings } from "../../../assets/SVG/menu icons/settings.svg";
 
-const MobileMenu = ({ menuStatus }) => {
+const MobileMenu = ({ menuStatus, userData }) => {
   const { t, i18n } = useTranslation(["main"]);
 
   return (
@@ -32,11 +33,6 @@ const MobileMenu = ({ menuStatus }) => {
               </li>
             </ul>
             <div className={styles["lang"]}>
-              {/*<button*/}
-              {/*  className={i18n.language === "gr" ? styles["langIsActive"] : ""}*/}
-              {/*>*/}
-              {/*  GR*/}
-              {/*</button>*/}
               <button
                 onClick={() => i18n.changeLanguage("en")}
                 className={i18n.language === "en" ? styles["langIsActive"] : ""}
@@ -109,6 +105,19 @@ const MobileMenu = ({ menuStatus }) => {
                 {t(`menu.settings`)}
               </NavLink>
             </li>
+            {userData.isAdmin && (
+              <li className={styles["quit"]}>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? styles["active"] : ""
+                  }
+                  to={"/profile/admin"}
+                >
+                  ADMIN PANEL
+                </NavLink>
+              </li>
+            )}
+
             <li className={styles["quit"]}>
               <button onClick={() => logout()}>{t(`menu.log_out`)}</button>
             </li>

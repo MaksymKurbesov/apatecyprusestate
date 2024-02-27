@@ -14,8 +14,13 @@
 }
 
 .table td {
-    padding: 10px;
+    padding: 15px;
     border: 1px solid white;
+}
+
+
+.table td button {
+    padding: 10px 15px;
 }
 
 .table tbody tr td {
@@ -51,5 +56,69 @@
 
 .input {
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
+.deposit {
+    background: rgba(74, 185, 0, 0.25);
+}
+
+.withdrawn {
+    background: rgba(245, 40, 40, 0.26);
+}
+
+.table td span {
+    display: none;
+}
+
+@media screen and (max-width: 568px) {
+    .table tr th {
+        font-size: 12px;
+    }
+
+    .table thead tr {
+        display: none;
+    }
+
+    .table tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 20px;
+    }
+
+    .table td {
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-weight: 600;
+        height: 45px !important;
+    }
+
+    .table tr td:nth-child(7), .table tr td:last-child {
+        padding: 0 !important;
+    }
+
+    .table td span {
+        display: block;
+        opacity: 0.4;
+        font-weight: 400;
+        font-size: 12px;
+    }
+
+    .success-button, .cancel-button {
+        padding: 0;
+        border: none;
+        font-family: inherit;
+        background: linear-gradient(90deg, var(--gradient-A), var(--gradient-B));
+        color: white;
+        font-weight: 600;
+        height: 100%;
+    }
+
+    .cancel-button {
+        background: gray;
+        color: rgba(255, 255, 255, 0.5);
+    }
+}
